@@ -53,7 +53,7 @@ return array(
                 ),
             ),
 	        'route' => array(
-		        'type'    => 'Literal',
+		        'type'    => 'Application\Router\Content',
 		        'options' => array(
 			        'route'    => '/route',
 			        'defaults' => array(
