@@ -34,4 +34,9 @@ class MenuService
 		return $this->menuRepository->findAll();
 	}
 
+	public function getRepository()
+	{
+		return $this->menuRepository;
+	}
+
 }
