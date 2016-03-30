@@ -15,8 +15,8 @@ class CategoryForm extends Form
         $this->setAttribute('method', 'POST');
         $this->setInputFilter(new CategoryFilter());
 
-        //Input nome
-        $name = new Text('nome');
+        //Input name
+        $name = new Text('name');
 	    $name->setLabel('Название')
             ->setAttributes(array(
                     'maxlength' => 45
