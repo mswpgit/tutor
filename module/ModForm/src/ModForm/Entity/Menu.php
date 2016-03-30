@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Menu
  *
- * @ORM\Table(name="menu", indexes={@ORM\Index(name="fk_menu_category_idx", columns={"category"})})
+ * @ORM\Table(name="menu")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="ModForm\Entity\Repository\MenuRepository")
@@ -101,40 +101,6 @@ class Menu extends AbstractEntity
      * @ORM\Column(name="published", type="boolean", nullable=false)
      */
     private $published = '0';
-
-    /**
-     * @var \ModForm\Entity\Category
-     *
-     * @ORM\ManyToOne(targetEntity="ModForm\Entity\Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category", referencedColumnName="id")
-     * })
-     */
-    private $category;
-
-    /**
-     * Set category
-     *
-     * @param \ModForm\Entity\Category $category
-     *
-     * @return Menu
-     */
-    public function setCategory(\ModForm\Entity\Category $category = null)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \ModForm\Entity\Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
 
 	/**
 	 * @param string $alias
