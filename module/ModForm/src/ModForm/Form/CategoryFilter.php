@@ -11,7 +11,7 @@ class CategoryFilter extends InputFilter
 {
     public function __construct()
     {
-        $nome = new Input('nome');
+        $nome = new Input('name');
         $nome->setRequired(true)
             ->getFilterChain()
                 ->attach(new StringTrim())
