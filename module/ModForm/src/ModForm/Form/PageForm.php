@@ -13,7 +13,7 @@ use Zend\Form\Form;
 
 use ModForm\Form\PageFilter;
 
-class PostForm extends Form implements ObjectManagerAwareInterface
+class PageForm extends Form implements ObjectManagerAwareInterface
 {
     protected $objectManager;
 

@@ -2,6 +2,8 @@
 namespace ModForm;
 
 use ModForm\Service\CategoryService;
+use ModForm\Service\PageService;
+use ModForm\Form\PageForm;
 
 class Module
 {
@@ -27,7 +29,13 @@ class Module
 			'factories' => array(
 				'ModForm\Service\CategoryService' => function($em){
 					return new CategoryService($em->get('Doctrine\ORM\EntityManager'));
-				}
+				},
+				'ModForm\Service\PageService' => function($em){
+					return new PageService($em->get('Doctrine\ORM\EntityManager'));
+				},
+				'ModForm\Form\PageForm' => function($em){
+					return new PageForm($em->get('Doctrine\ORM\EntityManager'));
+				},
 			)
 		);
 	}
