@@ -11,6 +11,7 @@ return array(
 	    'DoctrineModule',
 	    'DoctrineORMModule',
 	    'ZendDeveloperTools',
+	    'Base',
         'Application',
         'Blog',
         'ModForm',
