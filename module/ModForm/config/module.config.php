@@ -4,7 +4,7 @@ namespace ModForm;
 return array(
 	'router' => array(
 		'routes' => array(
-			'post' => array(
+			'test' => array(
 				'type' => 'segment',
 				'options' => array(
 					'route' => '/test[/:action][/:id]',
