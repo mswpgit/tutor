@@ -53,6 +53,13 @@ class Page extends AbstractEntity
     private $fulltext;
 
 	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="active", type="boolean", nullable=false)
+	 */
+	private $active = '0';
+
+	/**
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="date_create", type="datetime", nullable=true)
@@ -219,4 +226,27 @@ class Page extends AbstractEntity
 		return $this->title;
 	}
 
+	/**
+	 * Set active
+	 *
+	 * @param boolean $ativo
+	 *
+	 * @return Page
+	 */
+	public function setActive($active)
+	{
+		$this->active = $active;
+
+		return $this;
+	}
+
+	/**
+	 * Get active
+	 *
+	 * @return boolean
+	 */
+	public function getActive()
+	{
+		return $this->active;
+	}
 }
