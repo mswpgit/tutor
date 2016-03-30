@@ -1,0 +1,14 @@
+http://samminds.com/2012/07/a-blog-application-part-1-working-with-doctrine-2-in-zend-framework-2/
+
+CREATE TABLE `posts`
+(
+  `id`    INT(10)     UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(50) NOT NULL,
+  `text`  LONGTEXT    NOT NULL,
+  PRIMARY KEY (`id`)
+)
+
+INSERT INTO `posts` (`title`, `text`) VALUES (
+  'Hello ZF2 Blog',
+  'This is our first sample blogging application using Zend Framework 2 and Doctrine 2'
+);
