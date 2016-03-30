@@ -206,6 +206,24 @@ class CategoryController extends AbstractActionController
 		return new ViewModel(array('form' => $form, 'id' => $param));
 	}
 
+	/**
+	 * Exclui um registro
+	 *
+	 * @return \Zend\Http\Response
+	 */
+	public function deleteAction()
+	{
+		$service = $this->getServiceLocator()->get($this->service);
+		$id = $this->params()->fromRoute('id', 0);
+
+		if ($service->remove(array('id' => $id)))
+			$this->flashMessenger()->addSuccessMessage('Удалено!');
+		else
+			$this->flashMessenger()->addErrorMessage('Не удалено!');
+
+		return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
+	}
+
 
 	/**
 	 * @return \Doctrine\ORM\EntityManager
