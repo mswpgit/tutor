@@ -18,11 +18,64 @@ return array(
 					),
 				),
 			),
+			'menu' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/menu',
+					'defaults' => array(
+						'controller' => 'ModForm\Controller\Menu',
+						'action'     => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'default' => array(
+						'type'    => 'Segment',
+						'options' => array(
+							'route'    => '[/:action[/:id]]',
+							'constraints' => array(
+								'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'id'         => '\d+'
+							),
+							'defaults' => array(
+							),
+						),
+					),
+				),
+			),
+			'category' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/category',
+					'defaults' => array(
+						'controller' => 'ModForm\Controller\Category',
+						'action'     => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'default' => array(
+						'type'    => 'Segment',
+						'options' => array(
+							'route'    => '[/:action[/:id]]',
+							'constraints' => array(
+								'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'id'         => '\d+'
+							),
+							'defaults' => array(
+							),
+						),
+					),
+				),
+
+			),
 		),
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'ModForm\Controller\Test' => 'ModForm\Controller\TestController'
+			'ModForm\Controller\Test' => 'ModForm\Controller\TestController',
+			'ModForm\Controller\Menu' => 'ModForm\Controller\MenuController',
+			'ModForm\Controller\Category' => 'ModForm\Controller\CategoryController',
 		),
 	),
 	'view_manager' => array(
