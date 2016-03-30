@@ -69,6 +69,32 @@ return array(
 				),
 
 			),
+			'page' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/page',
+					'defaults' => array(
+						'controller' => 'ModForm\Controller\Page',
+						'action'     => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'default' => array(
+						'type'    => 'Segment',
+						'options' => array(
+							'route'    => '[/:action[/:id]]',
+							'constraints' => array(
+								'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'id'         => '\d+'
+							),
+							'defaults' => array(
+							),
+						),
+					),
+				),
+
+			),
 		),
 	),
 	'controllers' => array(
@@ -76,6 +102,7 @@ return array(
 			'ModForm\Controller\Test' => 'ModForm\Controller\TestController',
 			'ModForm\Controller\Menu' => 'ModForm\Controller\MenuController',
 			'ModForm\Controller\Category' => 'ModForm\Controller\CategoryController',
+			'ModForm\Controller\Page' => 'ModForm\Controller\PageController',
 		),
 	),
 	'view_manager' => array(
