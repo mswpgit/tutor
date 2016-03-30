@@ -2,18 +2,18 @@
 
 namespace ModForm\Entity;
 
-use Base\Entity\AbstractEntity;
+use ModForm\Entity\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Menu
  *
- * @ORM\Table(name="menu", indexes={@ORM\Index(name="fk_post_categoria_idx", columns={"category"})})
+ * @ORM\Table(name="menu", indexes={@ORM\Index(name="fk_menu_category_idx", columns={"category"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="Post\Entity\PostRepository")
+ * @ORM\Entity(repositoryClass="ModForm\Entity\Repository\MenuRepository")
  */
-class Post extends AbstractEntity
+class Menu extends AbstractEntity
 {
     /**
      * @var integer
@@ -103,9 +103,9 @@ class Post extends AbstractEntity
     private $published = '0';
 
     /**
-     * @var \Categoria\Entity\Category
+     * @var \ModForm\Entity\Category
      *
-     * @ORM\ManyToOne(targetEntity="Categoria\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="ModForm\Entity\Category")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category", referencedColumnName="id")
      * })
@@ -115,11 +115,11 @@ class Post extends AbstractEntity
     /**
      * Set category
      *
-     * @param \Categoria\Entity\Category $category
+     * @param \ModForm\Entity\Category $category
      *
-     * @return Post
+     * @return Menu
      */
-    public function setCategory(\Categoria\Entity\Category $category = null)
+    public function setCategory(\ModForm\Entity\Category $category = null)
     {
         $this->category = $category;
 
@@ -129,7 +129,7 @@ class Post extends AbstractEntity
     /**
      * Get category
      *
-     * @return \Categoria\Entity\Category 
+     * @return \ModForm\Entity\Category
      */
     public function getCategory()
     {

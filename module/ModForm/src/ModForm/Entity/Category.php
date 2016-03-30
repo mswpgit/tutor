@@ -1,16 +1,16 @@
 <?php
 
-namespace Categoria\Entity;
+namespace ModForm\Entity;
 
-use Base\Entity\AbstractEntity;
+use ModForm\Entity\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Category
  *
- * @ORM\Table(name="category1")
+ * @ORM\Table(name="category")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Categoria\Entity\CategoryRepository")
+ * @ORM\Entity(repositoryClass="ModForm\Entity\Repository\CategoryRepository")
  */
 class Category extends AbstractEntity
 {
@@ -26,9 +26,9 @@ class Category extends AbstractEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=45, nullable=false)
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
-    private $nome;
+    private $name;
 
     /**
      * Get id
@@ -41,26 +41,26 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Set nome
+     * Set name
      *
-     * @param string $nome
+     * @param string $name
      *
      * @return Category
      */
-    public function setNome($nome)
+    public function setName($name)
     {
-        $this->nome = $nome;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nome
+     * Get name
      *
      * @return string 
      */
-    public function getNome()
+    public function getName()
     {
-        return $this->nome;
+        return $this->name;
     }
 }
