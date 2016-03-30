@@ -63,6 +63,17 @@ return array(
 			        ),
 		        ),
 	        ),
+	        'form' => array(
+		        'type'    => 'Literal',//'Application\Router\Content',
+		        'options' => array(
+			        'route'    => '/form',
+			        'defaults' => array(
+				        '__NAMESPACE__' => 'Application\Controller',
+				        'controller'    => 'Form',
+				        'action'        => 'index',
+			        ),
+		        ),
+	        ),
         ),
     ),
     'service_manager' => array(
@@ -88,6 +99,7 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Route' => 'Application\Controller\RouteController',
+            'Application\Controller\Form' => 'Application\Controller\FormController',
         ),
     ),
     'view_manager' => array(
