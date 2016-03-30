@@ -4,10 +4,10 @@ namespace Blog;
 return array(
 	'router' => array(
 		'routes' => array(
-			'post' => array(
+			'post1' => array(
 				'type' => 'segment',
 				'options' => array(
-					'route' => '/post[/:action][/:id]',
+					'route' => '/post1[/:action][/:id]',
 					'constraints' => array(
 						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
 						'id' => '[0-9]+',

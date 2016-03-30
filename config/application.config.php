@@ -13,6 +13,7 @@ return array(
 	    'ZendDeveloperTools',
 	    'Base',
 	    'Categoria',
+	    'Post',
         'Application',
         'Blog',
         'ModForm',
