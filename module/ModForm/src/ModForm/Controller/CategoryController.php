@@ -50,7 +50,6 @@ class CategoryController extends AbstractActionController
 
 		return new ViewModel(array('data' => $paginator, 'page' => $page));
 
-		return array();
 	}
 
 	public function addAction()
