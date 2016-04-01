@@ -17,6 +17,7 @@ return array(
         'Application',
         'Blog',
         'ModForm',
+        'ModTest',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
