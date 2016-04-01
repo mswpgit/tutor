@@ -13,7 +13,7 @@ return array(
 						'id' => '[0-9]+',
 					),
 					'defaults' => array(
-						'controller' => 'ModTest\Controller\Test',
+						'controller' => 'FormCol\Controller\Form',
 						'action' => 'index',
 					),
 				),
