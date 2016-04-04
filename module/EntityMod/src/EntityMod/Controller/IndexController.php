@@ -10,7 +10,11 @@ class IndexController extends AbstractActionController
 		$catService = $this->getServiceLocator()->get('catService');
 		$catServiceMapper = $catService->getMapper();
 
-		\Zend\Debug\Debug::dump($catServiceMapper->getAll()); die;
+		$cat = $catService->getItemById(2);
+		$cat->setString('Строка1');
+		$catServiceMapper->save($cat);
+		$cat = $catServiceMapper->getItemById(2);
+		\Zend\Debug\Debug::dump($cat); die;
 
 		return array();
 	}

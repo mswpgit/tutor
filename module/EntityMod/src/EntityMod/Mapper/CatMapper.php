@@ -2,9 +2,13 @@
 
 namespace EntityMod\Mapper;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use EntityMod\Options\ModuleOptions;
+use EntityMod\Mapper\AbstractMapper;
+use EntityMod\Stdlib\Hydrator\DoctrineObjectDBAL;
 
-class CatMapper
+class CatMapper extends AbstractMapper
 {
 	/**
 	 * @var EntityManager
@@ -68,6 +72,13 @@ class CatMapper
 	public function getEntityManager()
 	{
 		return $this->entityManager;
+	}
+
+	public function getItemById($id)
+	{
+		$em = $this->getEntityManager();
+		$repository = $em->getRepository($this->options->getCatEntityClass());
+		return $repository->find($id);
 	}
 
 }

@@ -60,4 +60,8 @@ class CatService extends AbstractService
 		return $this->mapper;
 	}
 
+	public function getItemById($id)
+	{
+		return $this->mapper->getItemById($id);
+	}
 }
