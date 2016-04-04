@@ -16,11 +16,6 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-	    $menuService = $this->serviceLocator->get('Application\Service\MenuService');
-
-//	    var_dump($menuService->getFullList());
-	    var_dump($menuService->getRepository()->getAllMenu());
-
         return new ViewModel();
     }
 }

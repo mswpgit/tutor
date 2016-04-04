@@ -37,18 +37,4 @@ class Module
         );
     }
 
-	public function getServiceConfig()
-	{
-		return array(
-			'abstract_factories' => array(),
-			'aliases' => array(),
-			'factories' => array(
-				// Services
-				'Application\Service\MenuService'    => 'Application\Factory\Service\MenuServiceFactory',
-			),
-			'invokables' => array(),
-			'services' => array(),
-			'shared' => array(),
-		);
-	}
 }

@@ -11,15 +11,7 @@ return array(
 	    'DoctrineModule',
 	    'DoctrineORMModule',
 	    'ZendDeveloperTools',
-//	    'Base',
-//	    'Categoria',
-//	    'Post',
         'Application',
-        'Blog',
-        'ModForm',
-        'ModTest',
-        'FormCol',
-        'EntityMod',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

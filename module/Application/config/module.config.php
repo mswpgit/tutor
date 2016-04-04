@@ -52,28 +52,6 @@ return array(
                     ),
                 ),
             ),
-	        'route' => array(
-		        'type'    => 'Literal',//'Application\Router\Content',
-		        'options' => array(
-			        'route'    => '/route',
-			        'defaults' => array(
-				        '__NAMESPACE__' => 'Application\Controller',
-				        'controller'    => 'Route',
-				        'action'        => 'index',
-			        ),
-		        ),
-	        ),
-	        'form' => array(
-		        'type'    => 'Literal',//'Application\Router\Content',
-		        'options' => array(
-			        'route'    => '/form',
-			        'defaults' => array(
-				        '__NAMESPACE__' => 'Application\Controller',
-				        'controller'    => 'Form',
-				        'action'        => 'index',
-			        ),
-		        ),
-	        ),
         ),
     ),
     'service_manager' => array(
@@ -98,8 +76,6 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Route' => 'Application\Controller\RouteController',
-            'Application\Controller\Form' => 'Application\Controller\FormController',
         ),
     ),
     'view_manager' => array(
@@ -125,18 +101,5 @@ return array(
             ),
         ),
     ),
-	'doctrine' => array(
-		'driver' => array(
-			'App_Entities' => array(
-				'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-				'cache' => 'array',
-				'paths' => array(__DIR__ . '/../src/Application/Entity')
-			),
-			'orm_default' => array(
-				'drivers' => array(
-					'Application\Entity' => 'App_Entities'
-				),
-			),
-		),
-	),
+
 );
