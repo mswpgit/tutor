@@ -2,6 +2,8 @@
 
 namespace EntityMod\Mapper;
 
+use EntityMod\Options\ModuleOptions;
+
 class CatMapper
 {
 	/**
@@ -10,15 +12,15 @@ class CatMapper
 	protected $entityManager;
 
 	/**
-	 * @var
+	 * @var ModuleOptions
 	 */
 	protected $options;
 
 	/**
 	 * @param $em
-	 * @param $options
+	 * @param ModuleOptions $options
 	 */
-	public function __construct($em,$options)
+	public function __construct($em, ModuleOptions $options)
 	{
 		$this->setEntityManager($em);
 		$this->setOptions($options);
@@ -26,7 +28,7 @@ class CatMapper
 
 	public function getAll(){
 		return $this->getEntityManager()
-			->getRepository($this->options['catEntityClass'])
+			->getRepository($this->options->getCatEntityClass())
 			->findAll();
 	}
 
@@ -56,7 +58,6 @@ class CatMapper
 	 */
 	public function setEntityManager($entityManager)
 	{
-		\Zend\Debug\Debug::dump($entityManager);
 		$this->entityManager = $entityManager;
 		return $this;
 	}

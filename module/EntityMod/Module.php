@@ -36,13 +36,16 @@ class Module
 			'invokables' => array(
 			),
 			'factories' => array(
-				'catMapper'  => function($serviceManager) {
-					$options = array(
-						'catEntityClass' => 'EntityMod\Entity\Cat',
+				'MyOptions' => function($serviceManager) {
+					$config = $serviceManager->get('config');
+					return new Options\ModuleOptions(
+						isset($config['myOptions']) ? $config['myOptions'] : array()
 					);
+				},
+				'catMapper'  => function($serviceManager) {
 					return new \EntityMod\Mapper\CatMapper(
 						$serviceManager->get('doctrine.entitymanager.orm_default'),
-						$options
+						$serviceManager->get('MyOptions')
 					);
 				},
 				'catService' => function ($serviceManager) {
