@@ -23,7 +23,12 @@ class Module
 
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        $assetsConfig = include __DIR__ . '/config/assets.config.php';
+        $moduleConfig = include __DIR__ . '/config/module.config.php';
+        return array_merge(
+	        $assetsConfig,
+	        $moduleConfig
+        );
     }
 
     public function getAutoloaderConfig()

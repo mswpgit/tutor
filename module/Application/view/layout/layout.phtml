@@ -9,20 +9,13 @@
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ?>
+	    <?php  echo $this->plugin('HeadLink'); ?>
 
         <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath('css/style.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+        <?php echo $this->plugin('HeadStyle'); ?>
 
         <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery.min.js'))
-            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
-        ; ?>
+        <?php echo $this->plugin('HeadScript'); ?>
 
     </head>
     <body>
@@ -50,6 +43,6 @@
                 <p>&copy; 2005 - <?php echo date('Y') ?> by Tutor Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
             </footer>
         </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
+        <?php //echo $this->inlineScript() ?>
     </body>
 </html>
