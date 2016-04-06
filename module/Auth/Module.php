@@ -19,12 +19,4 @@ class Module
         );
     }
 
-	public function getControllerPluginConfig()
-	{
-		return array(
-			'factories' => array(
-				'userAuthentication' => 'Auth\Factory\Controller\Plugin\UserAuthentication',
-			),
-		);
-	}
 }
