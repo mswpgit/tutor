@@ -36,7 +36,7 @@ class Module
 			'invokables' => array(
 			),
 			'factories' => array(
-				'ModuleOptions' => function($serviceManager) {
+				'module_options' => function($serviceManager) {
 					$config = $serviceManager->get('config');
 					return new Options\ModuleOptions(
 						isset($config['moduleOptions']) ? $config['moduleOptions'] : array()
@@ -45,7 +45,7 @@ class Module
 				'menuMapper'  => function($serviceManager) {
 					return new \Mod\Mapper\MenuMapper(
 						$serviceManager->get('doctrine.entitymanager.orm_default'),
-						$serviceManager->get('ModuleOptions')
+						$serviceManager->get('module_options')
 					);
 				},
 				'menuService' => function ($serviceManager) {
@@ -53,6 +53,7 @@ class Module
 						$serviceManager->get('menuMapper')
 					);
 				},
+				'menu_form' => 'Mod\Factory\Form\Menu',
 			),
 		);
 	}
