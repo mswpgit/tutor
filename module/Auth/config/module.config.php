@@ -81,6 +81,17 @@ return array(
 			        ),
 		        ),
 	        ),
+	        'logout' => array(
+		        'type'    => 'Literal',
+		        'options' => array(
+			        'route'    => '/logout',
+			        'defaults' => array(
+				        '__NAMESPACE__' => 'Auth\Controller',
+				        'controller'    => 'Auth',
+				        'action'        => 'logout',
+			        ),
+		        ),
+	        ),
         ),
     ),
 );

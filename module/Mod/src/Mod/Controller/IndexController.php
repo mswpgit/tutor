@@ -10,13 +10,20 @@ class IndexController extends AbstractActionController
 		$menuService = $this->getServiceLocator()->get('menuService');
 		$menuMapper = $menuService->getMapper();
 
-		$menu = new \Mod\Entity\Menu();
-		$menu->setMenuType('main');
-		$menu->setTitle('Главное меню');
-		$menu->setDescription('Описание главного меню');
-		$menu->setIsActive(true);
+		/** @var $authService \Zend\Authentication\AuthenticationService */
+		$authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
 
-		$menuMapper->save($menu);
+		if ($authService->hasIdentity())
+		{
+			$menu = new \Mod\Entity\Menu();
+			$item = rand(2, 72);
+			$menu->setMenuType('menu_' . $item);
+			$menu->setTitle('Mеню' . $item);
+			$menu->setDescription('Описание меню ' . $item);
+			$menu->setIsActive(true);
+
+			$menuMapper->save($menu);
+		}
 
 		\Zend\Debug\Debug::dump($menuMapper->getAll());
 

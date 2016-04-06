@@ -53,4 +53,24 @@ class AuthController extends AbstractActionController
         die;
 
     }
+
+	public function logoutAction()
+	{
+		/** @var $authService \Zend\Authentication\AuthenticationService */
+		$authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+
+		if ($authService->hasIdentity())
+		{
+			$authService->clearIdentity();
+			if (!$authService->hasIdentity())
+			{
+				echo 'Почистили!';
+			}
+		}
+
+
+
+		die;
+
+	}
 }
