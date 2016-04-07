@@ -50,7 +50,7 @@ class Menu extends ProvidesEventsForm
 
 		$submitElement = new Element\Button('submit');
 		$submitElement
-			->setLabel('Sign In')
+			->setLabel('Создать')
 			->setAttributes(array(
 				'type'  => 'submit',
 			));
