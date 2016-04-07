@@ -64,13 +64,12 @@ class AuthController extends AbstractActionController
 			$authService->clearIdentity();
 			if (!$authService->hasIdentity())
 			{
-				echo 'Почистили!';
+				$this->flashMessenger()->addInfoMessage('Почистили!');
 			}
 		}
 
-
-
-		die;
+		$this->redirect()->toUrl('menu/menu');
+//		die;
 
 	}
 }

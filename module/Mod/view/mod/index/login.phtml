@@ -1,14 +1,14 @@
-<h1><?php echo $this->translate('Меню'); ?></h1>
+<h1><?php echo $this->translate('Авторизоваться'); ?></h1>
 
 <?php
 $form = $this->loginForm;
-//\Zend\Debug\Debug::dump($form);die;
 $form->prepare();
 $form->setAttribute('action', '/menu/login'); // чтобы использовать как виджет из любых страниц
 $form->setAttribute('method', 'post');
 $form->setAttribute('autocomplete', 'off');
 echo $this->form()->openTag($form) ?>
 <dl class="zend_form">
+	<dt>admin@admin.com</dt>
 	<?php foreach ($form as $element): ?>
 		<?php if ($element->getLabel() != null && !$element instanceof Zend\Form\Element\Button): ?>
 			<dt><?php echo $this->formLabel($element) ?></dt>

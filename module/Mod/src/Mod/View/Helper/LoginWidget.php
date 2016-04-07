@@ -60,8 +60,12 @@ class LoginWidget extends AbstractHelper
 		}
 		else
 		{
+			/** @var $identity \Auth\Entity\User */
+			$identity = $authService->getIdentity();
+
+			echo $identity->getName() . ' | ' . $identity->getEmail() . '<br>';
 			echo '<a href="/logout">Выйти</a>';
-			\Zend\Debug\Debug::dump($authService->getStorage());
+//			\Zend\Debug\Debug::dump($user);
 		}
 
 	}

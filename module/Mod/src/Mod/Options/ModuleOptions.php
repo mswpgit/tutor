@@ -37,7 +37,7 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface, Aut
 	/**
 	 * @var string
 	 */
-	protected $userEntityClass = 'Mod\Entity\User';
+	protected $userEntityClass = 'Auth\Entity\User';
 
 	/**
 	 * @var string

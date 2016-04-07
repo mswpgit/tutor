@@ -43,6 +43,10 @@ class IndexController extends AbstractActionController
 
 	public function menuAction()
 	{
+		// Zend\Mvc\Controller\Plugin\FlashMessenger
+		\Zend\Debug\Debug::dump($this->flashMessenger()->getNamespace());
+		\Zend\Debug\Debug::dump($this->flashMessenger()->getMessages());
+		\Zend\Debug\Debug::dump($this->flashMessenger()->getInfoMessages());
 		$request = $this->getRequest();
 		$form    = $this->getMenuForm();
 		if ($request->isPost())
@@ -81,11 +85,12 @@ class IndexController extends AbstractActionController
 
 				if ($authResult->isValid())
 				{
-					echo 'login succeded';
+					$this->flashMessenger()->addInfoMessage('login succeded!');
+					$this->redirect()->toUrl('/menu/menu');
 				}
 				else
 				{
-					echo 'login failed';
+					$this->flashMessenger()->addErrorMessage('login failed!');
 				}
 //				$menuService = $this->getServiceLocator()->get('loginService');
 //				$menuService->createdMenu($request->getPost()->toArray());

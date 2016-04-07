@@ -42,7 +42,12 @@ class User
      */
     private $isActive = '1';
 
-
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="name", type="string", length=50, nullable=true)
+	 */
+	private $name;
 
     /**
      * Get id
@@ -98,6 +103,28 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
