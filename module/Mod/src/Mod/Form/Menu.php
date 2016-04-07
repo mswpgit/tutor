@@ -38,6 +38,23 @@ class Menu extends ProvidesEventsForm
 			),
 		));
 
+//		$this->add(array(
+//			'name' => 'currency',
+//			'type' => 'Select',
+//			'required' => true,
+//			'options' => array(
+//				'value_options' => array(
+//					643 => "RUB",
+//					840 => "USD",
+//					978 => "EUR"
+//				)
+//			),
+//			'attributes' => array(
+//				'required' => true,
+//				'value' => 'RUR',
+//			)
+//		));
+
 		$this->add(array(
 			'name' => 'description',
 			'options' => array(

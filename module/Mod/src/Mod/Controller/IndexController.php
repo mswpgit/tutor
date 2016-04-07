@@ -18,6 +18,24 @@ class IndexController extends AbstractActionController
 
 	public function indexAction()
 	{
+		// одно вложение
+		/** @var $em \Doctrine\ORM\EntityManager */
+		$em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+		$root_categories = $em->getRepository('Mod\Entity\Category')->findBy(array('parent_category' => null));
+
+		$collection = new \Doctrine\Common\Collections\ArrayCollection($root_categories);
+		$category_iterator = new \Mod\Entity\RecursiveCategoryIterator($collection);
+		$recursive_iterator = new \RecursiveIteratorIterator($category_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+//		foreach ($recursive_iterator as $index => $child_category)
+//		{
+//\Zend\Debug\Debug::dump($child_category);
+////\Zend\Debug\Debug::dump($child_category->getId());
+////\Zend\Debug\Debug::dump($child_category->getDepth());
+////\Zend\Debug\Debug::dump($child_category->getTitle());
+//		}
+
+
 		$menuService = $this->getServiceLocator()->get('menuService');
 		$menuMapper = $menuService->getMapper();
 
@@ -38,11 +56,15 @@ class IndexController extends AbstractActionController
 
 //		\Zend\Debug\Debug::dump($menuMapper->getAll());
 
-		return array();
+		return array(
+			'recursive_iterator' => $recursive_iterator
+		);
 	}
 
 	public function menuAction()
 	{
+
+
 		// Zend\Mvc\Controller\Plugin\FlashMessenger
 //		\Zend\Debug\Debug::dump($this->flashMessenger()->getNamespace());
 //		\Zend\Debug\Debug::dump($this->flashMessenger()->getMessages());
