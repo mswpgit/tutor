@@ -5,6 +5,7 @@ namespace Mod\Form;
 use Zend\Form\Element;
 use Base\Form\ProvidesEventsForm;
 use Mod\Options\MenuServiceInterface;
+use Doctrine\ORM\EntityManager;
 
 class Menu extends ProvidesEventsForm
 {
@@ -13,9 +14,13 @@ class Menu extends ProvidesEventsForm
 	 */
 	protected $moduleOptions;
 
-	public function __construct($name, MenuServiceInterface $options)
+	protected $entityManager;
+
+
+	public function __construct($name, MenuServiceInterface $options, EntityManager $entityManager)
 	{
 		$this->setMenuOptions($options);
+		$this->entityManager = $entityManager;
 		parent::__construct($name);
 
 		$this->add(array(
@@ -37,6 +42,42 @@ class Menu extends ProvidesEventsForm
 				'type' => 'text'
 			),
 		));
+
+		$element = new \DoctrineModule\Form\Element\ObjectSelect('parentId');
+		$element->setOptions(array(
+			'label' => 'Регион',
+			'object_manager' => $this->entityManager,
+			'target_class'   => 'Mod\Entity\Menu',
+			'property'       => 'title',
+			'is_method'      => true,
+			'find_method'    => array(
+				'name'   => 'findBy',
+				'params' => array(
+					'criteria' => array(),
+					'orderBy'  => array('title' => 'ASC'),
+				),
+			),
+			'empty_option' => '',
+		));
+
+		$element->setAttribute('tableAlias', 'f');
+		$this->add($element);
+
+
+//		$this->add(array(
+//			'name' => 'continent',
+//			'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+//			'options' => array(
+//				'object_manager'     => $this->getEventManager(),
+//				'target_class'       => 'Mod\Entity\Menu',
+//				'property' => 'continent',
+//				'is_method' => true,
+//				'find_method'        => array(
+//					'name'   => 'getContinent',
+//				),
+//			),
+//		));
+
 
 //		$this->add(array(
 //			'name' => 'currency',

@@ -26,7 +26,9 @@ class Menu implements FactoryInterface
 		 * @var FormElementManager $formElementManager
 		 */
 		$options = $sm->get('module_options');
-		$form = new Form\Menu(null, $options);
+
+		$entityManager    = $sm->get('Doctrine\ORM\EntityManager');
+		$form = new Form\Menu(null, $options, $entityManager);
 		// Inject the FormElementManager to support custom FormElements
 		$form->getFormFactory()->setFormElementManager($fem);
 

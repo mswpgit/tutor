@@ -31,4 +31,6 @@ $builder->createField('isActive', 'boolean')
 	->nullable(true)
 	->build();
 
-
+$builder->createField('parentId', 'integer')
+	->nullable(true)
+	->build();

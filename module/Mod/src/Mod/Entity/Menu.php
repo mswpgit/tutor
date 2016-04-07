@@ -35,6 +35,11 @@ class Menu
 	private $isActive;
 
 	/**
+	 * @var integer
+	 */
+	private $parentId;
+
+	/**
 	 * Get id
 	 *
 	 * @return integer
@@ -134,6 +139,29 @@ class Menu
 	public function getDescription()
 	{
 		return $this->description;
+	}
+
+	/**
+	 * Set parentId
+	 *
+	 * @param string $parentId
+	 * @return Menu
+	 */
+	public function setParentId($parentId)
+	{
+		$this->parentId = $parentId;
+
+		return $this;
+	}
+
+	/**
+	 * Get description
+	 *
+	 * @return string
+	 */
+	public function getParentId()
+	{
+		return $this->parentId;
 	}
 
 }

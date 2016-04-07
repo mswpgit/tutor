@@ -73,6 +73,7 @@ class IndexController extends AbstractActionController
 		$form    = $this->getMenuForm();
 		if ($request->isPost())
 		{
+//			\Zend\Debug\Debug::dump($request->getPost()); die;
 			$form->setData($request->getPost());
 			if ($form->isValid())
 			{
