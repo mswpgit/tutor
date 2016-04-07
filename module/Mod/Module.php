@@ -77,6 +77,7 @@ class Module
 			'factories' => array(
 				'menuWidget' => 'Mod\Factory\View\Helper\MenuWidget',
 				'loginWidget' => 'Mod\Factory\View\Helper\LoginWidget',
+				'messengerHelper' => 'Mod\Factory\View\Helper\FlashMessengerHelper',
 			),
 		);
 
