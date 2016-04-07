@@ -43,10 +43,11 @@ class IndexController extends AbstractActionController
 		if ($request->isPost())
 		{
 			$form->setData($request->getPost());
-
-			if (!$form->isValid())
+			if ($form->isValid())
 			{
-				\Zend\Debug\Debug::dump('sdfsdfsdfsd');
+				$menuService = $this->getServiceLocator()->get('menuService');
+				$menuService->createdMenu($request->getPost()->toArray());
+				$this->redirect()->toUrl('menu');
 			}
 		}
 

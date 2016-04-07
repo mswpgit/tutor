@@ -34,6 +34,7 @@ class Module
 				'doctrine' => 'doctrine.entitymanager.orm_default',
 			),
 			'invokables' => array(
+				'form_hydrator'    => 'Zend\Stdlib\Hydrator\ClassMethods',
 			),
 			'factories' => array(
 				'module_options' => function($serviceManager) {

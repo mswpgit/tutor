@@ -19,31 +19,32 @@ class Menu extends ProvidesEventsForm
 		parent::__construct($name);
 
 		$this->add(array(
-			'name' => 'identity',
+			'name' => 'menuType',
 			'options' => array(
-				'label' => '',
+				'label' => 'Тип меню',
 			),
 			'attributes' => array(
 				'type' => 'text'
 			),
 		));
 
-//		$emailElement = $this->get('identity');
-//		$label = $emailElement->getLabel('label');
-//		// @TODO: make translation-friendly
-//		foreach ($this->getMenuOptions()->getAuthIdentityFields() as $mode) {
-//			$label = (!empty($label) ? $label . ' or ' : '') . ucfirst($mode);
-//		}
-//		$emailElement->setLabel($label);
-		//
 		$this->add(array(
-			'name' => 'credential',
-			'type' => 'password',
+			'name' => 'title',
 			'options' => array(
-				'label' => 'Password',
+				'label' => 'Название',
 			),
 			'attributes' => array(
-				'type' => 'password',
+				'type' => 'text'
+			),
+		));
+
+		$this->add(array(
+			'name' => 'description',
+			'options' => array(
+				'label' => 'Описание',
+			),
+			'attributes' => array(
+				'type' => 'textarea'
 			),
 		));
 
