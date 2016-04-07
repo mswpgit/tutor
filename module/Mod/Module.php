@@ -54,7 +54,19 @@ class Module
 						$serviceManager->get('menuMapper')
 					);
 				},
+				'userMapper'  => function($serviceManager) {
+					return new \Mod\Mapper\UserMapper(
+						$serviceManager->get('doctrine.entitymanager.orm_default'),
+						$serviceManager->get('module_options')
+					);
+				},
+				'loginService' => function ($serviceManager) {
+					return new \Mod\Service\LoginService(
+						$serviceManager->get('userMapper')
+					);
+				},
 				'menu_form' => 'Mod\Factory\Form\Menu',
+				'login_form' => 'Mod\Factory\Form\Login',
 			),
 		);
 	}
@@ -64,6 +76,7 @@ class Module
 		return array(
 			'factories' => array(
 				'menuWidget' => 'Mod\Factory\View\Helper\MenuWidget',
+				'loginWidget' => 'Mod\Factory\View\Helper\LoginWidget',
 			),
 		);
 

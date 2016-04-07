@@ -4,7 +4,7 @@ namespace Mod\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
-class ModuleOptions extends AbstractOptions implements MenuServiceInterface
+class ModuleOptions extends AbstractOptions implements MenuServiceInterface, AuthenticationOptionsInterface
 {
 	/**
 	 * @var string
@@ -18,6 +18,7 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface
 	public function setMenuWidgetViewTemplate($menuWidgetViewTemplate)
 	{
 		$this->menuWidgetViewTemplate = $menuWidgetViewTemplate;
+		return $this;
 	}
 
 	/**
@@ -32,6 +33,16 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface
 	 * @var string
 	 */
 	protected $menuEntityClass = 'Mod\Entity\Menu';
+
+	/**
+	 * @var string
+	 */
+	protected $userEntityClass = 'Mod\Entity\User';
+
+	/**
+	 * @var string
+	 */
+	protected $loginWidgetViewTemplate = 'mod/index/login.phtml';
 
 	/**
 	 * @param string $menuEntityClass
@@ -51,4 +62,39 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface
 		return $this->menuEntityClass;
 	}
 
+	/**
+	 * @param string $userEntityClass
+	 * @return \Mod\Options\ModuleOptions
+	 */
+	public function setUserEntityClass($userEntityClass)
+	{
+		$this->userEntityClass = $userEntityClass;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUserEntityClass()
+	{
+		return $this->userEntityClass;
+	}
+
+	/**
+	 * @param string $loginWidgetViewTemplate
+	 * @return string
+	 */
+	public function setLoginWidgetViewTemplate($loginWidgetViewTemplate)
+	{
+		$this->loginWidgetViewTemplate = $loginWidgetViewTemplate;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLoginWidgetViewTemplate()
+	{
+		return $this->loginWidgetViewTemplate;
+	}
 }
