@@ -21,17 +21,17 @@ class IndexController extends AbstractActionController
 
 		if ($authService->hasIdentity())
 		{
-			$menu = new \Mod\Entity\Menu();
-			$item = rand(2, 72);
-			$menu->setMenuType('menu_' . $item);
-			$menu->setTitle('Mеню' . $item);
-			$menu->setDescription('Описание меню ' . $item);
-			$menu->setIsActive(true);
+//			$menu = new \Mod\Entity\Menu();
+//			$item = rand(2, 72);
+//			$menu->setMenuType('menu_' . $item);
+//			$menu->setTitle('Mеню' . $item);
+//			$menu->setDescription('Описание меню ' . $item);
+//			$menu->setIsActive(true);
 
 //			$menuMapper->save($menu);
 		}
 
-		\Zend\Debug\Debug::dump($menuMapper->getAll());
+//		\Zend\Debug\Debug::dump($menuMapper->getAll());
 
 		return array();
 	}

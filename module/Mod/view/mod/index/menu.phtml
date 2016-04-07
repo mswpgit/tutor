@@ -4,7 +4,7 @@
 $form = $this->menuForm;
 //\Zend\Debug\Debug::dump($form);die;
 $form->prepare();
-//$form->setAttribute('action', $this->url('zfcuser/login'));
+$form->setAttribute('action', '/menu/menu'); // чтобы использовать как виджет из любых страниц
 $form->setAttribute('method', 'post');
 $form->setAttribute('autocomplete', 'off');
 echo $this->form()->openTag($form) ?>

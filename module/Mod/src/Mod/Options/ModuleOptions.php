@@ -9,6 +9,27 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface
 	/**
 	 * @var string
 	 */
+	protected $menuWidgetViewTemplate = 'mod/index/menu.phtml';
+
+	/**
+	 * @param string $menuWidgetViewTemplate
+	 */
+	public function setMenuWidgetViewTemplate($menuWidgetViewTemplate)
+	{
+		$this->menuWidgetViewTemplate = $menuWidgetViewTemplate;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMenuWidgetViewTemplate()
+	{
+		return $this->menuWidgetViewTemplate;
+	}
+
+	/**
+	 * @var string
+	 */
 	protected $menuEntityClass = 'Mod\Entity\Menu';
 
 	/**

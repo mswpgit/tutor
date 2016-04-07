@@ -59,4 +59,14 @@ class Module
 		);
 	}
 
+	public function getViewHelperConfig()
+	{
+		return array(
+			'factories' => array(
+				'menuWidget' => 'Mod\Factory\View\Helper\MenuWidget',
+			),
+		);
+
+	}
+
 }
