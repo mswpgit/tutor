@@ -14,4 +14,16 @@ interface MenuServiceInterface
 	 */
 	public function getMenuEntityClass();
 
+	/**
+	 * @param string $menuWidgetViewTemplate
+	 * @return string
+	 */
+	public function setMenuWidgetViewTemplate($menuWidgetViewTemplate);
+
+	/**
+	 * @return string
+	 */
+	public function getMenuWidgetViewTemplate();
+
+
 }

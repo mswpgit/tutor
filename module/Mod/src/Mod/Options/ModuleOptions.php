@@ -13,6 +13,7 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface
 
 	/**
 	 * @param string $menuWidgetViewTemplate
+	 * @return string
 	 */
 	public function setMenuWidgetViewTemplate($menuWidgetViewTemplate)
 	{
