@@ -1,0 +1,600 @@
+1.
+SELECT `data` FROM `j_session` WHERE `session_id` = 'ltidqmur4cs5vsiq9ok24g01t7'
+
+2.
+
+SELECT `session_id` FROM `j_session` WHERE `session_id` = 'ltidqmur4cs5vsiq9ok24g01t7' LIMIT 0, 1
+3.
+
+INSERT INTO `j_session` (`session_id`, `client_id`, `time`) VALUES ('ltidqmur4cs5vsiq9ok24g01t7', 0, '1460088230')
+
+4.
+
+SELECT extension_id AS id, element AS "option", params, enabled
+
+  FROM j_extensions
+
+  WHERE `type` = 'component'
+
+5.
+
+SELECT b.id
+
+  FROM j_usergroups AS a
+
+  LEFT JOIN j_usergroups AS b
+  ON b.lft <= a.lft
+  AND b.rgt >= a.rgt
+
+  WHERE a.id = 9
+6.
+
+SELECT id, rules
+
+  FROM `j_viewlevels`
+7.
+
+SELECT folder AS type, element AS name, params
+
+  FROM j_extensions
+
+  WHERE enabled = 1
+  AND type ='plugin'
+  AND state IN (0,1)
+  AND access IN (1,1,5)
+
+  ORDER BY ordering
+8.
+SELECT m.id, m.menutype, m.title, m.alias, m.note, m.path AS route, m.link, m.type, m.level, m.language,`m`.`browserNav`, m.access, m.params, m.home, m.img, m.template_style_id, m.component_id, m.parent_id,e.element as component
+
+  FROM j_menu AS m
+
+  LEFT JOIN j_extensions AS e
+  ON m.component_id = e.extension_id
+
+  WHERE m.published = 1
+  AND m.parent_id > 0
+  AND m.client_id = 0
+
+  ORDER BY m.lft
+
+9.
+
+SELECT extension_id AS id, element AS "option", params, enabled
+
+  FROM j_extensions
+
+  WHERE `type` = 'library'
+  AND `element` = 'joomla'
+
+10.
+
+UPDATE `j_extensions`
+
+  SET `params` = '{\"mediaversion\":\"35e7e9fbf0a8108ef7d5fa57bd6800f6\"}'
+
+  WHERE `type` = 'library'
+  AND `element` = 'joomla'
+
+11.
+SELECT *
+
+  FROM j_languages
+
+  WHERE published=1
+
+  ORDER BY ordering ASC
+
+12.
+
+SELECT id, home, template, s.params
+
+  FROM j_template_styles as s
+
+  LEFT JOIN j_extensions as e
+  ON e.element=s.template
+  AND e.type='template'
+  AND e.client_id=s.client_id
+
+  WHERE s.client_id = 0
+  AND e.enabled = 1
+
+13.
+
+SELECT a.rules
+
+  FROM j_assets AS a
+
+  WHERE (a.id = 1)
+
+  GROUP BY a.id, a.rules, a.lft
+
+14.
+
+SELECT b.rules
+
+  FROM j_assets AS a
+
+  LEFT JOIN j_assets AS b
+  ON b.lft <= a.lft
+  AND b.rgt >= a.rgt
+
+  WHERE (a.name = 'com_content')
+
+  GROUP BY b.id, b.rules, b.lft
+
+  ORDER BY b.lft
+
+
+15.
+
+
+SELECT a.id, a.title, a.alias, a.introtext, a.fulltext, a.checked_out, a.checked_out_time, a.catid, a.created, a.created_by, a.created_by_alias,
+  CASE WHEN a.modified = '0000-00-00 00:00:00' THEN a.created ELSE a.modified END as modified, a.modified_by, uam.name as modified_by_name,
+  CASE WHEN a.publish_up = '0000-00-00 00:00:00' THEN a.created ELSE a.publish_up END as publish_up,a.publish_down, a.images, a.urls, a.attribs, a.metadata, a.metakey, a.metadesc, a.access, a.hits, a.xreference, a.featured, a.language,  LENGTH(a.fulltext) AS readmore,
+  CASE WHEN badcats.id is not null THEN 0 ELSE a.state END AS state,c.title AS category_title, c.path AS category_route, c.access AS category_access, c.alias AS category_alias,
+  CASE WHEN a.created_by_alias > ' ' THEN a.created_by_alias ELSE ua.name END AS author,ua.email AS author_email,parent.title as parent_title, parent.id as parent_id, parent.path as parent_route, parent.alias as parent_alias,ROUND(v.rating_sum / v.rating_count, 0) AS rating, v.rating_count as rating_count,c.published,
+  CASE WHEN badcats.id is null THEN c.published ELSE 0 END AS parents_published
+
+  FROM j_content AS a
+
+  LEFT JOIN j_categories AS c
+  ON c.id = a.catid
+
+  LEFT JOIN j_users AS ua
+  ON ua.id = a.created_by
+
+  LEFT JOIN j_users AS uam
+  ON uam.id = a.modified_by
+
+  LEFT JOIN j_categories as parent
+  ON parent.id = c.parent_id
+
+  LEFT JOIN j_content_rating AS v
+  ON a.id = v.content_id
+
+  LEFT
+  OUTER JOIN (SELECT cat.id as id
+  FROM j_categories AS cat JOIN j_categories AS parent
+  ON cat.lft BETWEEN parent.lft
+  AND parent.rgt
+  WHERE parent.extension = 'com_content'
+  AND parent.published != 1
+  GROUP BY cat.id ) AS badcats
+  ON badcats.id = c.id
+
+  INNER JOIN j_content_frontpage AS fp
+  ON fp.content_id = a.id
+
+  WHERE a.access IN (1,1,5)
+  AND c.access IN (1,1,5)
+  AND
+  CASE WHEN badcats.id is null THEN a.state ELSE 0 END = 1
+  AND (a.publish_up = '0000-00-00 00:00:00' OR a.publish_up <= '2016-04-08 04:03:53')
+  AND (a.publish_down = '0000-00-00 00:00:00' OR a.publish_down >= '2016-04-08 04:03:53')
+
+  ORDER BY c.lft,  a.featured DESC, fp.ordering,
+  CASE WHEN a.publish_up = '0000-00-00 00:00:00' THEN a.created ELSE a.publish_up END  DESC ,  a.created DESC
+  LIMIT 0, 4
+
+
+ 16.
+
+SELECT `m`.`tag_id`,`t`.*
+
+  FROM `j_contentitem_tag_map` AS m
+
+  INNER JOIN `j_tags` AS t
+  ON `m`.`tag_id` = `t`.`id`
+
+  WHERE `m`.`type_alias` = 'com_content.article'
+  AND `m`.`content_item_id` = 2
+  AND `t`.`published` = 1
+  AND t.access IN (1,1,5)
+
+
+
+
+ 17.
+
+SELECT `m`.`tag_id`,`t`.*
+
+  FROM `j_contentitem_tag_map` AS m
+
+  INNER JOIN `j_tags` AS t
+  ON `m`.`tag_id` = `t`.`id`
+
+  WHERE `m`.`type_alias` = 'com_content.article'
+  AND `m`.`content_item_id` = 1
+  AND `t`.`published` = 1
+  AND t.access IN (1,1,5)
+
+
+
+
+  18.
+
+
+SELECT COUNT(*)
+
+  FROM j_content AS a
+
+  LEFT JOIN j_categories AS c
+  ON c.id = a.catid
+
+  LEFT JOIN j_users AS ua
+  ON ua.id = a.created_by
+
+  LEFT JOIN j_users AS uam
+  ON uam.id = a.modified_by
+
+  LEFT JOIN j_categories as parent
+  ON parent.id = c.parent_id
+
+  LEFT JOIN j_content_rating AS v
+  ON a.id = v.content_id
+
+  LEFT
+  OUTER JOIN (SELECT cat.id as id
+  FROM j_categories AS cat JOIN j_categories AS parent
+  ON cat.lft BETWEEN parent.lft
+  AND parent.rgt
+  WHERE parent.extension = 'com_content'
+  AND parent.published != 1
+  GROUP BY cat.id ) AS badcats
+  ON badcats.id = c.id
+
+  INNER JOIN j_content_frontpage AS fp
+  ON fp.content_id = a.id
+
+  WHERE a.access IN (1,1,5)
+  AND c.access IN (1,1,5)
+  AND
+  CASE WHEN badcats.id is null THEN a.state ELSE 0 END = 1
+  AND (a.publish_up = '0000-00-00 00:00:00' OR a.publish_up <= '2016-04-08 04:03:53')
+  AND (a.publish_down = '0000-00-00 00:00:00' OR a.publish_down >= '2016-04-08 04:03:53')
+  19.
+
+
+SELECT c.id, c.asset_id, c.access, c.alias, c.checked_out, c.checked_out_time,
+			c.created_time, c.created_user_id, c.description, c.extension, c.hits, c.language, c.level,
+			c.lft, c.metadata, c.metadesc, c.metakey, c.modified_time, c.note, c.params, c.parent_id,
+			c.path, c.published, c.rgt, c.title, c.modified_user_id, c.version,
+  CASE WHEN CHAR_LENGTH(c.alias) != 0 THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as slug
+
+  FROM j_categories as c
+
+  LEFT JOIN  (SELECT cat.id as id
+  FROM j_categories AS cat JOIN j_categories AS parent
+  ON cat.lft BETWEEN parent.lft
+  AND parent.rgt
+  WHERE parent.extension = 'com_content'
+  AND parent.published != 1
+  GROUP BY cat.id) AS badcats
+  ON badcats.id = c.id
+
+  LEFT JOIN j_categories AS s
+  ON (s.lft <= c.lft
+  AND s.rgt >= c.rgt) OR (s.lft > c.lft
+  AND s.rgt < c.rgt)
+
+  WHERE (c.extension='com_content' OR c.extension='system')
+  AND c.access IN (1,1,5)
+  AND c.published = 1
+  AND badcats.id is null
+  AND s.id=9
+
+  GROUP BY c.id, c.asset_id, c.access, c.alias, c.checked_out, c.checked_out_time,
+			 c.created_time, c.created_user_id, c.description, c.extension, c.hits, c.language, c.level,
+			 c.lft, c.metadata, c.metadesc, c.metakey, c.modified_time, c.note, c.params, c.parent_id,
+			 c.path, c.published, c.rgt, c.title, c.modified_user_id, c.version
+
+
+
+  20.
+
+
+SELECT m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params, mm.menuid
+
+  FROM j_modules AS m
+
+  LEFT JOIN j_modules_menu AS mm
+  ON mm.moduleid = m.id
+
+  LEFT JOIN j_extensions AS e
+  ON e.element = m.module
+  AND e.client_id = m.client_id
+
+  WHERE m.published = 1
+  AND e.enabled = 1
+  AND (m.publish_up = '0000-00-00 00:00:00' OR m.publish_up <= '2016-04-08 04:03:53')
+  AND (m.publish_down = '0000-00-00 00:00:00' OR m.publish_down >= '2016-04-08 04:03:53')
+  AND m.access IN (1,1,5)
+  AND m.client_id = 0
+  AND (mm.menuid = 101 OR mm.menuid <= 0)
+
+  ORDER BY m.position, m.ordering
+
+
+  21.
+LOCK TABLES `j_extensions` WRITE
+
+
+
+
+
+  22.
+
+
+
+
+UPDATE `j_extensions`
+
+  SET `params` = '{\"lastrun\":1460088236}'
+
+  WHERE `type` = 'plugin'
+  AND `folder` = 'system'
+  AND `element` = 'updatenotification'
+
+
+
+23.
+
+
+UNLOCK TABLES
+
+
+ 24.
+
+
+
+SELECT DISTINCT a.update_site_id, a.type, a.location, a.last_check_timestamp, a.extra_query
+
+  FROM j_update_sites AS a
+
+  INNER JOIN j_update_sites_extensions AS b
+  ON a.update_site_id = b.update_site_id
+
+  WHERE a.enabled = 1
+  AND b.extension_id IN (700)
+
+ 25.
+
+
+SELECT `name`
+
+  FROM `j_update_sites`
+
+  WHERE `update_site_id` = '1'
+
+
+26.
+
+
+UPDATE `j_update_sites`
+
+  SET `enabled` = '0'
+
+  WHERE `update_site_id` = '1'
+
+
+
+27.
+
+UPDATE `j_update_sites`
+
+  SET `enabled` = '1'
+
+  WHERE `update_site_id` = '1'
+
+
+
+
+28.
+
+
+
+UPDATE `j_update_sites`
+
+  SET `last_check_timestamp` = '1460088236'
+
+  WHERE `update_site_id` = '1'
+
+
+29.
+
+
+
+SELECT `name`
+
+  FROM `j_update_sites`
+
+  WHERE `update_site_id` = '2'
+
+
+
+30.
+UPDATE `j_update_sites`
+
+  SET `enabled` = '0'
+
+  WHERE `update_site_id` = '2'
+
+
+
+31.
+
+UPDATE `j_update_sites`
+
+  SET `enabled` = '1'
+
+  WHERE `update_site_id` = '2'
+
+
+32.
+
+
+UPDATE `j_update_sites`
+
+  SET `last_check_timestamp` = '1460088236'
+
+  WHERE `update_site_id` = '2'
+
+
+
+
+
+
+
+
+*****************************************
+
+
+Запросы типа SELECT:
+2 × SELECT `m`.`tag_id`,`t`.*
+
+  FROM `j_contentitem_tag_map` AS m
+
+  INNER JOIN `j_tags` AS t
+  ON `m`.`tag_id` = `t`.`id`
+2 × SELECT extension_id AS id, element AS "option", params, enabled
+
+  FROM j_extensions
+2 × SELECT `name`
+
+  FROM `j_update_sites`
+1 × SELECT a.id, a.title, a.alias, a.introtext, a.fulltext, a.checked_out, a.checked_out_time, a.catid, a.created, a.created_by, a.created_by_alias,
+  CASE WHEN a.modified = '0000-00-00 00:00:00' THEN a.created ELSE a.modified END as modified, a.modified_by, uam.name as modified_by_name,
+  CASE WHEN a.publish_up = '0000-00-00 00:00:00' THEN a.created ELSE a.publish_up END as publish_up,a.publish_down, a.images, a.urls, a.attribs, a.metadata, a.metakey, a.metadesc, a.access, a.hits, a.xreference, a.featured, a.language,  LENGTH(a.fulltext) AS readmore,
+  CASE WHEN badcats.id is not null THEN 0 ELSE a.state END AS state,c.title AS category_title, c.path AS category_route, c.access AS category_access, c.alias AS category_alias,
+  CASE WHEN a.created_by_alias > ' ' THEN a.created_by_alias ELSE ua.name END AS author,ua.email AS author_email,parent.title as parent_title, parent.id as parent_id, parent.path as parent_route, parent.alias as parent_alias,ROUND(v.rating_sum / v.rating_count, 0) AS rating, v.rating_count as rating_count,c.published,
+  CASE WHEN badcats.id is null THEN c.published ELSE 0 END AS parents_published
+
+  FROM j_content AS a
+
+  LEFT JOIN j_categories AS c
+  ON c.id = a.catid
+
+  LEFT JOIN j_users AS ua
+  ON ua.id = a.created_by
+
+  LEFT JOIN j_users AS uam
+  ON uam.id = a.modified_by
+
+  LEFT JOIN j_categories as parent
+  ON parent.id = c.parent_id
+
+  LEFT JOIN j_content_rating AS v
+  ON a.id = v.content_id
+
+  LEFT
+  OUTER JOIN (SELECT cat.id as id
+  FROM j_categories AS cat JOIN j_categories AS parent
+  ON cat.lft BETWEEN parent.lft
+  AND parent.rgt
+1 × SELECT COUNT(*)
+
+  FROM j_content AS a
+
+  LEFT JOIN j_categories AS c
+  ON c.id = a.catid
+
+  LEFT JOIN j_users AS ua
+  ON ua.id = a.created_by
+
+  LEFT JOIN j_users AS uam
+  ON uam.id = a.modified_by
+
+  LEFT JOIN j_categories as parent
+  ON parent.id = c.parent_id
+
+  LEFT JOIN j_content_rating AS v
+  ON a.id = v.content_id
+
+  LEFT
+  OUTER JOIN (SELECT cat.id as id
+  FROM j_categories AS cat JOIN j_categories AS parent
+  ON cat.lft BETWEEN parent.lft
+  AND parent.rgt
+1 × SELECT m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params, mm.menuid
+
+  FROM j_modules AS m
+
+  LEFT JOIN j_modules_menu AS mm
+  ON mm.moduleid = m.id
+
+  LEFT JOIN j_extensions AS e
+  ON e.element = m.module
+  AND e.client_id = m.client_id
+1 × SELECT DISTINCT a.update_site_id, a.type, a.location, a.last_check_timestamp, a.extra_query
+
+  FROM j_update_sites AS a
+
+  INNER JOIN j_update_sites_extensions AS b
+  ON a.update_site_id = b.update_site_id
+1 × SELECT b.rules
+
+  FROM j_assets AS a
+
+  LEFT JOIN j_assets AS b
+  ON b.lft <= a.lft
+  AND b.rgt >= a.rgt
+1 × SELECT c.id, c.asset_id, c.access, c.alias, c.checked_out, c.checked_out_time,
+    c.created_time, c.created_user_id, c.description, c.extension, c.hits, c.language, c.level,
+    c.lft, c.metadata, c.metadesc, c.metakey, c.modified_time, c.note, c.params, c.parent_id,
+    c.path, c.published, c.rgt, c.title, c.modified_user_id, c.version,
+  CASE WHEN CHAR_LENGTH(c.alias) != 0 THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END as slug
+
+  FROM j_categories as c
+
+  LEFT JOIN  (SELECT cat.id as id
+  FROM j_categories AS cat JOIN j_categories AS parent
+  ON cat.lft BETWEEN parent.lft
+  AND parent.rgt
+1 × SELECT id, home, template, s.params
+
+  FROM j_template_styles as s
+
+  LEFT JOIN j_extensions as e
+  ON e.element=s.template
+  AND e.type='template'
+  AND e.client_id=s.client_id
+1 × SELECT id, rules
+
+  FROM `j_viewlevels
+1 × SELECT b.id
+
+  FROM j_usergroups AS a
+
+  LEFT JOIN j_usergroups AS b
+  ON b.lft <= a.lft
+  AND b.rgt >= a.rgt
+1 × SELECT `session_id`
+
+  FROM `j_session`
+1 × SELECT folder AS type, element AS name, params
+
+  FROM j_extensions
+1 × SELECT m.id, m.menutype, m.title, m.alias, m.note, m.path AS route, m.link, m.type, m.level, m.language,`m`.`browserNav`, m.access, m.params, m.home, m.img, m.template_style_id, m.component_id, m.parent_id,e.element as component
+
+  FROM j_menu AS m
+
+  LEFT JOIN j_extensions AS e
+  ON m.component_id = e.extension_id
+1 × SELECT `data`
+
+  FROM `j_session`
+1 × SELECT * FROM j_languages
+1 × SELECT a.rules FROM j_assets AS a
+Прочие SQL-запросы:
+2 × UPDATE `j_update_sites` SET `enabled` = '0'
+2 × UPDATE `j_update_sites` SET `enabled` = '1'
+2 × UPDATE `j_update_sites` SET `last_check_timestamp` = '1460088236'
+1 × UNLOCK TABLE
+1 × UPDATE `j_extensions` SET `params` = '{\"lastrun\":1460088236}'
+1 × UPDATE `j_extensions` SET `params` = '{\"mediaversion\":\"35e7e9fbf0a8108ef7d5fa57bd6800f6\"}'
+1 × LOCK TABLES `j_extensions` WRIT
+1 × INSERT INTO `j_session`
+ (`session_id`, `client_id`, `time`)
+  VALUES
+ ('ltidqmur4cs5vsiq9ok24g01t7', 0, '1460088230'
