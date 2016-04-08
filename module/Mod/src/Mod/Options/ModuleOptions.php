@@ -4,7 +4,7 @@ namespace Mod\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
-class ModuleOptions extends AbstractOptions implements MenuServiceInterface, AuthenticationOptionsInterface
+class ModuleOptions extends AbstractOptions implements MenuServiceInterface, AuthenticationOptionsInterface, ModuleOptionsInterface
 {
 	/**
 	 * @var string
@@ -38,6 +38,12 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface, Aut
 	 * @var string
 	 */
 	protected $userEntityClass = 'Auth\Entity\User';
+
+	/**
+	 * @var string
+	 */
+	protected $moduleEntityClass = 'Mod\Entity\Module';
+
 
 	/**
 	 * @var string
@@ -96,5 +102,24 @@ class ModuleOptions extends AbstractOptions implements MenuServiceInterface, Aut
 	public function getLoginWidgetViewTemplate()
 	{
 		return $this->loginWidgetViewTemplate;
+	}
+
+	/**
+	 * @param string $moduleEntityClass
+	 * @return \Mod\Options\ModuleOptions
+	 */
+	public function setModuleEntityClass($moduleEntityClass)
+	{
+		$this->moduleEntityClass = $moduleEntityClass;
+
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getModuleEntityClass()
+	{
+		return $this->moduleEntityClass;
 	}
 }

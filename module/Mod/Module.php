@@ -54,6 +54,17 @@ class Module
 						$serviceManager->get('menuMapper')
 					);
 				},
+				'moduleMapper'  => function($serviceManager) {
+					return new \Mod\Mapper\ModuleMapper(
+						$serviceManager->get('doctrine.entitymanager.orm_default'),
+						$serviceManager->get('module_options')
+					);
+				},
+				'moduleService' => function ($serviceManager) {
+					return new \Mod\Service\ModuleService(
+						$serviceManager->get('moduleMapper')
+					);
+				},
 				'userMapper'  => function($serviceManager) {
 					return new \Mod\Mapper\UserMapper(
 						$serviceManager->get('doctrine.entitymanager.orm_default'),

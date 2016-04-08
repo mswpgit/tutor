@@ -56,6 +56,11 @@ class IndexController extends AbstractActionController
 
 //		\Zend\Debug\Debug::dump($menuMapper->getAll());
 
+		$moduleService = $this->getServiceLocator()->get('moduleService');
+		$moduleMapper = $moduleService->getMapper();
+
+		\Zend\Debug\Debug::dump($moduleMapper->getAll());
+
 		return array(
 			'recursive_iterator' => $recursive_iterator
 		);
