@@ -50,9 +50,11 @@ class Module
 					);
 				},
 				'menuService' => function ($serviceManager) {
-					return new \Mod\Service\MenuService(
+					$menuService = new \Mod\Service\MenuService(
 						$serviceManager->get('menuMapper')
 					);
+					$menuService->getServiceManager($serviceManager);
+					return $menuService;
 				},
 				'moduleMapper'  => function($serviceManager) {
 					return new \Mod\Mapper\ModuleMapper(
@@ -89,6 +91,8 @@ class Module
 				'menuWidget' => 'Mod\Factory\View\Helper\MenuWidget',
 				'loginWidget' => 'Mod\Factory\View\Helper\LoginWidget',
 				'messengerHelper' => 'Mod\Factory\View\Helper\FlashMessengerHelper',
+				'mainMenu' => 'Mod\Factory\View\Helper\MainMenu',
+				'leftMenu' => 'Mod\Factory\View\Helper\LeftMenu',
 			),
 		);
 

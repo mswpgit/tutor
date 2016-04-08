@@ -28,6 +28,26 @@ class MenuService extends AbstractService
 		$this->setMapper($mapper);
 	}
 
+	public function render()
+	{
+		$this->getServiceManager()->setService('my-settings', array(
+																'menu' => array(
+																	'left' => array(
+																		'link 1' => '/',
+																		'link 2' => '/',
+																		'link 3' => '/',
+																		'link 4' => '/',
+																	),
+																	'main' => array(
+																		'mLink 1' => '/',
+																		'mLink 2' => '/',
+																		'mLink 3' => '/',
+																		'mLink 4' => '/',
+																	),
+																)
+															));
+	}
+
 	/**
 	 * @param \Mod\Mapper\MenuMapper $mapper
 	 *

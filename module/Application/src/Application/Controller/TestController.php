@@ -16,6 +16,12 @@ class TestController extends AbstractActionController
 {
     public function indexAction()
     {
+	    $menuService = $this->getServiceLocator()->get('menuService');
+	    $menuService->render();
+	    $menuMapper = $menuService->getMapper();
+	    $moduleService = $this->getServiceLocator()->get('moduleService');
+	    $moduleMapper = $moduleService->getMapper();
+
         return new ViewModel();
     }
 }

@@ -1,0 +1,13 @@
+<h1><?php echo $this->translate($this->title); ?></h1>
+
+<?php
+
+foreach($this->links as $title=>$href)
+{
+	echo '|<a href="' . $href . '">' . $title . '</a>';
+//\Zend\Debug\Debug::dump($href);
+//\Zend\Debug\Debug::dump($link);
+}
+
+?>
+
