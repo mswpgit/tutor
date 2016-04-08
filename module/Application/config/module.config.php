@@ -52,6 +52,20 @@ return array(
                     ),
                 ),
             ),
+	        'test_cont' => array(
+		        'type' => 'segment',
+		        'options' => array(
+			        'route' => '/test_cont[/:action][/:id]',
+			        'constraints' => array(
+				        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+				        'id' => '[0-9]+',
+			        ),
+			        'defaults' => array(
+				        'controller' => 'Application\Controller\Test',
+				        'action' => 'index',
+			        ),
+		        ),
+	        ),
         ),
     ),
     'service_manager' => array(
@@ -76,6 +90,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Test' => 'Application\Controller\TestController',
         ),
     ),
     'view_manager' => array(
