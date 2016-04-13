@@ -25,6 +25,10 @@ class IndexController extends AbstractActionController
 	    $menuTypeMapper = $menuTypeService->getMapper();
 
 
+
+
+
+
         return new ViewModel(
 	        array(
 		        'recursive_category_iterator' => $categoryService->getRecursiveIterator(),

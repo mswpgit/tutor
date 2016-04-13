@@ -70,6 +70,17 @@ class Module
 						$serviceManager->get('categoryMapper')
 					);
 				},
+				'contentMapper'  => function($serviceManager) {
+					return new \MBase\Mapper\ContentMapper(
+						$serviceManager->get('doctrine.entitymanager.orm_default'),
+						$serviceManager->get('baseModuleOptions')
+					);
+				},
+				'contentService' => function ($serviceManager) {
+					return new \MBase\Service\ContentService(
+						$serviceManager->get('contentMapper')
+					);
+				},
 			),
 		);
 	}

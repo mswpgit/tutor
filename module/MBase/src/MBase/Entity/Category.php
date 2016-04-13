@@ -70,9 +70,31 @@ class Category
 	 */
 	private $params;
 
+	/**
+	 * @var string
+	 */
+	private $content;
+
+	/**
+	 * @param string $content
+	 */
+	public function setContent($content)
+	{
+		$this->content = $content;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getContent()
+	{
+		return $this->content;
+	}
+
 	public function __construct()
 	{
 		$this->childCategories = new \Doctrine\Common\Collections\ArrayCollection;
+		$this->content         = new \Doctrine\Common\Collections\ArrayCollection;
 	}
 
 	public function setChildCategories($childCategories)

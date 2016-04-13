@@ -67,3 +67,12 @@ $builder->createField('metakey', 'string')
 $builder->createField('params', 'text')
 	->nullable(true)
 	->build();
+
+
+// Дочерние записи
+$builder->createOneToMany('content', 'MBase\Entity\Content')
+	->addJoinColumn('id', 'categoryId')
+	->mappedBy('category')
+	->fetchLazy()
+	->build();
+
