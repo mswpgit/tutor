@@ -28,4 +28,11 @@ class CategoryMapper extends AbstractMapper
 		)->findBy($data);
 	}
 
+	public function getRootCategories()
+	{
+		return $this->getEntityManager()->getRepository(
+			$this->options->getCategoryEntityClass()
+		)->findBy(array('parentCategory' => null));
+	}
+
 }
