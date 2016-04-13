@@ -26,9 +26,9 @@ class MenuService extends AbstractService
 
 	public function getRecursiveIterator()
 	{
-		$root_menu    = $this->getMapper()->getRootCategories();
+		$root_menu          = $this->getMapper()->getRootMenu();
 		$collection         = new \Doctrine\Common\Collections\ArrayCollection($root_menu);
-		$iterator           = new \MBase\Entity\RecursiveCategoryIterator($collection);
+		$iterator           = new \MBase\Entity\RecursiveMenuIterator($collection);
 		$recursive_iterator = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::SELF_FIRST);
 
 		return $recursive_iterator;

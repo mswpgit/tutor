@@ -28,11 +28,11 @@ class MenuMapper extends AbstractMapper
 		)->findBy($data);
 	}
 
-	public function getRootCategories()
+	public function getRootMenu()
 	{
 		return $this->getEntityManager()->getRepository(
-			$this->options->getCategoryEntityClass()
-		)->findBy(array('parentCategory' => null));
+			$this->options->getMenuEntityClass()
+		)->findBy(array('parentMenu' => null));
 	}
 
 }
