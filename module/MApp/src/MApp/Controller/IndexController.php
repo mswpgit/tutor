@@ -9,26 +9,26 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-	    // одно вложение
-	    /** @var $em \Doctrine\ORM\EntityManager */
-	    $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-	    $root_categories = $em->getRepository('MBase\Entity\Category')
-		    ->findBy(array('parentCategory' => null));
+	    /** @var $menuService \MBase\Service\MenuService */
+	    $menuService = $this->getServiceLocator()->get('menuService');
+	    /** @var $menuMapper \MBase\Mapper\MenuMapper */
+	    $menuMapper = $menuService->getMapper();
 
-	    $root_menu = $em->getRepository('MBase\Entity\Menu')
-		    ->findBy(array('parentMenu' => null));
+	    /** @var $categoryService \MBase\Service\CategoryService */
+	    $categoryService = $this->getServiceLocator()->get('categoryService');
+	    /** @var $categoryMapper \MBase\Mapper\CategoryMapper */
+	    $categoryMapper = $categoryService->getMapper();
 
-	    $collection_category = new \Doctrine\Common\Collections\ArrayCollection($root_categories);
-	    $collection_menu     = new \Doctrine\Common\Collections\ArrayCollection($root_menu);
-	    $category_iterator   = new \MBase\Entity\RecursiveCategoryIterator($collection_category);
-	    $menu_iterator       = new \MBase\Entity\RecursiveMenuIterator($collection_menu);
-	    $recursive_category_iterator  = new \RecursiveIteratorIterator($category_iterator, \RecursiveIteratorIterator::SELF_FIRST);
-	    $recursive_menu_iterator      = new \RecursiveIteratorIterator($menu_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+	    /** @var $menuTypeService \MBase\Service\MenuTypeService */
+	    $menuTypeService = $this->getServiceLocator()->get('menuTypeService');
+	    /** @var $menuTypeMapper \MBase\Mapper\MenuTypeMapper */
+	    $menuTypeMapper = $menuTypeService->getMapper();
+
 
         return new ViewModel(
 	        array(
-		        'recursive_category_iterator' => $recursive_category_iterator,
-		        'recursive_menu_iterator'     => $recursive_menu_iterator,
+		        'recursive_category_iterator' => $categoryService->getRecursiveIterator(),
+		        'recursive_menu_iterator'     => $menuService->getRecursiveIterator(),
 	        )
         );
     }
