@@ -52,7 +52,11 @@ class Menu
 	/**
 	 * @var integer
 	 */
-	private $parentId;
+	private $parentMenu;
+	/**
+	 * @var integer
+	 */
+	private $childMenu;
 
 	/**
 	 * @var boolean
@@ -63,11 +67,6 @@ class Menu
 	 * @var string
 	 */
 	private $params;
-
-	/**
-	 * @var integer
-	 */
-	protected $childMenu;
 
 	public function __construct()
 	{
@@ -220,12 +219,12 @@ class Menu
 	}
 
 	/**
-	 * @param int $parentId
+	 * @param int $parentMenu
 	 * @return $this
 	 */
-	public function setParentId($parentId)
+	public function setParentMenu($parentMenu)
 	{
-		$this->parentId = $parentId;
+		$this->parentMenu = $parentMenu;
 
 		return $this;
 	}
@@ -233,9 +232,9 @@ class Menu
 	/**
 	 * @return int
 	 */
-	public function getParentId()
+	public function getParentMenu()
 	{
-		return $this->parentId;
+		return $this->parentMenu;
 	}
 
 	/**

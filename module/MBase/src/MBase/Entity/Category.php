@@ -17,7 +17,12 @@ class Category
 	/**
 	 * @var integer
 	 */
-	private $parentId;
+	private $parentCategory;
+
+	/**
+	 * @var integer
+	 */
+	private $childCategories;
 
 	/**
 	 * @var string
@@ -64,11 +69,6 @@ class Category
 	 * @var string
 	 */
 	private $params;
-
-	/**
-	 * @var integer
-	 */
-	protected $childCategories;
 
 	public function __construct()
 	{
@@ -198,19 +198,19 @@ class Category
 	}
 
 	/**
-	 * @param int $parentId
+	 * @param int $parentCategory
 	 */
-	public function setParentId($parentId)
+	public function setParentCategory($parentCategory)
 	{
-		$this->parentId = $parentId;
+		$this->parentCategory = $parentCategory;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getParentId()
+	public function getParentCategory()
 	{
-		return $this->parentId;
+		return $this->parentCategory;
 	}
 
 	/**
