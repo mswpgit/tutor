@@ -24,6 +24,11 @@ class MenuService extends AbstractService
 		return $this->getMapper()->getMenuByPath($path);
 	}
 
+	public function getMenuIsDefault()
+	{
+		return $this->getMapper()->getMenuIsDefault();
+	}
+
 	public function getByMenuType($menuType)
 	{
 		return $this->getMapper()->findOneBy(array('menuType' => $menuType));

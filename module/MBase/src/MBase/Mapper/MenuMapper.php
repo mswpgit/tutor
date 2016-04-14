@@ -37,6 +37,13 @@ class MenuMapper extends AbstractMapper
 		)->findOneBy(array('path' => $path, 'published' => 1));
 	}
 
+	public function getMenuIsDefault()
+	{
+		return $this->getEntityManager()->getRepository(
+			$this->options->getMenuEntityClass()
+		)->findOneBy(array('home' => 1));
+	}
+
 	public function getRootMenu()
 	{
 		return $this->getEntityManager()->getRepository(

@@ -9,35 +9,40 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+	    /** @var $http \Zend\Uri\Http */
+	    $http = $this->getRequest()->getUri();
+
 	    /** @var $menuService \MBase\Service\MenuService */
 	    $menuService = $this->getServiceLocator()->get('menuService');
-	    /** @var $menuMapper \MBase\Mapper\MenuMapper */
-	    $menuMapper = $menuService->getMapper();
 
-	    /** @var $categoryService \MBase\Service\CategoryService */
-	    $categoryService = $this->getServiceLocator()->get('categoryService');
-	    /** @var $categoryMapper \MBase\Mapper\CategoryMapper */
-	    $categoryMapper = $categoryService->getMapper();
+	    /** @var $menu \MBase\Entity\Menu */
+	    if ($http->getPath() == '/')
+	    {
+		    $menu = $menuService->getMenuIsDefault();
+	    }
+	    else if ($http->getPath())
+	    {
+		    $menu = $menuService->getMenuByPath($http->getPath());
+	    }
 
-	    /** @var $menuTypeService \MBase\Service\MenuTypeService */
-	    $menuTypeService = $this->getServiceLocator()->get('menuTypeService');
-	    /** @var $menuTypeMapper \MBase\Mapper\MenuTypeMapper */
-	    $menuTypeMapper = $menuTypeService->getMapper();
+	    if ($menu)
+	    {
+		    if ($menu->getType() == 'content')
+		    {
+			    /** @var $contentService \MBase\Service\ContentService */
+			    $contentService = $this->getServiceLocator()->get('contentService');
 
-		/** @var $contentService \MBase\Service\ContentService */
-	    $contentService = $this->getServiceLocator()->get('contentService');
-	    /** @var $contentMapper \MBase\Mapper\ContentMapper */
-	    $contentMapper = $contentService->getMapper();
+			    $viewContent = $contentService->viewRender($menu->getLink());
 
+			    return $viewContent;
+		    }
+	    }
 
+//	     $this->notFoundAction();
 
+	    $this->getResponse()->setStatusCode(404);
+	    return;
 
-
-        return new ViewModel(
-	        array(
-		        'recursive_category_iterator' => $categoryService->getRecursiveIterator(),
-		        'recursive_menu_iterator'     => $menuService->getRecursiveIterator(),
-	        )
-        );
+//        return new ViewModel();
     }
 }
