@@ -34,6 +34,11 @@ class MenuService extends AbstractService
 		return $this->getMapper()->findOneBy(array('menuType' => $menuType));
 	}
 
+	public function getMenuType($menuType)
+	{
+		return $this->getMapper()->getMenuType($menuType);
+	}
+
 	public function getRecursiveIterator()
 	{
 		$root_menu          = $this->getMapper()->getRootMenu();

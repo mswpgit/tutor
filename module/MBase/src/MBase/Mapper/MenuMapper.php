@@ -51,6 +51,13 @@ class MenuMapper extends AbstractMapper
 		)->findBy(array('parentMenu' => null));
 	}
 
+	public function getMenuType($menuType)
+	{
+		return $this->getEntityManager()->getRepository(
+			$this->options->getMenuEntityClass()
+		)->findBy(array('menuType' => $menuType, 'published' => 1));
+	}
+
 	/**
 	 * @param $path
 	 * @return ArrayCollection|mixed

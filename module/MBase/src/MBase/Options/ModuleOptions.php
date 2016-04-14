@@ -11,7 +11,7 @@ class ModuleOptions extends AbstractOptions implements
 	/**
 	 * @var string
 	 */
-	protected $menuWidgetViewTemplate = 'm-base/templates/menu.phtml';
+	protected $menuWidgetViewTemplate = 'm-base/menu';
 
 	/**
 	 * @var string

@@ -84,4 +84,14 @@ class Module
 			),
 		);
 	}
+
+	public function getViewHelperConfig()
+	{
+		return array(
+			'factories' => array(
+				'menuWidget' => 'MBase\Factory\View\Helper\MenuWidget',
+			),
+		);
+
+	}
 }
