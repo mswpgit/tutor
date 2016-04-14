@@ -41,8 +41,8 @@ $builder->createField('published', 'boolean')
 	->nullable(true)
 	->build();
 
-$builder->createField('componentId', 'integer')
-	->length(4)
+$builder->createField('type', 'string')
+	->length(20)
 	->nullable(true)
 	->build();
 

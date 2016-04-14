@@ -45,9 +45,9 @@ class Menu
 	private $published;
 
 	/**
-	 * @var integer
+	 * @var string
 	 */
-	private $componentId;
+	private $type;
 
 	/**
 	 * @var integer
@@ -105,12 +105,12 @@ class Menu
 	}
 
 	/**
-	 * @param int $componentId
+	 * @param string $type
 	 * @return $this
 	 */
-	public function setComponentId($componentId)
+	public function setType($type)
 	{
-		$this->componentId = $componentId;
+		$this->type = $type;
 
 		return $this;
 	}
@@ -118,9 +118,9 @@ class Menu
 	/**
 	 * @return int
 	 */
-	public function getComponentId()
+	public function getType()
 	{
-		return $this->componentId;
+		return $this->type;
 	}
 
 	/**
