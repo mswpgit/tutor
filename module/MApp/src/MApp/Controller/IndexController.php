@@ -33,8 +33,11 @@ class IndexController extends AbstractActionController
 			    $contentService = $this->getServiceLocator()->get('contentService');
 
 			    $viewContent = $contentService->viewRender($menu->getLink());
+			    if ($viewContent)
+			    {
+				    return $viewContent;
+			    }
 
-			    return $viewContent;
 		    }
 	    }
 
