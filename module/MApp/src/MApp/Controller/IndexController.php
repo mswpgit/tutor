@@ -24,6 +24,10 @@ class IndexController extends AbstractActionController
 	    /** @var $menuTypeMapper \MBase\Mapper\MenuTypeMapper */
 	    $menuTypeMapper = $menuTypeService->getMapper();
 
+		/** @var $contentService \MBase\Service\ContentService */
+	    $contentService = $this->getServiceLocator()->get('contentService');
+	    /** @var $contentMapper \MBase\Mapper\ContentMapper */
+	    $contentMapper = $contentService->getMapper();
 
 
 
