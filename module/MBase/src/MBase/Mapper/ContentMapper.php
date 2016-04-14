@@ -16,4 +16,11 @@ class ContentMapper extends AbstractMapper
 			->findAll();
 	}
 
+	public function getById($id)
+	{
+		return $this->getEntityManager()
+			->getRepository($this->options->getContentEntityClass())
+			->find($id);
+	}
+
 }
