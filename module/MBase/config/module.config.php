@@ -3,6 +3,11 @@
 namespace MBase;
 
 return array(
+	'view_manager' => array(
+		'template_map' => array(
+			'm-base/view_content' => __DIR__ . '/../view/m-base/templates/view_content.phtml',
+		),
+	),
 	'doctrine' => array(
 		'driver' => array(
 			__NAMESPACE__ . 'Entity' => array(

@@ -6,7 +6,7 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'MBase\Router\Content',//'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
@@ -21,7 +21,7 @@ return array(
                     'route'    => '/app',
                     'defaults' => array(
                         '__NAMESPACE__' => 'MApp\Controller',
-                        'controller'    => 'Index',
+                        'controller'    => 'App',
                         'action'        => 'index',
                     ),
                 ),
@@ -65,6 +65,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'MApp\Controller\Index' => 'MApp\Controller\IndexController',
+            'MApp\Controller\App'   => 'MApp\Controller\AppController',
         ),
     ),
     'view_manager' => array(
