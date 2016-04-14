@@ -24,9 +24,8 @@ class ContentService extends AbstractService
 		return $this->getMapper()->getById($id);
 	}
 
-	public function viewRender($link)
+	public function viewRender($id)
 	{
-		$id = substr($link, 8);
 		if ($id)
 		{
 			$content = $this->getMapper()->getById($id);

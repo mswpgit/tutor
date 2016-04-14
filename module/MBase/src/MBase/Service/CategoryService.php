@@ -5,6 +5,7 @@ namespace MBase\Service;
 use Zend\Form\Form;
 use Zend\Stdlib\Hydrator;
 use MBase\Mapper\CategoryMapper;
+use Zend\View\Model\ViewModel;
 
 class CategoryService extends AbstractService
 {
@@ -17,6 +18,11 @@ class CategoryService extends AbstractService
 	public function getByAlias($alias)
 	{
 		return $this->getMapper()->findOneBy(array('alias' => $alias));
+	}
+
+	public function getByPath($path)
+	{
+		return $this->getMapper()->getByPath($path);
 	}
 
 	public function getByMenuType($menuType)
@@ -32,6 +38,26 @@ class CategoryService extends AbstractService
 		$recursive_iterator = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::SELF_FIRST);
 
 		return $recursive_iterator;
+	}
+
+	public function viewRender($id)
+	{
+		if ($id)
+		{
+			$category = $this->getMapper()->getItemById($id);
+			if ($category)
+			{
+				$vm = new ViewModel(array(
+					'category' => $category
+				));
+
+				$vm->setTemplate('m-base/view_category');
+
+				return $vm;
+			}
+		}
+
+		return '';
 	}
 
 }

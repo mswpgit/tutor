@@ -7,38 +7,67 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+	protected $link = '';
+
     public function indexAction()
     {
 	    /** @var $http \Zend\Uri\Http */
 	    $http = $this->getRequest()->getUri();
 
+	    $view = '';
+
+	    if ($http->getPath())
+	    {
+		    $path = $http->getPath();
+	    }
+
 	    /** @var $menuService \MBase\Service\MenuService */
 	    $menuService = $this->getServiceLocator()->get('menuService');
 
+
 	    /** @var $menu \MBase\Entity\Menu */
-	    if ($http->getPath() == '/')
+	    if (!$path)
 	    {
 		    $menu = $menuService->getMenuIsDefault();
 	    }
-	    else if ($http->getPath())
+	    else
 	    {
-		    $menu = $menuService->getMenuByPath($http->getPath());
+		    $menu = $menuService->getMenuByPath($path);
 	    }
 
 	    if ($menu)
 	    {
-		    if ($menu->getType() == 'content')
+		    $link = $menu->getLink();
+
+			if ($menu->getType() == 'content')
+			{
+				$id = substr($link, 8);
+				$view = $this->viewContent($id);
+			}
+
+		    if ($menu->getType() == 'category')
 		    {
-			    /** @var $contentService \MBase\Service\ContentService */
-			    $contentService = $this->getServiceLocator()->get('contentService');
-
-			    $viewContent = $contentService->viewRender($menu->getLink());
-			    if ($viewContent)
-			    {
-				    return $viewContent;
-			    }
-
+			    $id = substr($link, 9);
+			    $view = $this->viewCategory($id);
 		    }
+	    }
+	    else
+	    {
+		    $this->link = $path;
+		    /** @var $categoryService \MBase\Service\CategoryService */
+		    $categoryService = $this->getServiceLocator()->get('categoryService');
+		    $category = $categoryService->getByPath($path);
+
+		    if ($category)
+		    {
+			    $view = $this->viewCategory($category->getId());
+		    }
+	    }
+
+
+	    if ($view)
+	    {
+	        return $view;
 	    }
 
 //	     $this->notFoundAction();
@@ -48,4 +77,26 @@ class IndexController extends AbstractActionController
 
 //        return new ViewModel();
     }
+
+
+	public function viewContent($id)
+	{
+		/** @var $contentService \MBase\Service\ContentService */
+		$contentService = $this->getServiceLocator()->get('contentService');
+
+		$viewContent = $contentService->viewRender($id);
+
+		return $viewContent;
+	}
+
+	public function viewCategory($id)
+	{
+		/** @var $categoryService \MBase\Service\CategoryService */
+		$categoryService = $this->getServiceLocator()->get('categoryService');
+
+		$viewCategory = $categoryService->viewRender($id);
+
+		return $viewCategory;
+	}
+
 }

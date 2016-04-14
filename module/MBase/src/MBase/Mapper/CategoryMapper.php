@@ -21,12 +21,21 @@ class CategoryMapper extends AbstractMapper
 	 * @param  array $data
 	 * @return \MBase\Entity\Menu
 	 */
-	public function findOneBy(array $data = array())
+//	public function findOneBy(array $data = array())
+//	{
+//		return $this->getEntityManager()->getRepository(
+//			$this->options->getCategoryEntityClass()
+//		)->findBy($data);
+//	}
+
+	public function getByPath($path)
 	{
 		return $this->getEntityManager()->getRepository(
 			$this->options->getCategoryEntityClass()
-		)->findBy($data);
+		)->findOneBy(array('path' => $path, 'published' => 1));
 	}
+
+
 
 	public function getRootCategories()
 	{
