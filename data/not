@@ -622,3 +622,19 @@ UPDATE `j_update_sites`
  unify/HTML/shortcode_typo_blockquote.html - разграничения по блокам
  unify/HTML/shortcode_typo_boxshadows.html - блоки
  unify/HTML/shortcode_compo_messages.html - сообщения
+
+
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+	hideDotFiles = dotGitOnly
+[remote "origin"]
+	url = https://github.com/jowolf/unify.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
