@@ -26,7 +26,7 @@ class IndexController extends AbstractActionController
 
 
 	    /** @var $menu \MBase\Entity\Menu */
-	    if (!$path)
+	    if (!$path || $path == '/')
 	    {
 		    $menu = $menuService->getMenuIsDefault();
 	    }
