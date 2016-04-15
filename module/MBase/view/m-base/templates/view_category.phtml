@@ -1,36 +1,20 @@
 <?php
 /** @var $category \MBase\Entity\Category */
-
-?>
-<div class="jumbotron">
-	<h1><?php echo sprintf($this->translate($category->getTitle()), '<span class="zf-green">', '</span>') ?></h1>
-</div>
-
-<?php
-
-foreach($category->getChildCategories() as $child)
-{
-	echo $child->getTitle();
-}
-
-
-
-
 ?>
 
-
-
-
-<div class="row">
-
-	<div class="col-md-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $this->translate('dfgdfgdfgdfgdfgdfgdfg') ?></h3>
-			</div>
-			<div class="panel-body">
-				<p><?php echo $this->translate('fddfdfgdfgdfgdf') ?></p>
-			</div>
-		</div>
-	</div>
+<!--=== Content ===-->
+<div class="container content-md">
+	<h3><?php echo $this->translate($category->getTitle()) ?></h3>
+	<?php if ($category->getChildCategories()): ?>
+		<ul>
+		<?php
+			foreach($category->getChildCategories() as $child)
+			{
+				echo '<li>' . $child->getTitle() . '</li>';
+			}
+		?>
+		</ul>
+	<?php endif; ?>
+	<p><?php echo $this->translate($category->getDescription()) ?></p>
 </div>
+<!--=== End Content ===-->
