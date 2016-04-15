@@ -81,6 +81,7 @@ class Module
 						$serviceManager->get('contentMapper')
 					);
 				},
+				'contentForm' => 'MBase\Factory\Form\Content',
 			),
 		);
 	}

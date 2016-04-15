@@ -1,0 +1,100 @@
+<div class="container content">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<!-- Begin Content -->
+		<div class="col-md-9">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#home-1" data-toggle="tab">Success State</a></li>
+				<li><a href="#profile-1" data-toggle="tab">Error State</a></li>
+				<li><a href="#messages-1" data-toggle="tab">Disabled State</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="home-1">
+
+				<?php
+
+
+
+					$form = $this->menuForm;
+					//\Zend\Debug\Debug::dump($form);die;
+					$form->prepare();
+					//$form->setAttribute('action', '/app'); // чтобы использовать как виджет из любых страниц
+					$form->setAttribute('method', 'post');
+					$form->setAttribute('autocomplete', 'off');
+
+
+
+					?>
+
+
+
+					<form action="#" class="sky-form">
+
+						<header>Success states for elements</header>
+
+
+						<?php foreach($form as $element): ?>
+						<?php if ($element instanceof Zend\Form\Element\Text): ?>
+								<fieldset>
+									<section>
+										<label class="label">Text input</label>
+										<label class="input state-success">
+											<input type="text">
+										</label>
+										<div class="note note-success">This is a required field.</div>
+									</section>
+								</fieldset>
+						<?php endif; ?>
+							<?php if ($element instanceof Zend\Form\Element\Select): ?>
+								<fieldset>
+									<section>
+										<label class="label">Select</label>
+										<label class="select state-success">
+											<select>
+												<option value="0">Choose name</option>
+												<option value="1">Alexandra</option>
+												<option value="2">Alice</option>
+												<option value="3" selected>Anastasia</option>
+												<option value="4">Avelina</option>
+											</select>
+											<i></i>
+										</label>
+										<div class="note note-success">Thanks for your selection.</div>
+									</section>
+								</fieldset>
+							<?php endif; ?>
+							<?php if ($element instanceof Zend\Form\Element\Textarea): ?>
+								<fieldset>
+									<section>
+										<label class="label">Textarea</label>
+										<label class="textarea state-success">
+											<textarea rows="3"></textarea>
+										</label>
+										<div class="note note-success">Thanks for your text.</div>
+									</section>
+								</fieldset>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<?php
+//
+//echo $this->form()->openTag($form) ?>
+<!--<dl class="zend_form">-->
+<!--	--><?php //foreach ($form as $element): ?>
+<!--		--><?php //if ($element->getLabel() != null && !$element instanceof Zend\Form\Element\Button): ?>
+<!--			<dt>--><?php //echo $this->formLabel($element) ?><!--</dt>-->
+<!--		--><?php //endif ?>
+<!--		<dd>--><?php //echo $this->formElement($element) . $this->formElementErrors($element) ?><!--</dd>-->
+<!--	--><?php //endforeach ?>
+<!--</dl>-->
+<?php //if ($this->redirect): ?>
+<!--	<input type="hidden" name="redirect" value="--><?php //echo $this->redirect ?><!--">-->
+<?php //endif ?>
+<?php //echo $this->form()->closeTag() ?>
