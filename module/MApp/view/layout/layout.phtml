@@ -1,143 +1,147 @@
+<?php // echo $this->doctype(); ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-	<title>Blank Page | Unify - Responsive Website Template</title>
+	<head>
+		<?php echo $this->headTitle('Tutor ')->setSeparator(' - ')->setAutoEscape(false) ?>
 
-	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
 
-	<?php echo $this->headTitle('Tutor ')->setSeparator(' - ')->setAutoEscape(false) ?>
+		<?php // echo $this->headMeta()
+	//						->appendName('viewport', 'width=device-width, initial-scale=1.0')
+	//						->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+		?>
 
-	<?php // echo $this->headMeta()
-//		->appendName('viewport', 'width=device-width, initial-scale=1.0')
-//		->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-	?>
+		<!-- Le styles -->
+	<?php //echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+	//		->prependStylesheet($this->basePath('css/style.css'))
+	//		->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+	//		->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
 
-	<!-- Le styles -->
-<?php //echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-//		->prependStylesheet($this->basePath('css/style.css'))
-//		->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-//		->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+		<!-- Scripts -->
+		<?php // echo $this->headScript()
+	//		->prependFile($this->basePath('js/bootstrap.min.js'))
+	//		->prependFile($this->basePath('js/jquery.min.js'))
+	//		->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+	//		->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
+	//	; ?>
 
-	<!-- Scripts -->
-	<?php // echo $this->headScript()
-//		->prependFile($this->basePath('js/bootstrap.min.js'))
-//		->prependFile($this->basePath('js/jquery.min.js'))
-//		->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-//		->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
-//	; ?>
+		<!-- Favicon -->
+	<!--	<link rel="shortcut icon" href="favicon.ico">-->
 
-	<!-- Favicon -->
-<!--	<link rel="shortcut icon" href="favicon.ico">-->
+		<!-- Web Fonts -->
+		<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
-	<!-- Web Fonts -->
-	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+		<!-- CSS Global Compulsory -->
+		<link rel="stylesheet" href="/assets1/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/assets1/css/style.css">
 
-	<!-- CSS Global Compulsory -->
-	<link rel="stylesheet" href="/assets1/plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/assets1/css/style.css">
+		<!-- CSS Header and Footer -->
+		<link rel="stylesheet" href="/assets1/css/headers/header-v6.css">
+		<link rel="stylesheet" href="/assets1/css/footers/footer-v5.css">
 
-	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="/assets1/css/headers/header-v6.css">
-	<link rel="stylesheet" href="/assets1/css/footers/footer-v5.css">
+		<!-- CSS Implementing Plugins -->
+		<link rel="stylesheet" href="/assets1/plugins/animate.css">
+		<link rel="stylesheet" href="/assets1/plugins/line-icons/line-icons.css">
+		<link rel="stylesheet" href="/assets1/plugins/font-awesome/css/font-awesome.min.css">
 
-	<!-- CSS Implementing Plugins -->
-	<link rel="stylesheet" href="/assets1/plugins/animate.css">
-	<link rel="stylesheet" href="/assets1/plugins/line-icons/line-icons.css">
-	<link rel="stylesheet" href="/assets1/plugins/font-awesome/css/font-awesome.min.css">
+		<!-- CSS Page Style -->
+		<link rel="stylesheet" href="/assets1/css/pages/page_misc_sticky_footer.css">
 
-	<!-- CSS Theme -->
-	<link rel="stylesheet" href="/assets1/css/theme-colors/default.css" id="style_color">
-	<link rel="stylesheet" href="/assets1/css/theme-skins/dark.css">
+		<!-- CSS Theme -->
+		<link rel="stylesheet" href="/assets1/css/theme-colors/default.css" id="style_color">
+		<link rel="stylesheet" href="/assets1/css/theme-skins/dark.css">
 
-	<!-- CSS Customization -->
-	<link rel="stylesheet" href="/assets1/css/custom.css">
+		<!-- CSS Customization -->
+		<link rel="stylesheet" href="/assets1/css/custom.css">
 
-	<!-- CSS Page Style -->
-	<link rel="stylesheet" href="/assets1/css/pages/page_misc_sticky_footer.css">
+	</head>
+	<body class="header-fixed header-fixed-space">
 
+		<div class="wrapper">
 
+			<!--=== Header v6 ===-->
+			<div class="header-v6 header-classic-white header-sticky">
 
-
-</head>
-<body class="header-fixed header-fixed-space">
-
-	<div class="wrapper">
-		<!--=== Header v6 ===-->
-		<div class="header-v6 header-classic-white header-sticky">
-			<!-- Navbar -->
-			<div class="navbar mega-menu" role="navigation">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="menu-container">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<!-- Navbar Brand -->
-						<div class="navbar-brand">
-							<a href="index.html">
-								<img class="shrink-logo" src="/assets1/img/logo1-default.png" alt="Logo">
-							</a>
-						</div>
-						<!-- ENd Navbar Brand -->
-						<!-- Header Inner Right -->
-						<div class="header-inner-right">
-						</div>
-						<!-- End Header Inner Right -->
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse navbar-responsive-collapse">
+				<!-- Navbar -->
+				<div class="navbar mega-menu" role="navigation">
+					<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="menu-container">
-							<?php echo $this->menuWidget(); ?>
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							<!-- Navbar Brand -->
+							<div class="navbar-brand">
+								<a href="index.html">
+									<img class="shrink-logo" src="/assets1/img/logo1-default.png" alt="Logo">
+								</a>
+							</div>
+							<!-- ENd Navbar Brand -->
+
+							<!-- Header Inner Right -->
+							<div class="header-inner-right">
+							</div>
+							<!-- End Header Inner Right -->
 						</div>
-					</div><!--/navbar-collapse-->
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse navbar-responsive-collapse">
+							<div class="menu-container">
+								<?php echo $this->menuWidget(); ?>
+							</div>
+						</div>
+						<!--/navbar-collapse-->
+
+					</div>
+				</div>
+				<!-- End Navbar -->
+
+			</div>
+			<!--=== End Header v6 ===-->
+
+			<?php echo $this->content; ?>
+
+			<!--=== Footer v5 ===-->
+			<div id="footer-v5" class="footer-v5 sticky-footer">
+				<div class="copyright">
+					<div class="container">
+						<ul class="list-inline terms-menu">
+							<li class="silver">Copyright © 2016 - All Rights Reserved</li>
+							<li><a href="#">License</a></li>
+							<li><a href="#">Support</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-			<!-- End Navbar -->
+			<!--=== End Footer v5 ===-->
+
 		</div>
-		<!--=== End Header v6 ===-->
+		<?php // echo $this->inlineScript(); ?>
+		<!-- JS Global Compulsory -->
+		<script type="text/javascript" src="/assets1/plugins/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="/assets1/plugins/jquery/jquery-migrate.min.js"></script>
+		<script type="text/javascript" src="/assets1/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<!-- JS Implementing Plugins -->
+		<script type="text/javascript" src="/assets1/plugins/back-to-top.js"></script>
+		<script type="text/javascript" src="/assets1/plugins/smoothScroll.js"></script>
+		<script type="text/javascript" src="/assets1/plugins/jquery.parallax.js"></script>
+		<!-- JS Customization -->
+		<script type="text/javascript" src="/assets1/js/custom.js"></script>
 
-		<?php echo $this->content; ?>
+		<!--[if lt IE 9]>
+		<script src="/assets1/plugins/respond.js"></script>
+		<script src="/assets1/plugins/html5shiv.js"></script>
+		<script src="/assets1/plugins/placeholder-IE-fixes.js"></script>
+		<![endif]-->
 
-		<!--=== Footer v5 ===-->
-		<div id="footer-v5" class="footer-v5 sticky-footer">
-			<div class="copyright">
-				<div class="container">
-					<ul class="list-inline terms-menu">
-						<li class="silver">Copyright © 2016 - All Rights Reserved</li>
-						<li><a href="#">License</a></li>
-						<li><a href="#">Support</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!--=== End Footer v5 ===-->
-	</div>
-	<?php // echo $this->inlineScript() ?>
-
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript" src="/assets1/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="/assets1/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="/assets1/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
-	<script type="text/javascript" src="/assets1/plugins/back-to-top.js"></script>
-	<script type="text/javascript" src="/assets1/plugins/smoothScroll.js"></script>
-	<script type="text/javascript" src="/assets1/plugins/jquery.parallax.js"></script>
-	<!-- JS Customization -->
-	<script type="text/javascript" src="/assets1/js/custom.js"></script>
-
-	<!--[if lt IE 9]>
-	<script src="/assets1/plugins/respond.js"></script>
-	<script src="/assets1/plugins/html5shiv.js"></script>
-	<script src="/assets1/plugins/placeholder-IE-fixes.js"></script>
-	<![endif]-->
-</body>
+	</body>
 </html>
 

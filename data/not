@@ -598,3 +598,27 @@ UPDATE `j_update_sites`
  (`session_id`, `client_id`, `time`)
   VALUES
  ('ltidqmur4cs5vsiq9ok24g01t7', 0, '1460088230'
+
+
+
+
+ unify/HTML/page_login.html - логин
+ unify/HTML/page_registration.html - регистрация
+ unify/HTML/page_misc_blank.html - пустая страница
+ unify/HTML/page_misc_sticky_footer.html - прижатый футер
+ unify/HTML/page_404_error.html - 404
+ unify/HTML/page_404_error6.html - 404
+ unify/HTML/page_privacy.html - вариант заполнения текстом
+ unify/HTML/page_terms.html   - вариант заполнения текстом
+ unify/HTML/feature_header_default_fixed.html - (подсветка выбранного пункта меню)
+ unify/HTML/feature_header_v1.html
+ unify/HTML/feature_header_v6_semi_dark_transparent.html
+ unify/HTML/feature_footer_v8.html
+ unify/HTML/feature_footer_v5.html
+ unify/HTML/feature_footer_v2.html
+ unify/HTML/feature_funny_boxes.html - можно использовать как список категории
+ unify/HTML/feature_testimonials_quotes.html- можно использовать как список категории
+ unify/HTML/shortcode_typo_headings.html - заголовки
+ unify/HTML/shortcode_typo_blockquote.html - разграничения по блокам
+ unify/HTML/shortcode_typo_boxshadows.html - блоки
+ unify/HTML/shortcode_compo_messages.html - сообщения
