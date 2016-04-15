@@ -1,15 +1,62 @@
-<nav class="navbar navbar inverse navbar-fixed-top" role="navigation">
-	<div class="container">
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<?php foreach ($menuIterator as $menu): ?>
-					<li class="active">
-							<a href="<?php echo $menu->getPath(); ?>">
-								<?php echo $menu->getTitle(); ?>
-							</a>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-		</div>
-	</div>
-</nav>
+<ul class="nav navbar-nav">
+	<?php foreach ($menuIterator as $menu): ?>
+		<li>
+			<a href="<?php echo $menu->getPath(); ?>">
+				<?php echo $menu->getTitle(); ?>
+			</a>
+		</li>
+	<?php endforeach; ?>
+	<!-- Features -->
+	<li class="dropdown active">
+		<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+			Features
+		</a>
+		<ul class="dropdown-menu">
+			<li class="dropdown-submenu active">
+				<a href="javascript:void(0);">Headers</a>
+			</li>
+		</ul>
+	</li>
+	<!-- End Features -->
+
+	<!-- Shortcodes -->
+	<li class="dropdown mega-menu-fullwidth">
+		<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+			Shortcodes
+		</a>
+		<ul class="dropdown-menu">
+			<li>
+				<h3>Typography &amp; Components</h3></li>
+			</li>
+		</ul>
+	</li>
+	<!-- End Shortcodes -->
+
+	<!-- Demo Pages -->
+	<li class="dropdown">
+		<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+			Demos
+		</a>
+		<ul class="dropdown-menu pull-right">
+			<li><a href="One-Pages/Architecture/index.html">Architecture</a></li>
+			<li><a href="One-Pages/Travel/index.html">Travel</a></li>
+			<li><a href="One-Pages/App/index.html">Mobile App</a></li>
+			<li><a href="One-Pages/Shipping/index.html">Shipping</a></li>
+			<li><a href="One-Pages/Agency/index.html">Agency</a></li>
+			<li><a href="One-Pages/Spa/index.html">Spa</a></li>
+			<li><a href="One-Pages/Lawyer/index.html">Lawyer</a></li>
+			<li><a href="One-Pages/Business/index.html">Business</a></li>
+			<li><a href="One-Pages/Wedding/index.html">Wedding</a></li>
+			<li><a href="One-Pages/Courses/index.html">Courses</a></li>
+			<li><a href="Landing-Pages/Wealth/index.html">Wealth</a></li>
+			<li><a href="Landing-Pages/Consulting/index.html">Consulting</a></li>
+			<li><a href="One-Pages/Hero-Fashion/index.html">Hero Fashion</a></li>
+			<li><a href="One-Pages/Hero-Gym/index.html">Hero Gym</a></li>
+			<li><a href="One-Pages/Hero-Photography/index.html">Hero Photography</a></li>
+			<li><a href="One-Pages/Hero-Restaurant/index.html">Hero Restaurant</a></li>
+			<li><a href="One-Pages/Hero-WebApp/index-dark.html">Hero Web App Dark</a></li>
+			<li><a href="One-Pages/Hero-WebApp/index.html">Hero Web App Light</a></li>
+		</ul>
+	</li>
+	<!-- End Demo Pages -->
+</ul>
