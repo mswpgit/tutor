@@ -41,14 +41,23 @@ class IndexController extends AbstractActionController
 
 			if ($menu->getType() == 'content')
 			{
-				$id = substr($link, 8);
-				$view = $this->viewContent($id);
+				// content/ alias
+				$alias = substr($link, 8);
+
+				//$this->redirect()->toUrl('/' . $link); // можно перенаправлять
+				return $this->forward()
+					->dispatch('MApp\Controller\Content',
+						array('action' => 'index', 'allias' => $alias));
 			}
 
 		    if ($menu->getType() == 'category')
 		    {
-			    $id = substr($link, 9);
-			    $view = $this->viewCategory($id);
+			    // category/ alias
+			    $alias = substr($link, 9);
+
+			    return $this->forward()
+				    ->dispatch('MApp\Controller\Category',
+					    array('action' => 'index', 'allias' => $alias));
 		    }
 	    }
 	    else

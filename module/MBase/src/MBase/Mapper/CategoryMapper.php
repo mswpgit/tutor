@@ -48,7 +48,7 @@ class CategoryMapper extends AbstractMapper
 	{
 		return $this->getEntityManager()
 			->getRepository($this->options->getCategoryEntityClass())
-			->findOneBy(array('alias' => $alias, 'state' => 'published'));
+			->findOneBy(array('alias' => $alias, 'published' => '1'));
 	}
 
 }
