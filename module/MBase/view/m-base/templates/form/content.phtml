@@ -1,15 +1,11 @@
+
 <div class="container content">
 	<div class="row">
 		<div class="col-md-3"></div>
 		<!-- Begin Content -->
 		<div class="col-md-9">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#home-1" data-toggle="tab">Success State</a></li>
-				<li><a href="#profile-1" data-toggle="tab">Error State</a></li>
-				<li><a href="#messages-1" data-toggle="tab">Disabled State</a></li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane fade in active" id="home-1">
+			<div class="content">
+				<div>
 
 				<?php
 
@@ -23,58 +19,105 @@
 					$form->setAttribute('autocomplete', 'off');
 
 
-
-					?>
-
+				echo $this->form()->openTag($form) ?>
 
 
-					<form action="#" class="sky-form">
+
+
+<!--					<form action="#" class="sky-form">-->
 
 						<header>Success states for elements</header>
+						Название
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('title')); ?></label>
+								<label class="input state-success">
+									<?php echo $this->formText($form->get('title')); ?>
+								</label>
+								<?php if (count($form->get('title')->getMessages())): ?>
+									<div class="note note-success"><?php echo $this->formElementErrors($form->get('title')); ?></div>
+								<?php endif ?>
+							</section>
+						</fieldset>
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('alias')); ?></label>
+								<label class="input state-success">
+									<?php echo $this->formText($form->get('alias')); ?>
+								</label>
+								<?php if (count($form->get('alias')->getMessages())): ?>
+									<div class="note note-success"><?php echo $this->formElementErrors($form->get('alias')); ?></div>
+								<?php endif ?>
+							</section>
+						</fieldset>
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('description')); ?></label>
+								<label class="textarea state-success">
+									<?php echo $this->formTextarea($form->get('description')); ?>
+								</label>
+								<?php if (count($form->get('description')->getMessages())): ?>
+									<div class="note note-success"><?php echo $this->formElementErrors($form->get('description')); ?></div>
+								<?php endif ?>
+							</section>
+						</fieldset>
 
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('keyword')); ?></label>
+								<label class="input state-success">
+									<?php echo $this->formText($form->get('keyword')); ?>
+								</label>
+								<?php if (count($form->get('keyword')->getMessages())): ?>
+									<div class="note note-success"><?php echo $this->formElementErrors($form->get('keyword')); ?></div>
+								<?php endif ?>
+							</section>
+						</fieldset>
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('introtext')); ?></label>
+								<label class="textarea state-success">
+									<?php echo $this->formTextarea($form->get('introtext')); ?>
+								</label>
+								<?php if (count($form->get('introtext')->getMessages())): ?>
+									<div class="note note-success"><?php echo $this->formElementErrors($form->get('introtext')); ?></div>
+								<?php endif ?>
+							</section>
+						</fieldset>
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('fulltext')); ?></label>
+								<label class="textarea state-success">
+									<?php echo $this->formTextarea($form->get('fulltext')); ?>
+								</label>
+								<?php if (count($form->get('fulltext')->getMessages())): ?>
+									<div class="note note-success"><?php echo $this->formElementErrors($form->get('fulltext')); ?></div>
+								<?php endif ?>
+							</section>
+						</fieldset>
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('params')); ?></label>
+								<label class="textarea state-success">
+									<?php echo $this->formTextarea($form->get('params')); ?>
+								</label>
+								<?php if (count($form->get('params')->getMessages())): ?>
+									<div class="note note-success"><?php echo $this->formElementErrors($form->get('params')); ?></div>
+								<?php endif ?>
+							</section>
+						</fieldset>
+						<fieldset>
+							<section>
+								<label class="label"><?php echo $this->formLabel($form->get('categoryId')); ?></label>
+								<label class="select state-success">
+									<?php echo $this->formSelect($form->get('categoryId')); ?>
+									<i></i>
+								</label>
+								<div class="note note-success">Thanks for your selection.</div>
+							</section>
+						</fieldset>
 
-						<?php foreach($form as $element): ?>
-						<?php if ($element instanceof Zend\Form\Element\Text): ?>
-								<fieldset>
-									<section>
-										<label class="label">Text input</label>
-										<label class="input state-success">
-											<input type="text">
-										</label>
-										<div class="note note-success">This is a required field.</div>
-									</section>
-								</fieldset>
-						<?php endif; ?>
-							<?php if ($element instanceof Zend\Form\Element\Select): ?>
-								<fieldset>
-									<section>
-										<label class="label">Select</label>
-										<label class="select state-success">
-											<select>
-												<option value="0">Choose name</option>
-												<option value="1">Alexandra</option>
-												<option value="2">Alice</option>
-												<option value="3" selected>Anastasia</option>
-												<option value="4">Avelina</option>
-											</select>
-											<i></i>
-										</label>
-										<div class="note note-success">Thanks for your selection.</div>
-									</section>
-								</fieldset>
-							<?php endif; ?>
-							<?php if ($element instanceof Zend\Form\Element\Textarea): ?>
-								<fieldset>
-									<section>
-										<label class="label">Textarea</label>
-										<label class="textarea state-success">
-											<textarea rows="3"></textarea>
-										</label>
-										<div class="note note-success">Thanks for your text.</div>
-									</section>
-								</fieldset>
-							<?php endif; ?>
-						<?php endforeach; ?>
+						<?= $this->formButton($form->get('submit')) ?>
 					</form>
 				</div>
 			</div>

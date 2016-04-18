@@ -106,7 +106,7 @@ class Content extends ProvidesEventsForm
 
 		$element = new \DoctrineModule\Form\Element\ObjectSelect('categoryId');
 		$element->setOptions(array(
-			'label' => 'Регион',
+			'label' => 'Категория',
 			'object_manager' => $this->entityManager,
 			'target_class'   => 'MBase\Entity\Category',
 			'property'       => 'title',
