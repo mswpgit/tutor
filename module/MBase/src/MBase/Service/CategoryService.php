@@ -15,9 +15,9 @@ class CategoryService extends AbstractService
 	protected $mapper;
 
 
-	public function getByAlias($alias)
+	public function getCategoryByAlias($alias)
 	{
-		return $this->getMapper()->findOneBy(array('alias' => $alias));
+		return $this->getMapper()->getCategoryByAlias($alias);
 	}
 
 	public function getByPath($path)

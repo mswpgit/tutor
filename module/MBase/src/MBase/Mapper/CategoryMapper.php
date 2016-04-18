@@ -44,4 +44,11 @@ class CategoryMapper extends AbstractMapper
 		)->findBy(array('parentCategory' => null));
 	}
 
+	public function getCategoryByAlias($alias)
+	{
+		return $this->getEntityManager()
+			->getRepository($this->options->getCategoryEntityClass())
+			->findOneBy(array('alias' => $alias, 'state' => 'published'));
+	}
+
 }

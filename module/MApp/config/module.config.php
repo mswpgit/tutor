@@ -41,6 +41,34 @@ return array(
                     ),
                 ),
             ),
+	        'category' => array(
+		        'type'    => 'Segment',
+		        'options' => array(
+			        'route'    => '/category[/:allias]',
+			        'constraints' => array(
+				        'allias' => '[a-zA-Z][a-zA-Z0-9_-]*',
+			        ),
+			        'defaults' => array(
+				        '__NAMESPACE__' => 'MApp\Controller',
+				        'controller'    => 'Category',
+				        'action'        => 'index',
+			        ),
+		        ),
+	        ),
+	        'content' => array(
+		        'type'    => 'Segment',
+		        'options' => array(
+			        'route'    => '/content[/:allias]',
+			        'constraints' => array(
+				        'allias' => '[a-zA-Z][a-zA-Z0-9_-]*',
+			        ),
+			        'defaults' => array(
+				        '__NAMESPACE__' => 'MApp\Controller',
+				        'controller'    => 'Content',
+				        'action'        => 'index',
+			        ),
+		        ),
+	        ),
         ),
     ),
     'service_manager' => array(
@@ -66,6 +94,8 @@ return array(
         'invokables' => array(
             'MApp\Controller\Index' => 'MApp\Controller\IndexController',
             'MApp\Controller\App'   => 'MApp\Controller\AppController',
+            'MApp\Controller\Content'  => 'MApp\Controller\ContentController',
+            'MApp\Controller\Category' => 'MApp\Controller\CategoryController',
         ),
     ),
     'view_manager' => array(

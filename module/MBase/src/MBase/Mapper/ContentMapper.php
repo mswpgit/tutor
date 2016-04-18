@@ -23,4 +23,11 @@ class ContentMapper extends AbstractMapper
 			->find($id);
 	}
 
+	public function getContentByAlias($alias)
+	{
+		return $this->getEntityManager()
+			->getRepository($this->options->getContentEntityClass())
+			->findOneBy(array('alias' => $alias, 'state' => 'published'));
+	}
+
 }

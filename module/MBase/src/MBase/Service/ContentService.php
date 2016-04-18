@@ -19,6 +19,11 @@ class ContentService extends AbstractService
 		return $this->getMapper()->getAll();
 	}
 
+	public function getContentByAlias($alias)
+	{
+		return $this->getMapper()->getContentByAlias($alias);
+	}
+
 	public function getById($id)
 	{
 		return $this->getMapper()->getById($id);
