@@ -124,11 +124,22 @@ return array(
 	'view_helpers'       => array(
 		'invokables' => array(
 			'panel'          => 'MApp\View\Helper\Panel',
+//			'tag'            => 'MamuzBlog\View\Helper\Tag',
 			'catAnchor'      => 'MApp\View\Helper\CatAnchor',
+//			'permaLinkPost'  => 'MamuzBlog\View\Helper\PermaLinkPost',
+//			'permaLinkTag'   => 'MamuzBlog\View\Helper\PermaLinkTag',
 			'contentMeta'    => 'MApp\View\Helper\ContentMeta',
 			'contentPanel'   => 'MApp\View\Helper\ContentPanel',
+//			'postPanelShort' => 'MamuzBlog\View\Helper\PostPanelShort',
 		),
 		'factories'  => array(
+//			'anchor'         => 'MamuzBlog\View\Helper\AnchorFactory',
+//			'anchorBookmark' => 'MamuzBlog\View\Helper\AnchorBookmarkFactory',
+//			'hashId'         => 'MamuzBlog\View\Helper\HashIdFactory',
+//			'postPager'      => 'MamuzBlog\View\Helper\PostPagerFactory',
+//			'tagPager'       => 'MamuzBlog\View\Helper\TagPagerFactory',
+//			'tagList'        => 'MamuzBlog\View\Helper\TagListFactory',
+//			'slugify'        => 'MamuzBlog\View\Helper\SlugFactory',
 		),
 	),
 
