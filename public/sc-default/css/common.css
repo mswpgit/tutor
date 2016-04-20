@@ -1,0 +1,187 @@
+@CHARSET "UTF-8";
+html {
+    height:100%;
+}
+html, body {
+    min-height:100%;
+}
+body {
+    min-width:280px;
+}
+img {
+    max-width:100%;
+}
+pre {
+    font-size:12px;
+    line-height:1.6em;
+    text-align:left;
+    white-space:pre-wrap;                 /* CSS3 browsers  */
+    white-space:-moz-pre-wrap !important; /* 1999+ Mozilla  */
+    white-space:-pre-wrap;                /* Opera 4 thru 6 */
+    white-space:-o-pre-wrap;              /* Opera 7 and up */
+    word-wrap:break-word;                 /* IE 5.5+ and up */
+}
+.container, #wrap {
+    max-width:1366px;
+}
+/* rtl */
+dd {
+    margin-right:0;
+}
+/* rtl */
+ul.list-unstyled {
+    padding-right:0;
+}
+html.mce-fullscreen div.navbar {
+    display:none;
+}
+.alert {
+    margin-top:1px;
+    text-align:left;
+}
+.alert ul {
+    padding:2px 0;
+    list-style-position:inside;
+}
+label.label-default {
+    font-weight:400;
+    background:none;
+    color:#999;
+}
+.panel textarea,
+.stratch textarea
+{
+    resize:vertical;
+}
+.stratch {
+    position:relative;
+}
+body.error div#wrap,
+body.user div#wrap,
+body.registration div#wrap
+{
+    margin:0 auto 20px;
+    padding:14px 20px 24px;
+    text-align:center;
+}
+body.error div#wrap {
+    max-width:800px;
+}
+body.registration div#wrap {
+    max-width:480px;
+}
+body.user div#wrap {
+    max-width:400px;
+}
+body.error h1,
+body.user h1,
+body.registration h1
+{
+    margin:20px 0;
+    padding:0 0 12px;
+    border-bottom:1px solid #eeeeee;
+}
+body.error div#details ul {
+    padding:0;
+    list-style-type:none;
+}
+.registration .captcha pre {
+    max-width:320px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:25%;
+    font-weight:800;
+    text-align:center;
+}
+.registration .input-captcha {
+    max-width:240px;
+    margin:0 auto 12px auto;
+}
+.radio-inline-group input[type="radio"] {
+    margin-right:4px;
+}
+.radio-inline-group label {
+    margin-right:12px;
+}
+.page-control .btn {
+    margin:0 0 2px;
+    padding:5px;
+    background-image:-webkit-gradient(linear,left 0,left 100%,from(#fff),to(#f0f0f0));
+    background-image:-webkit-linear-gradient(top,#fff,0%,#f0f0f0,100%);
+    background-image:-moz-linear-gradient(top,#fff 0,#f0f0f0 100%);
+    background-image:linear-gradient(to bottom,#fff 0,#f0f0f0 100%);
+    -webkit-box-shadow:none;
+            box-shadow:none;
+}
+.page-control-form {
+    margin:0 1px;
+    vertical-align:middle;
+    display:inline-block;
+    position:relative;
+}
+.page-control-group {
+    border-collapse:collapse;
+    -webkit-box-sizing:border-box;
+       -moz-box-sizing:border-box;
+            box-sizing:border-box;
+    position:relative;
+    display:table; 
+}
+.page-control-input, .page-control-count, .page-control-button {
+    padding:0;
+    vertical-align:middle;
+    -webkit-box-sizing:border-box;
+       -moz-box-sizing:border-box;
+            box-sizing:border-box;
+    position:relative;
+    display:table-cell;
+}
+.page-control-input input {
+    width:36px;
+    padding:5px;
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+    position:relative;
+    bottom:1px;
+}
+.page-control-count span {
+    height:30px;
+    padding:4px;
+    vertical-align:middle;
+    background:#f3f3f3;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    display:inline-block;
+    position:relative;
+    bottom:1px;
+    color:#999;
+}
+.page-control-count span {
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+            box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s
+}
+.page-control-button button.btn {
+    height:30px;
+    padding:5px 6px;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+}
+div.search-results {
+    padding:0 0 32px;
+}
+div.search-results ul {
+    padding:0;
+    list-style-type:none;
+}
+div.search-results li {
+    padding:32px 0;
+    border-bottom:1px solid #eeeeee;
+}
+.widget {
+    margin:16px 0;
+}
+.widget-body {
+    padding:8px 0;
+}
