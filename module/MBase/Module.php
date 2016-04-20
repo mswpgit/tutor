@@ -37,6 +37,12 @@ class Module
 						isset($config['moduleOptions']) ? $config['moduleOptions'] : array()
 					);
 				},
+				'themeModule' => function($serviceManager) {
+					$config = $serviceManager->get('config');
+					return new Options\ThemeOptions(
+						isset($config['sc']) ? $config['sc'] : array()
+					);
+				},
 				'menuMapper'  => function($serviceManager) {
 					return new \MBase\Mapper\MenuMapper(
 						$serviceManager->get('doctrine.entitymanager.orm_default'),
@@ -82,6 +88,7 @@ class Module
 					);
 				},
 				'contentForm' => 'MBase\Factory\Form\Content',
+				'listenerThemeFrontend' => 'MBase\Factory\Listener\Theme\FrontendFactory',
 			),
 		);
 	}
