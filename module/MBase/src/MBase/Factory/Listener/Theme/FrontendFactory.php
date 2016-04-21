@@ -19,7 +19,9 @@ class FrontendFactory implements FactoryInterface
 	public function createService(ServiceLocatorInterface $serviceLocator)
 	{
 		$moduleOptions = $serviceLocator->get('themeModule');
+		$viewManager = $serviceLocator->get('viewManager');
 		$listener = new FrontendListener();
+		$listener->setViewManager($viewManager);
 		$listener->setModuleOptions($moduleOptions);
 		return $listener;
 	}

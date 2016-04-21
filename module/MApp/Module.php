@@ -16,10 +16,9 @@ class Module
 	    $sm = $app->getServiceManager();
 	    $sharedEvents = $app->getEventManager()->getSharedManager();
 
-	    $sharedEvents->attach('*', 'dispatch', function($e) use($sm) {
-				    $theme = $sm->get('listenerThemeFrontend');
-				    $theme->update($e);
-	    }, - PHP_INT_MAX);
+	    $sharedEvents->attachAggregate(
+		    new \MBase\Listener\Theme\ThemeContext()
+	    );
     }
 
     public function getConfig()

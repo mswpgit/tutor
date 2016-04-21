@@ -19,7 +19,9 @@ class ContentController extends AbstractActionController
 		    $content = $contentService->getMapper()->getContentByAlias($this->params()->fromRoute('allias'));
 
 	    }
-
+//	    throw new \Exception(
+//		    'The view manager was not set.'
+//	    );
 	    if (!$content)
 	    {
 		    $this->notFoundAction();

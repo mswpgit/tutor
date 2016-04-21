@@ -189,7 +189,8 @@ class ThemeOptions extends AbstractOptions
 	 */
 	public function getFrontendTheme()
 	{
-		if (! isset($this->themes[$this->frontendThemeName])) {
+		if (! isset($this->themes[$this->frontendThemeName]))
+		{
 			throw new \InvalidArgumentException(sprintf(
 				"Missing frontend theme '%s'.",
 				$this->frontendThemeName

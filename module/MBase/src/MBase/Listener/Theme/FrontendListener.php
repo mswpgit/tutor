@@ -5,30 +5,81 @@ namespace MBase\Listener\Theme;
 use Zend\View\Model\ModelInterface as ViewModel,
 	Zend\Mvc\MvcEvent;
 
-class FrontendListener extends AbstractThemeListener
+class FrontendListener extends AbstractThemeStrategy
 {
+
+
+
+
 	public function update(MvcEvent $event)
 	{
-		$moduleOptions = $this->getModuleOptions();
-		$theme = $moduleOptions->getFrontendThemeName();
-		$options = $moduleOptions->getBackendTheme();
-		$options = $options['frontend'];
+		$target = $event->getTarget();
+//		if (! $target instanceof AbstractFront) {
+//			throw new \DomainException(sprintf(
+//				"Frontend theme strategy is not applicable to current target '%s'.",
+//				is_object($target) ? get_class($target) : gettype($target)
+//			));
+//		}
 
-		$routeMatch = $event->getRouteMatch();
-		$controller = $event->getTarget();
+//		\Zend\Debug\Debug::dump('ddddddddddd');die;
+		$this->injectContentTemplate($event)
+			->injectLayoutTemplate($event)
+			->buildLayout($event);
+	}
+
+	/**
+	 * Inject a template into the content view model, if none present
+	 *
+	 * @param  \Zend\Mvc\MvcEvent
+	 * @return AbstractThemeStrategy
+	 */
+	protected function injectContentTemplate(MvcEvent $event)
+	{
 		$model = $event->getResult();
-		$sm = $controller->getServiceLocator();
 
-		if(!$model instanceof ViewModel)
+		if (! $model instanceof ViewModel)
 		{
-			return;
+			return $this;
+		}
+		if ($model->getTemplate())
+		{
+			return $this;
 		}
 
-		$class = get_class($controller);
-		$class = $this->deriveControllerClass($class);
+		$routeMatch   = $event->getRouteMatch();
+		$themeName    = $this->getThemeName();
+		$themeOptions = $this->getThemeOptions();
 
-		$template = $theme . '/template/frontend/';
-		$template .= $this->inflectName($class);
+		$options = array();
+		if (isset($themeOptions[static::$side]))
+		{
+			$options = $themeOptions[static::$side];
+		}
+
+		if (isset($options['templates']))
+		{
+			$templatesPath = rtrim($options['templates'], '/') . '/';
+		}
+		else
+		{
+			$templatesPath = str_replace(
+				array('{theme}', '{side}'),
+				array($themeName, static::$side),
+				self::DefaultTemplatesPath
+			);
+		}
+
+		$controller = $event->getTarget();
+		if ($controller)
+		{
+			$controller = get_class($controller);
+		}
+		else
+		{
+			$controller = $routeMatch->getParam('controller', '');
+		}
+		$controller = $this->deriveControllerClass($controller);
+		$template = $templatesPath . $this->inflectName($controller);
 
 		$action  = $routeMatch->getParam('action');
 		if (null !== $action)
@@ -37,60 +88,153 @@ class FrontendListener extends AbstractThemeListener
 		}
 		$model->setTemplate($template);
 
-		if($event->getResult()->terminate())
+		return $this;
+	}
+
+	/**
+	 * Inject a template into the layout view model, if none present
+	 *
+	 * @param  \Zend\Mvc\MvcEvent
+	 * @return AbstractThemeStrategy
+	 */
+	protected function injectLayoutTemplate(MvcEvent $event)
+	{
+		$model = $event->getResult();
+
+		if (! $model instanceof ViewModel)
 		{
-			return;
+			return $this;
+		}
+		if ($model->terminate())
+		{
+			return $this;
 		}
 
-		$layout = $controller->layout();
+		$viewManager  = $this->getViewManager();
 
-		$template = $theme . '/layout/frontend/index';
+		$renderer     = $viewManager->getRenderer();
 
-//		\Zend\Debug\Debug::dump($template);die;
-		if(isset($options['layout']))
+		$themeName    = $this->getThemeName();
+		$themeOptions = $this->getThemeOptions();
+
+		$options = array();
+		if (isset($themeOptions[static::$side]))
 		{
-//			$template = $options['layout'];
+			$options = $themeOptions[static::$side];
 		}
 
-//		\Zend\Debug\Debug::dump($template);die;
-		$layout->setTemplate($template);
+		if (isset($options['layouts']))
+		{
+			$layoutsPath = rtrim($options['layouts'], '/') . '/';
+		}
+		else
+		{
+			$layoutsPath = str_replace(
+				array('{theme}', '{side}'),
+				array($themeName, static::$side),
+				self::DefaultLayoutsPath
+			);
+		}
 
-		$registry = array_fill_keys(array_keys($options['regions']), array());
+		$layout = $event->getViewModel();
+		if ($layout && 'layout/layout' !== $layout->getTemplate())
+		{
+			$layout->setTemplate(
+				str_replace('{layouts}', $layoutsPath, $layout->getTemplate())
+			);
+			return $this;
+		}
 
-		$widgets = $moduleOptions->getWidgets();
-//		foreach($widgets as $widgetName => $widgetOptions)
-//		{
-//			if(isset($widgetOptions['default_region']))
-//			{
-//				$defaultRegion = $widgetOptions['default_region'];
-//				if(array_key_exists($defaultRegion, $registry))
-//				{
-//					$registry[$defaultRegion][] = $widgetName;
-//				}
-//			}
+		$defaultLayout = self::DefaultLayout;
+		if(isset($options['default_layout']))
+		{
+			$defaultLayout = $options['default_layout'];
+		}
+		$renderer->layout()->setTemplate($layoutsPath . $defaultLayout);
 //
-//			\Zend\Debug\Debug::dump($widgetOptions); die;
-//
-//			$invokables = $widgetOptions['invokables'];
-//			$widget = $controller->forward()->dispatch(
-//				$invokables['controller'],
-//				array('action' => $invokables['action'])
-//			);
-//
-//			$item = $sm->get($invokables['controller']);
-//			$class = get_class($item);
-//			$template = $theme . '/template/backend/';
-//			$template .= $this->inflectName($controller);
-//
-//			$action  = $invokables['action'];
-//			$template .= '/' . $this->inflectName($action);
-//
-//			$widget->setTemplate($template);
-//			$widget->theme = $theme;
-//
-//			$layout->addChild($widget, $widgetName);
+		return $this;
+	}
+
+	/**
+	 * @param  \Zend\Mvc\MvcEvent $event
+	 * @return FrontendStrategy
+	 */
+	protected function buildLayout(MvcEvent $event)
+	{
+//		if (! $event->getParam(AbstractFront::EnableRegions, true)) {
+//			return $this;
 //		}
-//		\Zend\Debug\Debug::dump($registry);die;
-		$layout->registry = $registry;
+
+		$result = $event->getResult();
+		if (! $result instanceof ViewModel || $result->terminate()) {
+			return $this;
+		}
+
+//		$controller = $event->getTarget();
+//		if (! $controller instanceof AbstractFront) {
+//			return $this;
+//		}
+
+		$layout = $event->getViewModel();
+		if (! $layout instanceof ViewModel) {
+			return $this;
+		}
+
+		$moduleOptions = $this->getThemeOptions();
+//		$controllerManager = $this->getControllerManager();
+
+		$regions = array();//$this->getRegions();
+		$layout->regions = $regions;
+
+		foreach ($regions as $widgetsList)
+		{
+			foreach ($widgetsList as $item) {
+//				$widgetName = $item->getName();
+//				$widget = $moduleOptions->getWidgetByName($widgetName);
+//
+//				if ($widgetName === 'content') {
+//					$item->setId($item->getName());
+//					continue;
+//				}
+//
+//				if (! isset($widget['frontend'])) {
+//					continue;
+//				}
+//
+//				if (! $controllerManager->has($widget['frontend'])) {
+//					continue;
+//				}
+//
+//				$widgetController = $controllerManager->get($widget['frontend']);
+//				if (! $widgetController instanceof AbstractWidget) {
+//					continue;
+//				}
+//				$widgetController->setItem($item);
+//
+//				$childModel = $controller->forward()->dispatch(
+//					$widget['frontend'],
+//					['action' => 'front']
+//				);
+//				$layout->addChild($childModel, $item->getId());
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * @return \ScContent\Entity\Front\Regions
+	 */
+	protected function getRegions()
+	{
+		$mapper = $this->getLayotMapper();
+		$moduleOptions = $this->getThemeOptions();
+
+		$contentService = $this->getContentService();
+		$content = $contentService->getContent();
+
+		$themeName = $moduleOptions->getFrontendThemeName();
+		$regions = $mapper->findRegions($themeName, $content->getId());
+
+		return $regions;
 	}
 }
