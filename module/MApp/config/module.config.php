@@ -96,6 +96,9 @@ return array(
             'MApp\Controller\App'   => 'MApp\Controller\AppController',
             'MApp\Controller\Content'  => 'MApp\Controller\ContentController',
             'MApp\Controller\Category' => 'MApp\Controller\CategoryController',
+	        'MApp.Controller.Banner'  => 'MApp\Controller\BannerWidgetController',
+	        'MApp.Controller.Example' => 'MApp\Controller\ExampleWidgetController',
+
         ),
     ),
     'view_manager' => array(

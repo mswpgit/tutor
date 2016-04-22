@@ -4,9 +4,48 @@ namespace MApp\Listener\Theme;
 
 use Zend\View\Model\ModelInterface as ViewModel;
 use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Controller\ControllerManager;
+use MBase\Exception\IoCException;
+use Zend\Stdlib\Hydrator\ArraySerializable;
+use Zend\StdLib\Hydrator\HydratorInterface;
 
 class ThemeStrategy extends AbstractThemeStrategy
 {
+	/**
+	 * @var \Zend\Mvc\Controller\ControllerManager
+	 */
+	protected $controllerManager;
+
+	/**
+	 * @var \Zend\Stdlib\Hydrator\HydratorInterface
+	 */
+	protected $_hydrator;
+
+
+	/**
+	 * @param  \Zend\Mvc\Controller\ControllerManager $manager
+	 * @return FrontendLayoutService
+	 */
+	public function setControllerManager(ControllerManager $manager)
+	{
+		$this->controllerManager = $manager;
+	}
+
+	/**
+	 * @throws \MBase\Exception\IoCException
+	 * @return \Zend\Mvc\Controller\ControllerManager
+	 */
+	public function getControllerManager()
+	{
+		if (! $this->controllerManager instanceof ControllerManager) {
+			throw new IoCException(
+				'The controller manager was not set.'
+			);
+		}
+		return $this->controllerManager;
+	}
+
+
 	public function update(MvcEvent $event)
 	{
 
@@ -31,7 +70,7 @@ class ThemeStrategy extends AbstractThemeStrategy
 	protected function buildLayout(MvcEvent $event)
 	{
 //		if (! $event->getParam(AbstractFront::EnableRegions, true)) {
-		return $this;
+//		return $this;
 //		}
 
 		$result = $event->getResult();
@@ -39,7 +78,7 @@ class ThemeStrategy extends AbstractThemeStrategy
 			return $this;
 		}
 
-//		$controller = $event->getTarget();
+		$controller = $event->getTarget();
 //		if (! $controller instanceof AbstractFront) {
 //			return $this;
 //		}
@@ -50,43 +89,50 @@ class ThemeStrategy extends AbstractThemeStrategy
 		}
 
 		$moduleOptions = $this->getThemeOptions();
-//		$controllerManager = $this->getControllerManager();
+		$controllerManager = $this->getControllerManager();
 
-		$regions = array();//$this->getRegions();
+		$regions = $this->getRegions();
+
+//		\Zend\Debug\Debug::dump($regions);die;
+
 		$layout->regions = $regions;
-
-		foreach ($regions as $widgetsList)
-		{
+		foreach ($regions as $widgetsList) {
 			foreach ($widgetsList as $item) {
-//				$widgetName = $item->getName();
-//				$widget = $moduleOptions->getWidgetByName($widgetName);
-//
-//				if ($widgetName === 'content') {
-//					$item->setId($item->getName());
-//					continue;
-//				}
+
+//				\Zend\Debug\Debug::dump($item);die;
+				$widgetName = $item->getName();
+				$widget = $moduleOptions->getWidgetByName($widgetName);
+
+
+
+
+				if ($widgetName === 'content') {
+					$item->setId($item->getName());
+					continue;
+				}
 //
 //				if (! isset($widget['frontend'])) {
 //					continue;
 //				}
-//
-//				if (! $controllerManager->has($widget['frontend'])) {
-//					continue;
-//				}
-//
-//				$widgetController = $controllerManager->get($widget['frontend']);
+
+				if (! $controllerManager->has($widget['action'])) {
+					continue;
+				}
+
+				$widgetController = $controllerManager->get($widget['action']);
 //				if (! $widgetController instanceof AbstractWidget) {
 //					continue;
 //				}
-//				$widgetController->setItem($item);
-//
-//				$childModel = $controller->forward()->dispatch(
-//					$widget['frontend'],
-//					['action' => 'front']
-//				);
-//				$layout->addChild($childModel, $item->getId());
+				$widgetController->setItem($item);
+
+				$childModel = $controller->forward()->dispatch(
+					$widget['action'],
+					array('action' => 'index')
+				);
+				$layout->addChild($childModel, $item->getId());
 			}
 		}
+
 		return $this;
 	}
 
@@ -95,15 +141,63 @@ class ThemeStrategy extends AbstractThemeStrategy
 	 */
 	protected function getRegions()
 	{
-		$mapper = $this->getLayotMapper();
+//		$mapper = $this->getLayotMapper();
 		$moduleOptions = $this->getThemeOptions();
+//
+//		$contentService = $this->getContentService();
+//		$content = $contentService->getContent();
+//
+//		$themeName = $moduleOptions->getFrontendThemeName();
+//		$regions = $mapper->findRegions($themeName, $content->getId());
+//
+//		return $regions;
 
-		$contentService = $this->getContentService();
-		$content = $contentService->getContent();
+		$theme = $moduleOptions->getCurrentTheme();
+//		if (!empty($theme[static::$side]['regions']))
+//		{
+//			return $theme[static::$side]['regions'];
+//		}
+//
+//		return array();
 
-		$themeName = $moduleOptions->getFrontendThemeName();
-		$regions = $mapper->findRegions($themeName, $content->getId());
+		$regions = new \MApp\Entity\Regions($moduleOptions);
 
+		$results = $theme[static::$side]['regions'];
+
+		$hydrator = $this->getHydrator();
+		$itemPrototype = new \MApp\Entity\Widget();
+
+		foreach ($results as $result) {
+
+
+			$item = clone ($itemPrototype);
+			$hydrator->hydrate($result, $item);
+
+//			\Zend\Debug\Debug::dump($item);
+			$regions->addItem($item);
+		}
 		return $regions;
+	}
+
+	/**
+	 * @param  \Zend\Stdlib\Hydrator\HydratorInterface $hydrator
+	 * @return AbstractDbMapper
+	 */
+	public function setHydrator(HydratorInterface $hydrator)
+	{
+		$this->_hydrator = $hydrator;
+		return $this;
+	}
+
+	/**
+	 * @return \Zend\Stdlib\Hydrator\HydratorInterface
+	 */
+	public function getHydrator()
+	{
+		if (! $this->_hydrator instanceof HydratorInterface)
+		{
+			$this->_hydrator = new ArraySerializable();
+		}
+		return $this->_hydrator;
 	}
 }

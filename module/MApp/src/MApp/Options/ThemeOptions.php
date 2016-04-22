@@ -120,4 +120,20 @@ class ThemeOptions extends AbstractOptions
 		return $this->themes[$this->themeName];
 	}
 
+	/**
+	 * @param  string $name
+	 * @throws \DomainException
+	 * @return array
+	 */
+	public function getWidgetByName($name)
+	{
+		if (! isset($this->widgets[$name])) {
+			throw new \DomainException(sprintf(
+				"Unknown widget '%s'.",
+				$name
+			));
+		}
+		return $this->widgets[$name];
+	}
+
 }

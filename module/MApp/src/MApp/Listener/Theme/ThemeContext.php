@@ -124,7 +124,7 @@ class ThemeContext implements SharedListenerAggregateInterface
 		$template = 'sc-default/template/error/{side}-index';
 		$side     = 'frontend';
 
-		$theme = $options->getCommonTheme();
+		$theme = $options->getCurrentTheme();
 		if (isset($renderer->layout()->regions))
 		{
 			unset($renderer->layout()->regions);

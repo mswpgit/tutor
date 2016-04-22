@@ -41,6 +41,23 @@ return array(
 					'unique' => true,
 				),
 			),
+			'banner' => array(
+				'display_name' => 'Banner',
+				'description' => 'Banner with a static image.',
+				'options' => array(
+					'image' => '/{theme_images}/banners/banner0.png',
+				),
+				'action' => 'MApp.Controller.Banner',
+			),
+			'example' => array(
+				'display_name' => 'Banner',
+				'description' => 'Banner with a static image.',
+				'options' => array(
+					'image' => '/{theme_images}/banners/banner0.png',
+				),
+				'action' => 'MApp.Controller.Example',
+			),
+
 		),
 		'themes' => array(
 			'sc-default' => array(
@@ -77,42 +94,77 @@ return array(
 					// optionally, by default 'index'
 					'default_layout' => 'index',
 					'regions' => array(
-						'header' => array(
-							'display_name' => 'Header',
-							'partial' => 'sc-default/layout/frontend/region/header',
-							'contains' => array(
-								'site_title', 'banner', 'search'
-							),
-						),
-						'content_top' => array(
-							'display_name' => 'Content Top',
-							'partial' => 'sc-default/layout/frontend/region/content-top',
-							'contains' => array(
-							),
-						),
-						'content_middle' => array(
-							'display_name' => 'Content Middle',
-							'partial' => 'sc-default/layout/frontend/region/content-middle',
-							'contains' => array(
-								'content'
-							),
-						),
-						'content_bottom' => array(
-							'display_name' => 'Content Bottom',
-							'partial' => 'sc-default/layout/frontend/region/content-bottom'
-						),
-						'aside' => array(
-							'display_name' => 'Aside',
-							'partial' => 'sc-default/layout/frontend/region/aside',
-							'contains' => array(
-								'example',
-								'login',
-							),
-						),
+//						'header' => array(
+//							'display_name' => 'Header',
+//							'partial' => 'sc-default/layout/frontend/region/header',
+//							'contains' => array(
+//								'site_title', 'banner', 'search'
+//							),
+//						),
+//						'content_top' => array(
+//							'display_name' => 'Content Top',
+//							'partial' => 'sc-default/layout/frontend/region/content-top',
+//							'contains' => array(
+//							),
+//						),
+//						'content_middle' => array(
+//							'display_name' => 'Content Middle',
+//							'partial' => 'sc-default/layout/frontend/region/content-middle',
+//							'contains' => array(
+//								'content'
+//							),
+//						),
+//						'content_bottom' => array(
+//							'display_name' => 'Content Bottom',
+//							'partial' => 'sc-default/layout/frontend/region/content-bottom'
+//						),
+//						'aside' => array(
+//							'display_name' => 'Aside',
+//							'partial' => 'sc-default/layout/frontend/region/aside',
+//							'contains' => array(
+//								'example',
+//								'login',
+//							),
+//						),
+//						'footer' => array(
+//							'display_name' => 'Footer',
+//							'partial' => 'sc-default/layout/frontend/region/footer',
+//							'contains' => array(),
+//						),
+//						'content' => array(
+//							'id' => 1,
+//							'theme' => 'sssss',
+//							'region' => 'content',
+//							'name' => 'example',
+//							'displayName' => 'sssss',
+//							'description' => 'sssss',
+//							'options' => array(),
+//							'position' => 1,
+//							'partial' => 'sc-default/layout/frontend/region/footer',
+//						),
 						'footer' => array(
-							'display_name' => 'Footer',
+							'id' => 1,
+							'theme' => 'sssss',
+							'region' => 'footer',
+							'name' => 'banner',
+							'displayName' => 'sssss',
+							'description' => 'sssss',
+							'options' => array(),
+							'position' => 1,
 							'partial' => 'sc-default/layout/frontend/region/footer',
-							'contains' => array(),
+						),
+						'header' => array(
+							'id' => 1,
+							'theme'  => 'sssss',
+							'region' => 'footer', // название региона
+							'name'   => 'example',  // название виджета
+							'displayName' => 'Название ',
+							'description' => 'Описание ',
+							'options'  => array(
+
+							),
+							'position' => 1,
+							'partial'  => 'sc-default/layout/frontend/region/footer',
 						),
 					),
 				),

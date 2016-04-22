@@ -15,9 +15,11 @@ class ThemeStrategyFactory implements FactoryInterface
 	 */
 	public function createService(ServiceLocatorInterface $serviceLocator)
 	{
+		$controllerManager = $serviceLocator->get('ControllerLoader');
 		$moduleOptions = $serviceLocator->get('appThemeModule');
 		$viewManager = $serviceLocator->get('viewManager');
 		$listener = new ThemeStrategy();
+		$listener->setControllerManager($controllerManager);
 		$listener->setViewManager($viewManager);
 		$listener->setThemeOptions($moduleOptions);
 		return $listener;
