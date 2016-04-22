@@ -11,6 +11,10 @@ class ExampleWidgetController extends AbstractWidget
 	 */
 	public function indexAction()
 	{
-		return new ViewModel();
+		$view = new ViewModel();
+		$view->item = $this->getItem();
+
+
+		return $view;
 	}
 }
