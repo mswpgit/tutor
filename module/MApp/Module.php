@@ -17,7 +17,7 @@ class Module
 	    $sharedEvents = $app->getEventManager()->getSharedManager();
 
 	    $sharedEvents->attachAggregate(
-		    new \MBase\Listener\Theme\ThemeContext()
+		    new \MApp\Listener\Theme\ThemeContext()
 	    );
     }
 
@@ -36,5 +36,20 @@ class Module
             ),
         );
     }
+
+	public function getServiceConfig()
+	{
+		return array(
+			'factories' => array(
+				'appThemeModule' => function($serviceManager) {
+					$config = $serviceManager->get('config');
+					return new Options\ThemeOptions(
+						isset($config['sc']) ? $config['sc'] : array()
+					);
+				},
+				'themeStrategy' => 'MApp\Factory\Listener\Theme\ThemeStrategyFactory',
+			),
+		);
+	}
 
 }
