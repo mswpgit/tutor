@@ -99,6 +99,11 @@ class ThemeStrategy extends AbstractThemeStrategy
 		foreach ($regions as $widgetsList) {
 			foreach ($widgetsList as $item) {
 
+//				\Zend\Debug\Debug::dump($item->getName());die;
+
+
+
+
 //				\Zend\Debug\Debug::dump($item);die;
 				$widgetName = $item->getName();
 				$widget = $moduleOptions->getWidgetByName($widgetName);
@@ -115,20 +120,22 @@ class ThemeStrategy extends AbstractThemeStrategy
 //					continue;
 //				}
 
-				if (! $controllerManager->has($widget['action'])) {
+				if (! $controllerManager->has($widget['controller'])) {
 					continue;
 				}
 
-				$widgetController = $controllerManager->get($widget['action']);
+				$widgetController = $controllerManager->get($widget['controller']);
 //				if (! $widgetController instanceof AbstractWidget) {
 //					continue;
 //				}
 				$widgetController->setItem($item);
-
+//				\Zend\Debug\Debug::dump('ddddddddddd');die;
 				$childModel = $controller->forward()->dispatch(
-					$widget['action'],
+					$widget['controller'],
 					array('action' => 'index')
 				);
+
+//				\Zend\Debug\Debug::dump($childModel);die;
 				$layout->addChild($childModel, $item->getId());
 			}
 		}
@@ -137,28 +144,13 @@ class ThemeStrategy extends AbstractThemeStrategy
 	}
 
 	/**
-	 * @return \ScContent\Entity\Front\Regions
+	 * @return \MApp\Entity\Regions
 	 */
 	protected function getRegions()
 	{
-//		$mapper = $this->getLayotMapper();
 		$moduleOptions = $this->getThemeOptions();
-//
-//		$contentService = $this->getContentService();
-//		$content = $contentService->getContent();
-//
-//		$themeName = $moduleOptions->getFrontendThemeName();
-//		$regions = $mapper->findRegions($themeName, $content->getId());
-//
-//		return $regions;
 
 		$theme = $moduleOptions->getCurrentTheme();
-//		if (!empty($theme[static::$side]['regions']))
-//		{
-//			return $theme[static::$side]['regions'];
-//		}
-//
-//		return array();
 
 		$regions = new \MApp\Entity\Regions($moduleOptions);
 
@@ -167,15 +159,24 @@ class ThemeStrategy extends AbstractThemeStrategy
 		$hydrator = $this->getHydrator();
 		$itemPrototype = new \MApp\Entity\Widget();
 
-		foreach ($results as $result) {
-
-
-			$item = clone ($itemPrototype);
-			$hydrator->hydrate($result, $item);
-
-//			\Zend\Debug\Debug::dump($item);
-			$regions->addItem($item);
+		foreach ($results as $name=>$result)
+		{
+			if (isset($result['contains']))
+			{
+				foreach($result['contains'] as $contains)
+				{
+					// TODO переделать from BD
+					$widget = $moduleOptions->getWidgetByName($contains);
+					$result['region'] = $name;
+					$result['theme']  = static::$side;
+					$result['name']   = $contains;
+					$item = clone ($itemPrototype);
+					$hydrator->hydrate(array_merge($result, $widget), $item);
+					$regions->addItem($item);
+				}
+			}
 		}
+
 		return $regions;
 	}
 

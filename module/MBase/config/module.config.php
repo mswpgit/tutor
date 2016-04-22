@@ -47,15 +47,25 @@ return array(
 				'options' => array(
 					'image' => '/{theme_images}/banners/banner0.png',
 				),
-				'action' => 'MApp.Controller.Banner',
+				'controller' => 'MApp.Controller.Banner',
+				'position' => 1,      // from BD
+//				'region' => 'footer', // from BD
+//				'theme' => 'common',  // from BD
+				'id' => 2,            // from BD
 			),
 			'example' => array(
-				'display_name' => 'Banner',
-				'description' => 'Banner with a static image.',
-				'options' => array(
-					'image' => '/{theme_images}/banners/banner0.png',
+				'display_name' => 'Example',
+				'description' => 'Example widget.',
+				'options' =>  array(
+					'opt_1' => 1,
+					'opt_2' => 0,
+					'opt_3' => 1,
 				),
-				'action' => 'MApp.Controller.Example',
+				'controller' => 'MApp.Controller.Example',
+				'position' => 1,      // from BD
+//				'region' => 'footer', // from BD
+//				'theme' => 'common',  // from BD
+				'id' => 1,            // from BD
 			),
 
 		),
@@ -94,88 +104,26 @@ return array(
 					// optionally, by default 'index'
 					'default_layout' => 'index',
 					'regions' => array(
-//						'header' => array(
-//							'display_name' => 'Header',
-//							'partial' => 'sc-default/layout/frontend/region/header',
-//							'contains' => array(
-//								'site_title', 'banner', 'search'
-//							),
-//						),
-//						'content_top' => array(
-//							'display_name' => 'Content Top',
-//							'partial' => 'sc-default/layout/frontend/region/content-top',
-//							'contains' => array(
-//							),
-//						),
-//						'content_middle' => array(
-//							'display_name' => 'Content Middle',
-//							'partial' => 'sc-default/layout/frontend/region/content-middle',
-//							'contains' => array(
-//								'content'
-//							),
-//						),
-//						'content_bottom' => array(
-//							'display_name' => 'Content Bottom',
-//							'partial' => 'sc-default/layout/frontend/region/content-bottom'
-//						),
-//						'aside' => array(
-//							'display_name' => 'Aside',
-//							'partial' => 'sc-default/layout/frontend/region/aside',
-//							'contains' => array(
-//								'example',
-//								'login',
-//							),
-//						),
-//						'footer' => array(
-//							'display_name' => 'Footer',
-//							'partial' => 'sc-default/layout/frontend/region/footer',
-//							'contains' => array(),
-//						),
-//						'content' => array(
-//							'id' => 1,
-//							'theme' => 'sssss',
-//							'region' => 'content',
-//							'name' => 'example',
-//							'displayName' => 'sssss',
-//							'description' => 'sssss',
-//							'options' => array(),
-//							'position' => 1,
-//							'partial' => 'sc-default/layout/frontend/region/footer',
-//						),
-						'footer' => array(
-							'id' => 1,
-							'theme' => 'sssss',
-							'region' => 'footer',
-							'name' => 'banner',
-							'displayName' => 'sssss',
-							'description' => 'sssss',
-							'options' => array(),
-							'position' => 1,
-							'partial' => 'sc-default/layout/frontend/region/footer',
-						),
 						'header' => array(
-							'id' => 1,
-							'theme'  => 'sssss',
-							'region' => 'footer', // название региона
-							'name'   => 'example',  // название виджета
-							'displayName' => 'Название ',
-							'description' => 'Описание ',
-							'options'  => array(
-
+							'display_name' => 'Header',
+							'partial' => 'sc-default/layout/frontend/region/header',
+							'contains' => array(
+								'banner', 'example'
 							),
-							'position' => 1,
-							'partial'  => 'sc-default/layout/frontend/region/footer',
+						),
+						'content' => array(
+							'display_name' => 'Content',
+							'partial' => 'sc-default/layout/frontend/region/content',
+							'contains' => array(
+								'banner', 'banner'
+							),
+						),
+						'footer' => array(
+							'display_name' => 'Footer',
+							'partial' => 'sc-default/layout/frontend/region/footer',
+							'contains' => array('example'),
 						),
 					),
-				),
-				'new-theme' => array(
-					// optionally, by default will automatically be calculated as my-theme/template/frontend
-					'templates' => 'sc-default/template/new-theme',
-					// optionally, by default will automatically be calculated as my-theme/layout/frontend
-					'layouts' => 'sc-default/layout/new-theme',
-					// optionally, by default 'index'
-					'default_layout' => 'index',
-					'regions' => array(),
 				),
 			),
 		),

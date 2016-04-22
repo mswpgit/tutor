@@ -10,7 +10,7 @@ use //ScContent\Controller\AbstractWidget,
 //	ScWidgets\Entity\Banner,
 //	//
 	Zend\View\Model\ViewModel;
-class BannerWidgetController extends AbstractActionController
+class BannerWidgetController extends AbstractWidget
 {
 
 	public function indexAction()
@@ -21,46 +21,17 @@ class BannerWidgetController extends AbstractActionController
 		$item = $this->getItem();
 		if ($item->findOption('image')) {
 			$image = $item->findOption('image');
-//			$scModuleOptions = $this->getScModuleOptions();
-			$theme = $scModuleOptions->getFrontendTheme();
+			$theme = $scModuleOptions->getCurrentTheme();
 			$themeImages = sprintf(
-				'/%s/img', $scModuleOptions->getFrontendThemeName()
+				'/%s/img', $scModuleOptions->getThemeName()
 			);
 			if (isset($theme['images'])) {
 				$themeImages = $theme['images'];
 			}
 			$image = str_replace('{theme_images}', $themeImages, $image);
-			$uploadsSrc = $scModuleOptions->getAppUploadsSrc();
-			$image = str_replace('{uploads}', $uploadsSrc, $image);
 			$view->image = $image;
 		}
 		return $view;
 	}
 
-	/**
-	 * @var \MApp\Entity\WidgetInterface
-	 */
-	protected $item;
-
-	/**
-	 * @param  \MApp\Entity\WidgetInterface $item
-	 * @return void
-	 */
-	public function setItem(WidgetInterface $item)
-	{
-		$this->item = $item;
-	}
-
-	/**
-	 * @return \MApp\Entity\WidgetInterface
-	 */
-	public function getItem()
-	{
-		if (! $this->item instanceof WidgetInterface) {
-			throw new IoCException(
-				'Item data was not set.'
-			);
-		}
-		return $this->item;
-	}
 }
