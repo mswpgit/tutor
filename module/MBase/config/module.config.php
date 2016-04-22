@@ -24,7 +24,7 @@ return array(
 			),
 		),
 	),
-	'sc1' => array(
+	'sc' => array(
 		/* Why these 'sc' options here? Why not 'config/autoload'?
 		 *
 		 * If the module is disabled, these options will not be present in the
@@ -71,9 +71,9 @@ return array(
 				),
 				'common' => array(
 					// optionally, by default will automatically be calculated as my-theme/template/frontend
-					'templates' => 'sc-default/template/frontend',
+					'templates' => 'sc-default/template/common',
 					// optionally, by default will automatically be calculated as my-theme/layout/frontend
-					'layouts' => 'sc-default/layout/frontend',
+					'layouts' => 'sc-default/layout/common',
 					// optionally, by default 'index'
 					'default_layout' => 'index',
 					'regions' => array(
