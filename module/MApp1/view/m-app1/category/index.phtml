@@ -1,0 +1,20 @@
+<?php
+/** @var $category \MBase\Entity\Category */
+?>
+
+<!--=== Content ===-->
+<div class="container content-md">
+	<h3><?php echo $this->translate($category->getTitle()) ?></h3>
+	<?php if ($category->getChildCategories()): ?>
+		<ul>
+			<?php
+			foreach($category->getChildCategories() as $child)
+			{
+				echo '<li>' . $child->getTitle() . '</li>';
+			}
+			?>
+		</ul>
+	<?php endif; ?>
+	<p><?php echo $this->translate($category->getDescription()) ?></p>
+</div>
+<!--=== End Content ===-->

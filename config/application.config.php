@@ -13,6 +13,7 @@ return array(
 	    'ZendDeveloperTools',
         'MBase',
         'MApp',
+//        'MApp1',
 //        'Base',
 //        'Auth',
 //        'Application',
