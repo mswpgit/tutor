@@ -124,8 +124,9 @@ abstract class AbstractThemeStrategy
 
 		$themesOptions = $this->getThemeOptions();
 		$themeName     = $themesOptions->getThemeName();
-		$themeOptions  = $themesOptions->getThemeByName($themeName);
 
+		$themeOptions  = $themesOptions->getCurrentTheme();
+//		\Zend\Debug\Debug::dump('ssssssssssssssss');die;
 		$options = array();
 		if (isset($themeOptions[static::$side]))
 		{
@@ -144,6 +145,8 @@ abstract class AbstractThemeStrategy
 				self::DefaultTemplatesPath
 			);
 		}
+
+//		\Zend\Debug\Debug::dump($templatesPath); die;
 
 		$controller = $event->getTarget();
 		if ($controller)
@@ -191,7 +194,7 @@ abstract class AbstractThemeStrategy
 
 		$themesOptions = $this->getThemeOptions();
 		$themeName     = $themesOptions->getThemeName();
-		$themeOptions  = $themesOptions->getThemeByName($themeName);
+		$themeOptions  = $themesOptions->getCurrentTheme();
 
 		$options = array();
 		if (isset($themeOptions[static::$side]))
@@ -211,7 +214,7 @@ abstract class AbstractThemeStrategy
 				self::DefaultLayoutsPath
 			);
 		}
-
+//\Zend\Debug\Debug::dump($layoutsPath);die;
 		$layout = $event->getViewModel();
 		if ($layout && 'layout/layout' !== $layout->getTemplate())
 		{

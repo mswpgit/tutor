@@ -1,0 +1,25 @@
+<?php
+/** @var $content \MBase\Entity\Content */
+?>
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+	<div class="container">
+		<h1 class="pull-left"><?php echo $this->translate($content->getTitle()) ?></h1>
+		<ul class="pull-right breadcrumb">
+			<li><a href="index.html">Home Common</a></li>
+			<li><a href=""><?php echo $this->translate($content->getCategory()->getTitle()) ?></a></li>
+			<li class="active"><?php echo $this->translate($content->getTitle()) ?></li>
+		</ul>
+	</div>
+</div>
+<!--/breadcrumbs-->
+<!--=== Content ===-->
+<div class="container content-md">
+	<p><?php echo $this->translate($content->getFullText()) ?></p>
+</div>
+<!--=== End Content ===-->
+<?php
+//$this->headTitle()->append($this->translate('Blog'));
+//$this->headTitle()->append($content->getTitle());
+//
+//echo $this->contentPanel($content) . PHP_EOL;

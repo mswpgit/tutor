@@ -118,13 +118,13 @@ class ThemeContext implements SharedListenerAggregateInterface
 		$viewManager       = $serviceLocator->get('ViewManager');
 		$exceptionStrategy = $viewManager->getExceptionStrategy();
 		$renderer          = $viewManager->getRenderer();
-		$options           = $serviceLocator->get('themeModule');
+		$options           = $serviceLocator->get('appThemeModule');
 
 		$layout   = 'sc-default/layout/error/{side}';
 		$template = 'sc-default/template/error/{side}-index';
 		$side     = 'frontend';
 
-		$theme = $options->getFrontendTheme();
+		$theme = $options->getCommonTheme();
 		if (isset($renderer->layout()->regions))
 		{
 			unset($renderer->layout()->regions);

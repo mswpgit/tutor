@@ -23,16 +23,6 @@ class ThemeOptions extends AbstractOptions
 	protected $themes = array();
 
 	/**
-	 * @var string
-	 */
-	protected $appAutoloadDir = '/config/autoload';
-
-	/**
-	 * @var string
-	 */
-	protected $appPublicDir = '/public';
-
-	/**
 	 * @param array $widgets
 	 * @return void
 	 */
@@ -89,12 +79,21 @@ class ThemeOptions extends AbstractOptions
 
 	/**
 	 * @param  string $name
+	 * @return boolean
+	 */
+	public function themeExists($name)
+	{
+		return isset($this->themes[$name]);
+	}
+
+	/**
+	 * @param  string $name
 	 * @throws \DomainException
 	 * @return array
 	 */
 	public function getThemeByName($name)
 	{
-		if (! $this->themeExists($name))
+		if (!$this->themeExists($name))
 		{
 			throw new \DomainException(sprintf(
 				"Unknown theme '%s'.",
@@ -105,61 +104,20 @@ class ThemeOptions extends AbstractOptions
 	}
 
 	/**
-	 * @param  string $name
-	 * @return boolean
+	 * @throws \DomainException
+	 * @return array
 	 */
-	public function themeExists($name)
+	public function getCurrentTheme()
 	{
-		return isset($this->themes[$name]);
-	}
-
-//	/**
-//	 * @return array
-//	 */
-//	public function getCurrentTheme()
-//	{
-//		if (! isset($this->themes[$this->themeName]))
-//		{
-//			throw new \InvalidArgumentException(sprintf(
-//				"Missing frontend theme '%s'.",
+		if (!$this->themeExists($this->themeName))
+		{
+//			throw new \DomainException(sprintf(
+//				"Unknown theme '%s'.",
 //				$this->themeName
 //			));
-//		}
-//		return $this->themes[$this->themeName];
-//	}
-
-	/**
-	 * @param string $dir
-	 * @return void
-	 */
-	public function setAppAutoloadDir($dir)
-	{
-		$this->appAutoloadDir = $dir;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getAppAutoloadDir()
-	{
-		return $this->appAutoloadDir;
-	}
-
-	/**
-	 * @param string $dir
-	 * @return void
-	 */
-	public function setAppPublicDir($dir)
-	{
-		$this->appPublicDir = $dir;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getAppPublicDir()
-	{
-		return $this->appPublicDir;
+			return array();
+		}
+		return $this->themes[$this->themeName];
 	}
 
 }

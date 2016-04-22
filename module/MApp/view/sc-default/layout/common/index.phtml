@@ -1,0 +1,62 @@
+<?php echo $this->doctype(); ?>
+
+<html dir="<? //= $this->scLanguageDirection() ?>" lang="<?= \Locale::getPrimaryLanguage(\Locale::getDefault()) ?>">
+<head>
+	<meta charset="utf-8">
+	<?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')
+		->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+
+	?>
+
+	<!-- Styles -->
+	<?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/sc-default/img/favicon.ico'))
+		->appendStylesheet($this->basePath() . '/sc-default/css/bootstrap.min.css')
+		->appendStylesheet($this->basePath() . '/sc-default/css/bootstrap-theme.min.css')
+		->appendStylesheet($this->basePath() . '/sc-default/css/common.css')
+		->appendStylesheet($this->basePath() . '/sc-default/css/frontend.css')
+	?>
+
+	<!-- Scripts -->
+	<?php echo $this->headScript()->appendFile($this->basePath() . '/sc-default/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+		->appendFile($this->basePath() . '/sc-default/js/jquery.min.js')
+		->appendFile($this->basePath() . '/sc-default/js/bootstrap.min.js')
+		->appendFile($this->basePath() . '/sc-default/js/respond.min.js')
+	?>
+
+	<? echo $this->headTitle('') ?>
+
+</head>
+<? //= $this->scBodyTag('class', $this->scLanguageDirection()) ?>
+<body>
+
+<h1>Common</h1>
+
+<div id="wrap">
+	<div id="main">
+		<?php if (isset($regions)): ?>
+			<?php foreach ($regions as $regionName => $widgets): ?>
+				<?php //$partial = $regions->getRegionOption($regionName, 'partial') ?>
+
+				<?php // echo $this->partial($partial, ['widgets' => $widgets]) ?>
+
+			<?php endforeach ?>
+
+		<?php else: ?>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<?php echo $this->content; ?>
+
+					</div>
+				</div>
+			</div>
+
+		<?php endif  ?>
+
+	</div>
+</div>
+<? //= $this->scBodyTag() ?>
+</body>
+</html>
