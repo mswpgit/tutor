@@ -34,13 +34,21 @@
 <div id="wrap">
 	<div id="main">
 		<?php if (isset($regions)): ?>
-			<?php foreach ($regions as $regionName => $widgets):?>
-				<?php  $partial = $regions->getRegionOption($regionName, 'partial');?>
-
-				<?php  echo $this->partial($partial, array('widgets' => $widgets)) ?>
-
-			<?php endforeach ?>
-
+			<?php
+				foreach ($regions as $regionName => $widgets)
+				{
+					if ($regionName === 'content')
+					{
+						echo $this->content;
+					}
+					else
+					{
+						$partial = $regions->getRegionOption($regionName, 'partial');
+						echo $this->partial($partial, array('widgets' => $widgets));
+					}
+				}
+			?>
+			<?php  ?>
 		<?php else: ?>
 
 			<div class="container">
