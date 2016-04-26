@@ -78,6 +78,11 @@ class ThemeStrategy extends AbstractThemeStrategy
 			return $this;
 		}
 
+		/** @var $result \Zend\View\Model\ViewModel */
+		$content = $result->getVariable('content');
+
+//		\Zend\Debug\Debug::dump($content);die;
+
 		$controller = $event->getTarget();
 //		if (! $controller instanceof AbstractFront) {
 //			return $this;
