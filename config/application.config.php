@@ -12,7 +12,7 @@ return array(
 	    'DoctrineORMModule',
 	    'ZendDeveloperTools',
         'Application',
-	    'AsseticBundle',
+//	    'AsseticBundle',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
