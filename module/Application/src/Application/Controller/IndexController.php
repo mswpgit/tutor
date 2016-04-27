@@ -27,6 +27,16 @@ class IndexController extends AbstractActionController
         return new ViewModel();
     }
 
+	public function formMenuTypeAction()
+    {
+        return new ViewModel();
+    }
+
+	public function formMenuAction()
+	{
+		return new ViewModel();
+	}
+
 
 
 
