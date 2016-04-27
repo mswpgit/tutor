@@ -1,11 +1,50 @@
-<div class="col-lg-8">
+<div class="col-lg-6">
 	<div class="ibox float-e-margins">
 		<div class="ibox-title">
 			<h5>Menu type</h5>
 		</div>
 		<div class="ibox-content" style="display: block;">
-			<form method="get" class="form-horizontal">
+			<form method="post" class="form-horizontal">
+				<div class="hr-line-dashed"></div>
 
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Название <span style="color:red;">*</span>:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="title">
+					</div>
+					<div class="col-sm-4">
+						<p>Заголовок меню отображаемый в админке.</p>
+					</div>
+				</div>
+
+				<div class="hr-line-dashed"></div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Тип <span style="color:red;">*</span>:</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="type">
+					</div>
+					<div class="col-sm-4">
+						<p>Системное имя меню.</p>
+					</div>
+				</div>
+
+				<div class="hr-line-dashed"></div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Описание :</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" placeholder="Your message"  name="description" rows="3"></textarea>
+					</div>
+				</div>
+
+				<div class="hr-line-dashed"></div>
+
+				<div class="form-group">
+					<div class="col-sm-4 col-sm-offset-2">
+						<button class="btn btn-primary" type="submit">Создать</button>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>

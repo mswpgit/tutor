@@ -29,11 +29,21 @@ class IndexController extends AbstractActionController
 
 	public function formMenuTypeAction()
     {
+	    if ($this->getRequest()->isPost())
+	    {
+		    \Zend\Debug\Debug::dump($this->getRequest()->getPost());
+	    }
+
         return new ViewModel();
     }
 
 	public function formMenuAction()
 	{
+		if ($this->getRequest()->isPost())
+		{
+			\Zend\Debug\Debug::dump($this->getRequest()->getPost());
+		}
+
 		return new ViewModel();
 	}
 
