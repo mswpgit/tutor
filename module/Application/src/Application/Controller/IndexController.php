@@ -73,7 +73,7 @@ class IndexController extends AbstractActionController
 
 		);
 
-
+//		$menuTypes = array();
 		return new ViewModel(
 			array(
 				'menuTypes' => $menuTypes,
