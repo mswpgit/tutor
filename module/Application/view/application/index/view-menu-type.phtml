@@ -20,19 +20,25 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php foreach ($menuTypes as $menu):?>
+					<?php if (!empty($menuTypes)): ?>
+						<?php foreach ($menuTypes as $menu):?>
+							<tr>
+								<td><?php echo $menu['id']; ?></td>
+								<td><?php echo $menu['title']; ?></td>
+								<td><?php echo $menu['type']; ?></td>
+								<td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+								<td>
+									<a href="#"><i class="fa fa-wrench text-navy"></i></a>
+									&nbsp;|&nbsp;
+									<a href="#"><i class="fa fa-times text-navy"></i></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					<?php else: ?>
 						<tr>
-							<td><?php echo $menu['id']; ?></td>
-							<td><?php echo $menu['title']; ?></td>
-							<td><?php echo $menu['type']; ?></td>
-							<td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-							<td>
-								<a href="#"><i class="fa fa-wrench text-navy"></i></a>
-								&nbsp;|&nbsp;
-								<a href="#"><i class="fa fa-times text-navy"></i></a>
-							</td>
+							<td colspan="5">Пусто!</td>
 						</tr>
-					<?php endforeach; ?>
+					<?php endif; ?>
 					</tbody>
 				</table>
 				<a href="/application/index/form-menu-type"><button type="button" class="btn btn-default btn-sm">Small button</button></a>
