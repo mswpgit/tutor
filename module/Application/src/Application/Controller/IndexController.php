@@ -113,7 +113,31 @@ class IndexController extends AbstractActionController
 
 	public function viewMaterialAction()
 	{
-		return new ViewModel();
+		$materialList = array(
+			1 => array(
+				'id' => '1',
+				'title' => 'Россия',
+				'type' => 'material',
+				'order' => '1',
+				'category' => 'cat_1',
+				'date' => '2016-04-28',
+			),
+			2 => array(
+				'id' => '2',
+				'title' => 'Страны',
+				'type' => 'category',
+				'order' => '1',
+				'category' => 'cat_2',
+				'date' => '2016-04-29',
+			),
+
+		);
+
+		return new ViewModel(
+			array(
+				'materialList' => $materialList,
+			)
+		);
 	}
 
 	public function formCategoryAction()
