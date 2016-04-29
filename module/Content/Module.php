@@ -23,4 +23,41 @@ class Module
         );
     }
 
+	public function getServiceConfig()
+	{
+		return array(
+			'initializers' => array(
+
+			),
+			'aliases' => array(
+				'doctrine' => 'doctrine.entitymanager.orm_default',
+
+			),
+			'invokables' => array(
+
+			),
+			'factories' => array(
+				'contentModuleOptions' => function($serviceManager) {
+					$config = $serviceManager->get('config');
+					return new Options\ModuleOptions(
+						isset($config['contentModule']) ? $config['contentModule'] : array()
+					);
+				},
+				'menuMapper'  => function($serviceManager) {
+					return new \Content\Mapper\MenuMapper(
+						$serviceManager->get('doctrine.entitymanager.orm_default'),
+						$serviceManager->get('contentModuleOptions')
+					);
+				},
+				'menuService' => function ($serviceManager) {
+					return new \Content\Service\MenuService(
+						$serviceManager->get('menuMapper')
+					);
+				},
+
+			),
+
+		);
+	}
+
 }

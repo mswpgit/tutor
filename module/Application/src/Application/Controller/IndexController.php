@@ -49,6 +49,13 @@ class IndexController extends AbstractActionController
 
 	public function viewMenuAction()
 	{
+		/** @var $menuService \Content\Service\MenuService */
+		$menuService = $this->getServiceLocator()->get('menuService');
+
+		/** @var $menu \Content\Entity\Menu */
+		$menu = $menuService->getMenuType(1);
+
+
 		$menuList = array(
 			1 => array(
 				'id' => '1',
@@ -64,6 +71,16 @@ class IndexController extends AbstractActionController
 			),
 
 		);
+
+		if ($menu)
+		{
+			$menuList[] = array(
+					'id' => $menu->getId(),
+					'title' => $menu->getTitle(),
+					'type' => $menu->getType(),
+					'order' => '1',
+				);
+		}
 
 		return new ViewModel(
 			array(

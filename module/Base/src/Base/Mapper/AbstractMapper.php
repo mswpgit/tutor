@@ -3,7 +3,7 @@
 namespace Base\Mapper;
 
 use Doctrine\ORM\EntityManager;
-use Base\Options\BaseModuleOptionsInterface;
+use Base\Options\BaseModuleOptions;
 
 abstract class AbstractMapper
 {
@@ -13,7 +13,7 @@ abstract class AbstractMapper
 	protected $entityManager;
 
 	/**
-	 * @var BaseModuleOptionsInterface
+	 * @var BaseModuleOptions
 	 */
 	protected $options;
 
@@ -21,7 +21,7 @@ abstract class AbstractMapper
 	 * @param $em
 	 * @param $options
 	 */
-	public function __construct($em, BaseModuleOptionsInterface $options)
+	public function __construct($em, BaseModuleOptions $options)
 	{
 		$this->setEntityManager($em);
 		$this->setOptions($options);
