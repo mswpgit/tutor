@@ -12,6 +12,7 @@ return array(
 	    'DoctrineORMModule',
 	    'ZendDeveloperTools',
         'Base',
+        'Content',
         'Application',
         'Back',
 //	    'AsseticBundle',
