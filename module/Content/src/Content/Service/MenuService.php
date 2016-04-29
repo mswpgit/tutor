@@ -19,6 +19,11 @@ class MenuService extends AbstractService
 		return $this->getMapper()->getItemById($id);
 	}
 
+	public function getMenuAll()
+	{
+		return $this->getMapper()->getMenuAll();
+	}
+
 	public function getRecursiveIterator()
 	{
 		$root_menu          = $this->getMapper()->getRootMenu();

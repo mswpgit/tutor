@@ -13,33 +13,20 @@ class MenuController extends AbstractActionController
 		$menuService = $this->getServiceLocator()->get('menuService');
 
 		/** @var $menu \Content\Entity\Menu */
-		$menu = $menuService->getMenuType(1);
+		$allMenu = $menuService->getMenuAll();
 
-
-		$menuList = array(
-			1 => array(
-				'id' => '1',
-				'title' => 'Россия',
-				'type' => 'material',
-				'order' => '1',
-			),
-			2 => array(
-				'id' => '2',
-				'title' => 'Страны',
-				'type' => 'category',
-				'order' => '1',
-			),
-
-		);
-
-		if ($menu)
+		$menuList = array();
+		if ($allMenu)
 		{
-			$menuList[] = array(
-				'id' => $menu->getId(),
-				'title' => $menu->getTitle(),
-				'type' => $menu->getType(),
-				'order' => '1',
-			);
+			foreach ($allMenu as $menu)
+			{
+				$menuList[] = array(
+					'id' => $menu->getId(),
+					'title' => $menu->getTitle(),
+					'type' => $menu->getType(),
+					'order' => '1',
+				);
+			}
 		}
 
 		return new ViewModel(

@@ -42,4 +42,9 @@ class MenuMapper extends AbstractMapper
 		return $repository->find($id);
 	}
 
+	public function getMenuAll()
+	{
+		return $this->getAllItems($this->options->getMenuEntityClass());
+	}
+
 }

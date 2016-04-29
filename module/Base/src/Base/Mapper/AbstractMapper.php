@@ -160,4 +160,12 @@ abstract class AbstractMapper
 		return $repository->find($id);
 	}
 
+	public function getAllItems($repository)
+	{
+		$em = $this->getEntityManager();
+		$repository = $em->getRepository($repository);
+
+		return $repository->findAll();
+	}
+
 }
