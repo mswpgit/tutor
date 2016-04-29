@@ -72,6 +72,20 @@ class IndexController extends AbstractActionController
 		return new ViewModel();
 	}
 
+	public function formCategoryAction()
+	{
+		if ($this->getRequest()->isPost())
+		{
+			\Zend\Debug\Debug::dump($this->getRequest()->getPost());
+		}
+
+		return new ViewModel();
+	}
+
+	public function viewCategoryAction()
+	{
+		return new ViewModel();
+	}
 
 
 }
