@@ -54,7 +54,31 @@ class IndexController extends AbstractActionController
 
 	public function viewMenuTypeAction()
 	{
-		return new ViewModel();
+		$menuTypes = array(
+			1 => array(
+				'id' => '1',
+				'title' => 'Главное меню',
+				'type' => 'main_menu',
+			),
+			2 => array(
+				'id' => '2',
+				'title' => 'Подменю',
+				'type' => 'sub_menu',
+			),
+			3 => array(
+				'id' => '3',
+				'title' => 'Меню стран',
+				'type' => 'country_menu',
+			),
+
+		);
+
+
+		return new ViewModel(
+			array(
+				'menuTypes' => $menuTypes,
+			)
+		);
 	}
 
 	public function formMaterialAction()
