@@ -47,7 +47,30 @@ class IndexController extends AbstractActionController
 		return new ViewModel();
 	}
 
+	public function viewMenuAction()
+	{
+		return new ViewModel();
+	}
 
+	public function viewMenuTypeAction()
+	{
+		return new ViewModel();
+	}
+
+	public function formMaterialAction()
+	{
+		if ($this->getRequest()->isPost())
+		{
+			\Zend\Debug\Debug::dump($this->getRequest()->getPost());
+		}
+
+		return new ViewModel();
+	}
+
+	public function viewMaterialAction()
+	{
+		return new ViewModel();
+	}
 
 
 
