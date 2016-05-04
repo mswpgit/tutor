@@ -54,6 +54,28 @@ class Module
 						$serviceManager->get('menuMapper')
 					);
 				},
+				'materialMapper'  => function($serviceManager) {
+					return new \Content\Mapper\MaterialMapper(
+						$serviceManager->get('doctrine.entitymanager.orm_default'),
+						$serviceManager->get('contentModuleOptions')
+					);
+				},
+				'materialService' => function ($serviceManager) {
+					return new \Content\Service\MaterialService(
+						$serviceManager->get('materialMapper')
+					);
+				},
+				'categoryMapper'  => function($serviceManager) {
+					return new \Content\Mapper\CategoryMapper(
+						$serviceManager->get('doctrine.entitymanager.orm_default'),
+						$serviceManager->get('contentModuleOptions')
+					);
+				},
+				'categoryService' => function ($serviceManager) {
+					return new \Content\Service\CategoryService(
+						$serviceManager->get('categoryMapper')
+					);
+				},
 
 			),
 

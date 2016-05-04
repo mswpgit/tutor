@@ -12,6 +12,22 @@ class MenuController extends AbstractActionController
 		/** @var $menuService \Content\Service\MenuService */
 		$menuService = $this->getServiceLocator()->get('menuService');
 
+		/** @var $materialService \Content\Service\MaterialService */
+		$materialService = $this->getServiceLocator()->get('materialService');
+
+		if ($materialService->getMaterialAll())
+		{
+			/** @var $material \Content\Entity\Material */
+			foreach ($materialService->getMaterialAll() as $material)
+			{
+				\Zend\Debug\Debug::dump($material->getTitle());
+				/** @var $category \Content\Entity\Category */
+				$category = $material->getCategory();
+				\Zend\Debug\Debug::dump($category->getTitle());
+			}
+		}
+
+
 		/** @var $menu \Content\Entity\Menu */
 		$allMenu = $menuService->getMenuAll();
 
