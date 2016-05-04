@@ -3,6 +3,7 @@
 namespace Content\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 /**
  * Material
@@ -13,6 +14,16 @@ class Material
 	 * @var integer
 	 */
 	private $id;
+
+	/**
+	 * @var integer
+	 */
+	private $assetId;
+
+	/**
+	 * @var
+	 */
+	private $category;
 
 	/**
 	 * @var string
@@ -27,17 +38,17 @@ class Material
 	/**
 	 * @var string
 	 */
-	private $state;
+	private $introText;
 
 	/**
 	 * @var string
 	 */
-	private $introtext;
+	private $content;
 
 	/**
 	 * @var string
 	 */
-	private $fulltext;
+	private $keywords;
 
 	/**
 	 * @var string
@@ -45,9 +56,9 @@ class Material
 	private $description;
 
 	/**
-	 * @var string
+	 * @var integer
 	 */
-	private $keyword;
+	private $state;
 
 	/**
 	 * @var integer
@@ -55,30 +66,24 @@ class Material
 	private $ordering;
 
 	/**
+	 * @var DateTime
+	 */
+	private $dateCreated;
+
+	/**
+	 * @var DateTime
+	 */
+	private $dateUpdated;
+
+	/**
 	 * @var string
 	 */
 	private $params;
 
 	/**
-	 * @var integer
+	 * @var string
 	 */
-	private $category;
-
-	/**
-	 * @param int $category
-	 */
-	public function setCategory($category)
-	{
-		$this->category = $category;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getCategory()
-	{
-		return $this->category;
-	}
+	private $metaData;
 
 	/**
 	 * @param string $alias
@@ -94,6 +99,86 @@ class Material
 	public function getAlias()
 	{
 		return $this->alias;
+	}
+
+	/**
+	 * @param int $assetId
+	 */
+	public function setAssetId($assetId)
+	{
+		$this->assetId = $assetId;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAssetId()
+	{
+		return $this->assetId;
+	}
+
+	/**
+	 * @param  $category
+	 */
+	public function setCategory($category)
+	{
+		$this->category = $category;
+	}
+
+	/**
+	 * @return
+	 */
+	public function getCategory()
+	{
+		return $this->category;
+	}
+
+	/**
+	 * @param string $content
+	 */
+	public function setContent($content)
+	{
+		$this->content = $content;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getContent()
+	{
+		return $this->content;
+	}
+
+	/**
+	 * @param string $dateCreated
+	 */
+	public function setDateCreated($dateCreated)
+	{
+		$this->dateCreated = $dateCreated;
+	}
+
+	/**
+	 * @return DateTime
+	 */
+	public function getDateCreated()
+	{
+		return $this->dateCreated;
+	}
+
+	/**
+	 * @param string $dateUpdated
+	 */
+	public function setDateUpdated($dateUpdated)
+	{
+		$this->dateUpdated = $dateUpdated;
+	}
+
+	/**
+	 * @return DateTime
+	 */
+	public function getDateUpdated()
+	{
+		return $this->dateUpdated;
 	}
 
 	/**
@@ -113,22 +198,6 @@ class Material
 	}
 
 	/**
-	 * @param string $fulltext
-	 */
-	public function setFulltext($fulltext)
-	{
-		$this->fulltext = $fulltext;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getFulltext()
-	{
-		return $this->fulltext;
-	}
-
-	/**
 	 * @param int $id
 	 */
 	public function setId($id)
@@ -145,35 +214,51 @@ class Material
 	}
 
 	/**
-	 * @param string $introtext
+	 * @param string $introText
 	 */
-	public function setIntrotext($introtext)
+	public function setIntroText($introText)
 	{
-		$this->introtext = $introtext;
+		$this->introText = $introText;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getIntrotext()
+	public function getIntroText()
 	{
-		return $this->introtext;
+		return $this->introText;
 	}
 
 	/**
-	 * @param string $keyword
+	 * @param string $keywords
 	 */
-	public function setKeyword($keyword)
+	public function setKeywords($keywords)
 	{
-		$this->keyword = $keyword;
+		$this->keywords = $keywords;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getKeyword()
+	public function getKeywords()
 	{
-		return $this->keyword;
+		return $this->keywords;
+	}
+
+	/**
+	 * @param string $metaData
+	 */
+	public function setMetaData($metaData)
+	{
+		$this->metaData = $metaData;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMetaData()
+	{
+		return $this->metaData;
 	}
 
 	/**
@@ -209,7 +294,7 @@ class Material
 	}
 
 	/**
-	 * @param string $state
+	 * @param int $state
 	 */
 	public function setState($state)
 	{
@@ -217,7 +302,7 @@ class Material
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
 	public function getState()
 	{

@@ -13,45 +13,8 @@ $builder->createField('id', 'integer')
 	->generatedValue()
 	->build();
 
-$builder->createField('title', 'string')
-	->length(255)
-	->nullable(true)
-	->build();
-
-$builder->createField('alias', 'string')
-	->length(50)
-	->nullable(true)
-	->build();
-
-$builder->createField('state', 'string')
-	->length(25)
-	->nullable(true)
-	->build();
-
-$builder->createField('introtext', 'text')
-	->nullable(true)
-	->build();
-
-$builder->createField('fulltext', 'text')
-	->nullable(true)
-	->build();
-
-$builder->createField('description', 'text')
-	->length(5)
-	->nullable(true)
-	->build();
-
-$builder->createField('keyword', 'string')
-	->length(1024)
+$builder->createField('assetId', 'integer')
 	->nullable(false)
-	->build();
-
-$builder->createField('ordering', 'integer')
-	->nullable(true)
-	->build();
-
-$builder->createField('params', 'text')
-	->nullable(true)
 	->build();
 
 // Родительская запись
@@ -59,4 +22,58 @@ $builder->createManyToOne('category', 'Content\Entity\Category')
 	->addJoinColumn('categoryId', 'id')
 	->inversedBy('material')
 	->fetchLazy()
+	->build();
+
+$builder->createField('title', 'string')
+	->length(255)
+	->nullable(false)
+	->build();
+
+$builder->createField('alias', 'string')
+	->length(400)
+	->nullable(false)
+	->build();
+
+$builder->createField('introText', 'text')
+	->nullable(true)
+	->build();
+
+$builder->createField('content', 'text')
+	->nullable(false)
+	->build();
+
+$builder->createField('keywords', 'string')
+	->length(1024)
+	->nullable(true)
+	->build();
+
+$builder->createField('description', 'string')
+	->length(1024)
+	->nullable(true)
+	->build();
+
+$builder->createField('state', 'integer')
+	->length(1)
+	->nullable(true)
+	->build();
+
+$builder->createField('ordering', 'integer')
+	->length(11)
+	->nullable(true)
+	->build();
+
+$builder->createField('dateCreated', 'datetime')
+	->nullable(true)
+	->build();
+
+$builder->createField('dateUpdated', 'datetime')
+	->nullable(true)
+	->build();
+
+$builder->createField('params', 'text')
+	->nullable(false)
+	->build();
+
+$builder->createField('metaData', 'text')
+	->nullable(false)
 	->build();
