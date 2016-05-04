@@ -5,10 +5,10 @@ namespace Back;
 return array(
 	'router' => array(
 		'routes' => array(
-			'admin_menu' => array(
+			'admin' => array(
 				'type'    => 'Literal',
 				'options' => array(
-					'route'    => '/admin/menu',
+					'route'    => '/admin',
 					'defaults' => array(
 						'__NAMESPACE__' => 'Back\Controller',
 						'controller'    => 'Menu',
@@ -20,7 +20,7 @@ return array(
 					'default' => array(
 						'type'    => 'Segment',
 						'options' => array(
-							'route'    => '/admin/menu[/:controller[/:action]]',
+							'route'    => '[/:controller[/:action]]',
 							'constraints' => array(
 								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
 								'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -31,11 +31,14 @@ return array(
 					),
 				),
 			),
+
 		),
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'Back\Controller\Menu' => 'Back\Controller\MenuController',
+			'Back\Controller\Menu'     => 'Back\Controller\MenuController',
+			'Back\Controller\Material' => 'Back\Controller\MaterialController',
+
 		),
 	),
 	'view_manager' => array(
