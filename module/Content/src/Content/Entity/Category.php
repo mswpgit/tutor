@@ -3,6 +3,7 @@
 namespace Content\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 /**
  * Category
@@ -13,6 +14,11 @@ class Category
 	 * @var integer
 	 */
 	private $id;
+
+	/**
+	 * @var integer
+	 */
+	private $assetId;
 
 	/**
 	 * @var integer
@@ -49,25 +55,40 @@ class Category
 	 */
 	private $description;
 
-	/**
-	 * @var boolean
-	 */
-	private $published;
-
-	/**
+/**
 	 * @var string
 	 */
-	private $metadesc;
+	private $keywords;
 
-	/**
+/**
 	 * @var string
 	 */
-	private $metakey;
+	private $introText;
+
+	/**
+	 * @var integer
+	 */
+	private $state;
+
+	/**
+	 * @var DateTime
+	 */
+	private $dateCreated;
+
+	/**
+	 * @var DateTime
+	 */
+	private $dateUpdated;
 
 	/**
 	 * @var string
 	 */
 	private $params;
+
+	/**
+	 * @var string
+	 */
+	private $metaData;
 
 	/**
 	 * @var string
@@ -107,6 +128,22 @@ class Category
 	}
 
 	/**
+	 * @param int $parentCategory
+	 */
+	public function setParentCategory($parentCategory)
+	{
+		$this->parentCategory = $parentCategory;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getParentCategory()
+	{
+		return $this->parentCategory;
+	}
+
+	/**
 	 * @param string $alias
 	 */
 	public function setAlias($alias)
@@ -120,6 +157,54 @@ class Category
 	public function getAlias()
 	{
 		return $this->alias;
+	}
+
+	/**
+	 * @param int $assetId
+	 */
+	public function setAssetId($assetId)
+	{
+		$this->assetId = $assetId;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAssetId()
+	{
+		return $this->assetId;
+	}
+
+	/**
+	 * @param \DateTime $dateCreated
+	 */
+	public function setDateCreated($dateCreated)
+	{
+		$this->dateCreated = $dateCreated;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getDateCreated()
+	{
+		return $this->dateCreated;
+	}
+
+	/**
+	 * @param \DateTime $dateUpdated
+	 */
+	public function setDateUpdated($dateUpdated)
+	{
+		$this->dateUpdated = $dateUpdated;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getDateUpdated()
+	{
+		return $this->dateUpdated;
 	}
 
 	/**
@@ -171,35 +256,51 @@ class Category
 	}
 
 	/**
-	 * @param string $metadesc
+	 * @param string $introText
 	 */
-	public function setMetadesc($metadesc)
+	public function setIntroText($introText)
 	{
-		$this->metadesc = $metadesc;
+		$this->introText = $introText;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getMetadesc()
+	public function getIntroText()
 	{
-		return $this->metadesc;
+		return $this->introText;
 	}
 
 	/**
-	 * @param string $metakey
+	 * @param string $keywords
 	 */
-	public function setMetakey($metakey)
+	public function setKeywords($keywords)
 	{
-		$this->metakey = $metakey;
+		$this->keywords = $keywords;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getMetakey()
+	public function getKeywords()
 	{
-		return $this->metakey;
+		return $this->keywords;
+	}
+
+	/**
+	 * @param string $metaData
+	 */
+	public function setMetaData($metaData)
+	{
+		$this->metaData = $metaData;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMetaData()
+	{
+		return $this->metaData;
 	}
 
 	/**
@@ -219,22 +320,6 @@ class Category
 	}
 
 	/**
-	 * @param int $parentCategory
-	 */
-	public function setParentCategory($parentCategory)
-	{
-		$this->parentCategory = $parentCategory;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getParentCategory()
-	{
-		return $this->parentCategory;
-	}
-
-	/**
 	 * @param string $path
 	 */
 	public function setPath($path)
@@ -251,19 +336,19 @@ class Category
 	}
 
 	/**
-	 * @param boolean $published
+	 * @param int $state
 	 */
-	public function setPublished($published)
+	public function setState($state)
 	{
-		$this->published = $published;
+		$this->state = $state;
 	}
 
 	/**
-	 * @return boolean
+	 * @return int
 	 */
-	public function getPublished()
+	public function getState()
 	{
-		return $this->published;
+		return $this->state;
 	}
 
 	/**
@@ -281,5 +366,6 @@ class Category
 	{
 		return $this->title;
 	}
+
 
 }

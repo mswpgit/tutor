@@ -12,6 +12,10 @@ $builder->createField('id', 'integer')
 	->generatedValue()
 	->build();
 
+$builder->createField('assetId', 'integer')
+	->nullable(false)
+	->build();
+
 // Родительская запись
 $builder->createManyToOne('parentCategory', 'Content\Entity\Category')
 	->addJoinColumn('parentId', 'id')
@@ -26,8 +30,15 @@ $builder->createOneToMany('childCategories', 'Content\Entity\Category')
 	->fetchLazy()
 	->build();
 
+// Дочерние записи
+$builder->createOneToMany('material', 'Content\Entity\Material')
+	->addJoinColumn('id', 'categoryId')
+	->mappedBy('category')
+	->fetchLazy()
+	->build();
+
 $builder->createField('path', 'string')
-	->length(255)
+	->length(400)
 	->nullable(true)
 	->build();
 
@@ -42,35 +53,40 @@ $builder->createField('title', 'string')
 	->build();
 
 $builder->createField('alias', 'string')
-	->length(255)
+	->length(400)
 	->nullable(false)
 	->build();
 
-$builder->createField('description', 'text')
+$builder->createField('introText', 'text')
 	->nullable(true)
 	->build();
 
-$builder->createField('published', 'boolean')
+$builder->createField('state', 'integer')
+	->length(1)
 	->nullable(true)
 	->build();
 
-$builder->createField('metadesc', 'string')
+$builder->createField('keywords', 'string')
 	->length(1024)
-	->nullable(false)
+	->nullable(true)
 	->build();
 
-$builder->createField('metakey', 'string')
+$builder->createField('description', 'string')
 	->length(1024)
-	->nullable(false)
+	->nullable(true)
+	->build();
+$builder->createField('dateCreated', 'datetime')
+	->nullable(true)
+	->build();
+
+$builder->createField('dateUpdated', 'datetime')
+	->nullable(true)
 	->build();
 
 $builder->createField('params', 'text')
-	->nullable(true)
+	->nullable(false)
 	->build();
 
-// Дочерние записи
-$builder->createOneToMany('material', 'Content\Entity\Material')
-	->addJoinColumn('id', 'categoryId')
-	->mappedBy('category')
-	->fetchLazy()
+$builder->createField('metaData', 'text')
+	->nullable(false)
 	->build();
