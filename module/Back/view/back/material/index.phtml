@@ -1,0 +1,60 @@
+<?php
+/**
+ *  @var $material \Content\Entity\Material
+ */
+?>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>Материалы</h5>
+				<div class="ibox-tools">
+				</div>
+			</div>
+			<div class="ibox-content">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th class="text-center">#</th>
+						<th class="text-center">Заголовок</th>
+						<th class="text-center">Состояние</th>
+						<th class="text-center">Порядок</th>
+						<th class="text-center">Категория</th>
+						<th class="text-center">Дата</th>
+						<th class="text-center">Действия</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php if (!empty($materialList)): ?>
+						<?php foreach ($materialList as $material):?>
+							<tr>
+								<td><?php echo $material->getId(); ?></td>
+								<td><?php echo $material->getTitle(); ?></td>
+								<td><i class="fa fa-check text-navy"></td>
+								<td><?php echo $material->getOrdering(); ?></td>
+								<td><?php echo $material->getCategory()->getTitle(); ?></td>
+								<td><?php echo $material->getDateCreated()->format('Y-m-d H:i:s'); ?></td>
+								<td>
+									<a href="#"><i class="fa fa-wrench text-navy"></i></a>
+									&nbsp;|&nbsp;
+									<a href="#"><i class="fa fa-times text-navy"></i></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<tr>
+							<td colspan="7">Пусто!</td>
+						</tr>
+					<?php endif; ?>
+					</tbody>
+				</table>
+				<a href="/application/index/form-material"><button type="button" class="btn btn-default btn-sm">Добавить материал</button></a>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-lg-6">
+
+	</div>
+</div>
