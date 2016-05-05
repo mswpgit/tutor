@@ -1,0 +1,180 @@
+<?php
+	$materialForm->setAttributes(array(
+	//	'action' => $this->url('........'),
+		'method' => 'post',
+		'class'  => 'form-horizontal'
+	));
+?>
+
+<div class="col-lg-10">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<h5>Материал: Добавление</h5>
+		</div>
+		<div class="ibox-content" style="display: block;">
+			<?php echo $this->form()->openTag($materialForm); ?>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						<?php echo $this->formLabel($materialForm->get('title')); ?>
+						:
+					</label>
+					<div class="col-sm-6">
+						<?php
+							$materialForm->get('title')->setAttributes(array(
+								'class'  => 'form-control'
+							));
+							echo $this->formInput($materialForm->get('title'));
+						?>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						<?php echo $this->formLabel($materialForm->get('alias')); ?>
+						:
+					</label>
+					<div class="col-sm-6">
+						<?php
+						$materialForm->get('alias')->setAttributes(array(
+							'class'  => 'form-control'
+						));
+						echo $this->formInput($materialForm->get('alias'));
+						?>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Состояние :</label>
+					<div class="col-sm-6">
+						<select class="form-control m-b" name="state">
+							<option value="1">Черновик</option>
+							<option value="2">Опубликованно</option>
+						</select>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						<?php echo $this->formLabel($materialForm->get('introtext')); ?>
+						:
+					</label>
+					<div class="col-sm-6">
+						<?php
+						$materialForm->get('introtext')->setAttributes(array(
+							'class'  => 'form-control'
+						));
+						echo $this->formTextArea($materialForm->get('introtext'));
+						?>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						<?php echo $this->formLabel($materialForm->get('description')); ?>
+						:
+					</label>
+					<div class="col-sm-6">
+						<?php
+						$materialForm->get('description')->setAttributes(array(
+							'class'  => 'form-control'
+						));
+						echo $this->formTextArea($materialForm->get('description'));
+						?>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						<?php echo $this->formLabel($materialForm->get('keywords')); ?>
+						:
+					</label>
+					<div class="col-sm-6">
+						<?php
+						$materialForm->get('keywords')->setAttributes(array(
+							'class'  => 'form-control'
+						));
+						echo $this->formTextArea($materialForm->get('keywords'));
+						?>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						<?php echo $this->formLabel($materialForm->get('content')); ?>
+						:
+					</label>
+					<div class="col-sm-6">
+						<?php
+						$materialForm->get('content')->setAttributes(array(
+							'class'  => 'form-control'
+						));
+						echo $this->formTextArea($materialForm->get('content'));
+						?>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						<?php echo $this->formLabel($materialForm->get('ordering')); ?>
+						:
+					</label>
+					<div class="col-sm-6">
+						<?php
+						$materialForm->get('ordering')->setAttributes(array(
+							'class'  => 'form-control'
+						));
+						echo $this->formInput($materialForm->get('ordering'));
+						?>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
+							<?php echo $this->formLabel($materialForm->get('categoryId')); ?>
+							:
+						</label>
+						<div class="col-sm-4">
+							<?php
+								$materialForm->get('categoryId')->setAttributes(array(
+									'class'  => 'form-control m-b'
+								));
+								echo $this->formSelect($materialForm->get('categoryId'));
+							?>
+						</div>
+						<div class="col-sm-2">
+						</div>
+						<div class="col-sm-4">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<div class="col-sm-4 col-sm-offset-2">
+							<?php
+								$materialForm->get('submit')->setAttributes(array(
+									'class'  => 'btn btn-primary'
+								));
+								echo $this->formButton($materialForm->get('submit'));
+							?>
+						</div>
+					</div>
+			<?php echo $this->form()->closeTag(); ?>
+		</div>
+	</div>
+</div>
