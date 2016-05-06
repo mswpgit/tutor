@@ -9,21 +9,27 @@ class MaterialFilter extends ProvidesEventsInputFilter
 {
 	public function __construct(MaterialOptionsInterface $options)
 	{
-		$menuTypeParams = array(
-			'name'       => 'menuType',
-			'required'   => true,
-			'validators' => array()
-		);
-
 		$titleParams = array(
 			'name'       => 'title',
 			'required'   => true,
 			'validators' => array(
 				array(
+					'name' =>'NotEmpty',
+					'options' => array(
+						'messages' => array(
+							\Zend\Validator\NotEmpty::IS_EMPTY => 'Пусто!'
+						),
+					),
+				),
+				array(
 					'name'    => 'StringLength',
 					'options' => array(
 						'min' => 2,
 						'max' => 100,
+						'messages' => array(
+							'stringLengthTooShort' => 'Минимум %min% максимум %max% символов!',
+							'stringLengthTooLong' => 'Минимум %min% максимум %max% символов!'
+						),
 					),
 				),
 			),
@@ -32,7 +38,6 @@ class MaterialFilter extends ProvidesEventsInputFilter
 			),
 		);
 
-		$this->add($menuTypeParams);
 		$this->add($titleParams);
 		$this->getEventManager()->trigger('init', $this);
 	}

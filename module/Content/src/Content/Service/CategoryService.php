@@ -19,4 +19,9 @@ class CategoryService extends AbstractService
 		return $this->getMapper()->getAll();
 	}
 
+	public function getCategoryById($id)
+	{
+		return $this->getMapper()->getById($id);
+	}
+
 }

@@ -15,4 +15,9 @@ class CategoryMapper extends AbstractMapper
 		return $this->getAllItems($this->options->getCategoryEntityClass());
 	}
 
+	public function getById($id)
+	{
+		return $this->getItemById($id, $this->options->getCategoryEntityClass());
+	}
+
 }
