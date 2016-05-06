@@ -76,6 +76,7 @@ class Module
 						$serviceManager->get('categoryMapper')
 					);
 				},
+				'materialForm' => 'Content\Factory\Form\Material',
 
 			),
 
