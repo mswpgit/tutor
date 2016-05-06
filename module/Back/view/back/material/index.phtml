@@ -33,8 +33,30 @@
 								<td><?php echo $material->getTitle(); ?></td>
 								<td><i class="fa fa-check text-navy"></td>
 								<td><?php echo $material->getOrdering(); ?></td>
-								<td><?php echo $material->getCategory()->getTitle(); ?></td>
-								<td><?php echo $material->getDateCreated()->format('Y-m-d H:i:s'); ?></td>
+								<td>
+									<?php
+										if ($material->getCategory())
+										{
+											echo $material->getCategory()->getTitle();
+										}
+										else
+										{
+											echo '-';
+										}
+									?>
+								</td>
+								<td>
+									<?php
+										if ($material->getDateCreated())
+										{
+											echo $material->getDateCreated()->format('Y-m-d H:i:s');
+										}
+										else
+										{
+											echo '-';
+										}
+									?>
+								</td>
 								<td>
 									<a href="#"><i class="fa fa-wrench text-navy"></i></a>
 									&nbsp;|&nbsp;
